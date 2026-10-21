@@ -1,10 +1,10 @@
 # IMPORT MANIFEST — 2026-10-21 이관 장부
 
-총 106개 파일 · 개인·사건 식별자 41곳 마스킹
+총 94개 파일 · 개인·사건 식별자 41곳 마스킹
 
 마스킹 규칙: 사건번호→`[사건번호]`, 상대방 보험사명→`[상대방 보험사]`, 원고 실명→`[원고]`, 관할 법원→`[관할 법원]`
 
-**옮기지 않은 것 (원본 로컬에만 유지):** `~/ecourt-private/cases/`(실제 사건 서류), `identifiers.txt`, `audit.jsonl`, `law-search-log.jsonl`, 모든 `.env`(인증 값), `~/.config/ecourt/.env`, ScreenPilot `screens/`(실화면 캡처), `Screen Pilot.mp4`(10MB), 테스트 스크린샷, `legal-brain-skill.zip`(빌드 산출물)
+**옮기지 않은 것 (원본 로컬에만 유지):** `~/ecourt-private/cases/`(실제 사건 서류), `identifiers.txt`, `audit.jsonl`, `law-search-log.jsonl`, 모든 `.env`(인증 값), `~/.config/ecourt/.env`, ScreenPilot `screens/`(실화면 캡처), `Screen Pilot.mp4`(10MB), 테스트 스크린샷, `ecourt/mcp/dist/`(build_skill.sh 빌드 산출물, 원본도 git 제외)
 
 | 이 저장소 경로 | 원본 | 비고 |
 |---|---|---|
@@ -35,18 +35,6 @@
 | `ecourt/mcp/demo/sample-case/11_사건평가서_예시.md` | `~/buckleychang.com/tools/ecourt/demo/sample-case/11_사건평가서_예시.md` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
 | `ecourt/mcp/demo/sample-case/KNOWLEDGE_사건요약_예시.md` | `~/buckleychang.com/tools/ecourt/demo/sample-case/KNOWLEDGE_사건요약_예시.md` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
 | `ecourt/mcp/demo/sample-case/STATUS.md` | `~/buckleychang.com/tools/ecourt/demo/sample-case/STATUS.md` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/SKILL.md` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/SKILL.md` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/demo/fixtures/README.md` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/demo/fixtures/README.md` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/demo/fixtures/answer_sample.txt` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/demo/fixtures/answer_sample.txt` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/demo/sample-case/11_사건평가서_예시.md` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/demo/sample-case/11_사건평가서_예시.md` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/demo/sample-case/KNOWLEDGE_사건요약_예시.md` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/demo/sample-case/KNOWLEDGE_사건요약_예시.md` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/demo/sample-case/STATUS.md` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/demo/sample-case/STATUS.md` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/scripts/checks.py` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/scripts/checks.py` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/scripts/firm.py` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/scripts/firm.py` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/scripts/kr_calc.py` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/scripts/kr_calc.py` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/scripts/kr_deadline.py` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/scripts/kr_deadline.py` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/scripts/law_api.py` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/scripts/law_api.py` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
-| `ecourt/mcp/dist/legal-brain/scripts/opponent.py` | `~/buckleychang.com/tools/ecourt/dist/legal-brain/scripts/opponent.py` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
 | `ecourt/mcp/ecourt_mcp.py` | `~/buckleychang.com/tools/ecourt/ecourt_mcp.py` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
 | `ecourt/mcp/firm.py` | `~/buckleychang.com/tools/ecourt/firm.py` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
 | `ecourt/mcp/guard.py` | `~/buckleychang.com/tools/ecourt/guard.py` | buckleychang.com/tools/ecourt (MCP ecourt v1) |
