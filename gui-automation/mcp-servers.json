@@ -1,0 +1,25 @@
+{
+  "screen-pilot": {
+    "command": "/mnt/c/Windows/System32/cmd.exe",
+    "args": [
+      "/c",
+      "C:\\Users\\dtsli\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "C:\\Users\\dtsli\\pc-eyes\\ScreenPilot\\main.py"
+    ]
+  },
+  "desktop-touch": {
+    "command": "/mnt/c/Windows/System32/cmd.exe",
+    "args": [
+      "/c",
+      "npx.cmd",
+      "-y",
+      "@harusame64/desktop-touch-mcp"
+    ]
+  },
+  "ecourt": {
+    "command": "python3",
+    "args": [
+      "/home/dtsli/buckleychang.com/tools/ecourt/ecourt_mcp.py"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+
+============================================================
+  SYSTEM INFO
+============================================================
+Host:     dtslib
+OS:       Windows-11-10.0.26200-SP0
+Python:   3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+
+============================================================
+  LAYER 1: PyAutoGUI (스크린샷 + 마우스)
+============================================================
+  Version:     0.9.54
+  Screen:      1024 x 768
+  ❌ Layer 1 실패: screen grab failed
+
+============================================================
+  LAYER 2: Pywinauto (윈도우 컨트롤 인식)
+============================================================
+  Version:     0.6.9
+  Visible windows: 0
+  ✅ Layer 2: Pywinauto 동작 확인
+
+============================================================
+  LAYER 3: Playwright (웹 DOM)
+============================================================
+  ❌ Layer 3 실패: [WinError 2] 지정된 파일을 찾을 수 없습니다
+
+============================================================
+  LAYER 4: ScreenPilot (MCP GUI)
+============================================================
+  Modules:     screen_capture / mouse / keyboard / scroll / element / action_sequence
+  Server:      screen-pilot
+  Format:      PNG
+  Confidence:  0.9
+  Screens dir: C:\Users\dtsli\pc-eyes\ScreenPilot\screens
+  ✅ Layer 4: ScreenPilot 동작 확인 (import OK)
+
+============================================================
+  SUMMARY
+============================================================
+  Layers OK:  2/4
+  Layers FAIL: 2
+
+  Final verdict: ⚠️  NEEDS ATTENTION

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# ecourt 공개 전 차단 훅 (T2). 설치: ln -sf ../../tools/ecourt/hooks/pre-push .git/hooks/pre-push
+set -u
+ROOT=$(git rev-parse --show-toplevel)
+fail=0
+while read -r lref lsha rref rsha; do
+  [ "$lsha" = "0000000000000000000000000000000000000000" ] && continue
+  range="$rsha..$lsha"; [ "$rsha" = "0000000000000000000000000000000000000000" ] && range="$lsha"
+  added=$(git diff "$range" --unified=0 2>/dev/null | grep '^+' | grep -v '^+++')
+  # 1) 비밀값: 주민번호·봇토큰·암호·계정값
+  if echo "$added" | grep -nE '[0-9]{6}-[1-4][0-9]{6}|bot[0-9]{8,}:[A-Za-z0-9_-]{30,}|(password|passwd)[[:space:]]*[=:][[:space:]]*[^[:space:]]+|(ECOURT_USER_ID|LAW_OC)=[^[:space:]]+' >/dev/null; then
+    echo "[pre-push] 차단: 비밀값 패턴 발견"; fail=1; fi
+  # 2) 마스킹 구역(demo/ journal/)에 실사건 식별자
+  IDS="${ECOURT_IDENTIFIERS:-$HOME/ecourt-private/identifiers.txt}"
+  if [ -f "$IDS" ]; then
+    zone=$(git diff "$range" --unified=0 -- 'tools/ecourt/demo' 'tools/ecourt/journal' 2>/dev/null | grep '^+' | grep -v '^+++')
+    while read -r id; do
+      case "$id" in ''|\#*) continue;; esac
+      if echo "$zone" | grep -qF "$id"; then echo "[pre-push] 차단: 마스킹 구역에 실사건 식별자"; fail=1; fi
+    done < "$IDS"
+  fi
+done
+# 3) selfcheck
+if [ -f "$ROOT/tools/ecourt/selfcheck.py" ]; then
+  python3 "$ROOT/tools/ecourt/selfcheck.py" >/tmp/ecourt_selfcheck.log 2>&1 || { echo "[pre-push] 차단: selfcheck 실패 (/tmp/ecourt_selfcheck.log)"; fail=1; }
+fi
+exit $fail
