@@ -1,0 +1,24 @@
+# LFAI 등기 쿠폰 백엔드 — 온/오프 스위치. 서버 PC 이식: 레포 clone 후 `docker compose up -d`.
+services:
+  lfai-coupon:
+    build: .
+    image: lfai-coupon:latest
+    container_name: lfai-coupon
+    # 실기기 ADB(Tailscale IP)·CDP forward(127.0.0.1:9222) 접근 위해 호스트 네트워크 사용.
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      - LFAI_COUPON_PORT=8787
+      - LFAI_COUPON_DB=/data/coupons.db
+      - IROS_OUT=/data/sessions
+      - IROS_DEVICE=${IROS_DEVICE:-100.86.15.50:5900}  # 서버 PC선 연결된 폰 IP로
+      - IROS_CDP_PORT=9222
+    volumes:
+      - ./data:/data        # 쿠폰 DB·세션 산출물 영속(이식 시 이 폴더만 옮기면 데이터 보존)
+
+  # 공개 터널(선택). 서버 PC에 고정도메인/Funnel 생기면 이 서비스 대신 그걸 사용.
+  # cloudflared:
+  #   image: cloudflare/cloudflared:latest
+  #   network_mode: host
+  #   restart: unless-stopped
+  #   command: tunnel --no-autoupdate --url http://127.0.0.1:8787

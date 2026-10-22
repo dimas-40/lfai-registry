@@ -46,8 +46,22 @@ tailscale funnel 8787        # → https://<node>.<tailnet>.ts.net
 - 로컬(localhost)→`http://127.0.0.1:8787`, 그 외→Funnel URL.
 - `/health` 핑으로 "서버 연결됨/오프라인" 표시. 발급은 서버 우선, 실패 시 로컬 폴백.
 
-## 상주(재부팅 생존, 선택)
-베타는 수동 실행으로 충분. 상시화는 systemd user 서비스 또는 기존 watchdog 패턴 사용.
+## 도커 (이식용 — 서버 PC 오면 그대로) ★
+스위치 온/오프 + 서버 PC 이식을 위해 컨테이너로 패키징. 미니PC든 서버 PC든 동일.
+```bash
+cd server
+./up.sh            # 온 — docker compose up -d --build (health 자동확인)
+./down.sh          # 오프 — compose down (데이터 ./data 보존)
+IROS_DEVICE=<폰IP:포트> ./up.sh   # 서버 PC선 연결된 폰 IP 지정
+```
+- `Dockerfile`: python:3.12-slim + android-tools-adb + websocket-client. 그 외 표준 라이브러리.
+- `docker-compose.yml`: `network_mode: host`(실기기 ADB·CDP forward 접근), `restart: unless-stopped`,
+  `./data`에 쿠폰 DB·세션 산출물 영속 → **이식 시 `./data` 폴더만 옮기면 데이터 보존.**
+- 검증: 이미지 빌드·컨테이너 쿠폰 발급·컨테이너 내 adb 1.0.41 확인(2026-10-22).
+- 공개 터널: compose의 `cloudflared` 서비스 주석 해제(임시 URL) 또는 서버 PC 고정도메인/Funnel.
+
+## 상주(재부팅 생존)
+도커(`restart: unless-stopped`)면 재부팅 자동 복구. 비도커는 systemd user 서비스.
 
 ## 다음 (실서비스화)
 1. **Funnel 활성화**(관리자 1클릭) → 공개 라이브.
