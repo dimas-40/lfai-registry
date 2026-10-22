@@ -32,20 +32,20 @@
   var burger=document.querySelector(".top .burger"), nav=document.getElementById("nav"), top=document.querySelector("header.top");
   if(!burger||!nav||!top) return;
   var DESC=[
-    [/#gate$|^진단$/,"말로 2분 — 당신의 시작점 찾기"],
+    [/#gate$|^진단$/,"말씀으로 2분 — 시작점을 함께 찾습니다"],
     [/#principles$|^구조$/,"목소리에서 내 노드까지, 한 장의 그림"],
-    [/HQ 문답|\/lfai\/$/,"본사에서 말로 진단하기"],
-    [/#work$|^업무$/,"이 자리에서 맡길 수 있는 일"],
+    [/HQ 문답|\/lfai\/$/,"본사에서 말씀으로 진단해 보기"],
+    [/#work$|^업무$/,"이 자리에서 맡기실 수 있는 일"],
     [/#engine$|공통 엔진/,"수집 · 초안 · 승인 · 발행 — 같은 엔진"],
-    [/#start$|^시작$/,"첫 주에 무엇부터 하는지"],
-    [/#try$|실행기|시연/,"직접 눌러 보며 일하는 모습 보기"],
-    [/store\.html$|카탈로그/,"필요한 모듈을 골라 보기"],
+    [/#start$|^시작$/,"첫 주에 무엇부터 하시는지"],
+    [/#try$|실행기|시연/,"직접 눌러 보시며 일하는 모습 살펴보기"],
+    [/store\.html$|카탈로그/,"필요하신 모듈 살펴보기"],
     [/#lineup|라인업/,"같은 엔진으로 만든 다른 방식"],
-    [/#flow$|^흐름$|제작 흐름|#process$/,"말 한마디가 결과물이 되기까지"],
-    [/#base$|네 기반/,"이미 돌아가는 기반들"],
+    [/#flow$|^흐름$|제작 흐름|#process$/,"말씀 한마디가 결과물이 되기까지"],
+    [/#base$|네 기반/,"이미 운용 중인 기반"],
     [/#report$|리포트/,"숫자로 보는 결과"],
-    [/#parts$|^기능$/,"무엇을 대신해 주는지"],
-    [/#scope$|안전 범위/,"하지 않는 일과 사람이 할 일"],
+    [/#parts$|^기능$/,"무엇을 덜어 드리는지"],
+    [/#scope$|안전 범위/,"하지 않는 일과 직접 하실 일"],
     [/#college$|대학/,"배우는 길"],
     [/#solutions$|솔루션/,"만들어 주는 것"]
   ];
@@ -82,11 +82,11 @@
   Array.prototype.forEach.call(nav.querySelectorAll(":scope > a:not(.cta)"),function(a){
     if(a.querySelector(".ic")) return;
     var v=VOICE.test(a.getAttribute("href")||"")||VOICE.test((a.querySelector(".t")||a).textContent.trim());
-    a.insertAdjacentHTML("beforeend",'<span class="ic'+(v?' rec':'')+'" aria-hidden="true">'+(v?'◉':'◈')+'</span><span class="ghost" aria-hidden="true">'+(v?'말로 시작':'살펴보기')+'</span>');
+    a.insertAdjacentHTML("beforeend",'<span class="ic'+(v?' rec':'')+'" aria-hidden="true">'+(v?'◉':'◈')+'</span><span class="ghost" aria-hidden="true">'+(v?'말씀으로 시작':'살펴보기')+'</span>');
   });
   if(!nav.querySelector(".lfai-navcta")){
     var c=document.createElement("div"); c.className="lfai-navcta";
-    c.innerHTML='<button type="button" class="go-voice"><span class="dot" aria-hidden="true"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>말로 진단 시작</button><button type="button" class="browse">조용히 둘러보기</button>';
+    c.innerHTML='<button type="button" class="go-voice"><span class="dot" aria-hidden="true"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>말씀으로 진단 시작</button><button type="button" class="browse">조용히 둘러보기</button>';
     var foot=nav.querySelector(".lfai-navfoot"); nav.insertBefore(c,foot||null);
     function close(){ if(nav.classList.contains("open")) burger.click(); }
     c.querySelector(".browse").addEventListener("click",close);
