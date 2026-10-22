@@ -9,19 +9,19 @@
 <link rel="apple-touch-icon" sizes="180x180" href="lfai-icons/apple-touch-icon.png?v=3">
 <link rel="manifest" href="lfai.webmanifest?v=3">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LFAI 등기">
-<title>LFAI REGISTRY — 등기 모듈 · LFAI AS</title>
-<meta name="description" content="부동산·법인 등기 열람·발급을 폰에서. 개인정보는 폰에만, 결제·서명은 본인 인증. 폰 안에서 도는 시연을 바로 확인하세요.">
+<title>LFAI 등기 — 등기 열람을 폰에서 바로</title>
+<meta name="description" content="부동산·법인 등기 열람을 폰에서 바로. 체험하고 ADB 연결 쿠폰을 발급받아 지금 시작하세요. 개인정보는 폰에만, 결제·서명은 본인 인증.">
 <meta name="theme-color" content="#0d2a21">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://dimas-40.github.io/lfai-registry/">
-<meta property="og:type" content="website"><meta property="og:site_name" content="LFAI REGISTRY">
-<meta property="og:title" content="LFAI REGISTRY — 등기 모듈 · LFAI AS"><meta property="og:description" content="부동산·법인 등기 열람·발급을 폰에서. 개인정보는 폰에만, 결제·서명은 본인 인증.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="LFAI 등기">
+<meta property="og:title" content="LFAI 등기 — 등기 열람을 폰에서 바로"><meta property="og:description" content="체험하고 ADB 연결 쿠폰 발급받아 바로 시작. 개인정보는 폰에만.">
 <meta property="og:url" content="https://dimas-40.github.io/lfai-registry/">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dimas-40.github.io/lfai-as/assets/brand/og-lfai-as.jpg"><meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LFAI REGISTRY — 등기 모듈">
+<meta name="twitter:title" content="LFAI 등기 — 등기 열람을 폰에서 바로">
 <meta name="twitter:image" content="https://dimas-40.github.io/lfai-as/assets/brand/og-lfai-as.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LFAI REGISTRY","alternateName":"등기 모듈","url":"https://dimas-40.github.io/lfai-registry/","applicationCategory":"BusinessApplication","operatingSystem":"MCP · Android · Windows","isPartOf":{"@type":"WebSite","name":"LFAI AS","url":"https://dimas-40.github.io/lfai-as/"},"provider":{"@type":"Organization","name":"LFAI","legalName":"엘에프에이아이 주식회사","url":"https://dimas-40.github.io/lfai/"},"description":"인터넷등기소(IROS) 부동산·법인 등기 열람·발급을 폰에서 돕는 에이전트 모듈. 개인정보는 폰에만 두고, 결제·발급 확정·서명은 본인 인증으로 진행합니다."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"LFAI 등기","url":"https://dimas-40.github.io/lfai-registry/","applicationCategory":"BusinessApplication","operatingSystem":"Android · MCP","offers":[{"@type":"Offer","name":"체험 쿠폰","price":"0","priceCurrency":"KRW"},{"@type":"Offer","name":"1회권","price":"3000","priceCurrency":"KRW"},{"@type":"Offer","name":"10회권","price":"25000","priceCurrency":"KRW"}],"description":"인터넷등기소 부동산·법인 등기 열람을 폰에서. ADB 연결 쿠폰(일회성 토큰)으로 시작. 개인정보는 폰에만."}</script>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
@@ -36,24 +36,48 @@
 .phone::after{content:"";position:absolute;right:-3px;top:150px;width:3px;height:58px;background:#1a2a23;border-radius:0 3px 3px 0}
 .phone iframe{width:100%;height:100%;border:0;border-radius:37px;display:block;background:#eef0f3}
 .phone .glow{position:absolute;inset:-30px;border-radius:60px;background:radial-gradient(60% 40% at 50% 0,#2fbf7f33,transparent 70%);z-index:-1;pointer-events:none}
-.stagecap{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mut,#7f988c)}
+.stagecap{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#7f988c}
 .stagecap .lv{display:inline-flex;align-items:center;gap:6px;color:#2fbf7f;font-weight:700}
 .stagecap .lv i{width:7px;height:7px;border-radius:50%;background:#2fbf7f;animation:lvp 1.4s infinite}
 @keyframes lvp{0%{box-shadow:0 0 0 0 #2fbf7f88}70%{box-shadow:0 0 0 7px #2fbf7f00}100%{box-shadow:0 0 0 0 #2fbf7f00}}
-.stagecap a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:820px){.phone{width:270px}}
+/* 쿠폰 발급기 */
+.btn.sm{padding:10px 16px;font-size:13.5px}
+.issue{max-width:560px;margin:0 auto}
+.cp-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 14px}
+.cp-tier{border:1.5px solid var(--line,#2a4034);background:#0c1a14;border-radius:14px;padding:14px 10px;font:inherit;color:#dcebe3;text-align:center;cursor:pointer;transition:.15s}
+.cp-tier[aria-pressed=true]{border-color:#2fbf7f;background:#0f271c;box-shadow:0 0 0 3px #2fbf7f22}
+.cp-tier b{display:block;font-size:14px}
+.cp-tier span{display:block;font-size:12px;color:#7f988c;margin-top:3px}
+.cp-tier em{display:block;font-size:16px;font-weight:800;font-style:normal;color:#6fd3a4;margin-top:6px}
+#issueBtn{width:100%;font-size:15px;padding:16px}
+.cp-out{margin-top:16px;background:#071a12;border:1px solid #1f3a30;border-radius:16px;padding:16px}
+.cp-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.cp-badge{font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px}
+.cp-badge.ok{background:#0f3a28;color:#6fd3a4}
+.cp-badge.pend{background:#3a2f12;color:#f2b632}
+.cp-meta{font-size:12px;color:#a9c2b6}
+.cp-code{font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:700;letter-spacing:1px;color:#fff;background:#04120c;border:1px dashed #2fbf7f66;border-radius:11px;padding:14px;text-align:center;user-select:all}
+.cp-act{display:flex;gap:8px;margin-top:12px}
+.cp-note{font-size:11.5px;color:#7f988c;margin-top:10px;line-height:1.5}
+.cp-hist{margin-top:16px}
+.cp-h-t{font-size:11px;color:#7f988c;font-weight:700;margin-bottom:6px}
+.cp-h-row{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#a9c2b6;padding:6px 0;border-top:1px solid #16271f}
+.cp-h-row code{font-family:"JetBrains Mono",monospace;color:#cfe3d9}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+@media(max-width:720px){.steps3{grid-template-columns:1fr}.cp-tiers{grid-template-columns:1fr}}
 </style>
 </head>
 <body class="prod-reg">
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header class="top">
   <div class="wrap">
-    <a class="logo lfai-brand" href="./" aria-label="LFAI REGISTRY 홈"><img class="lfai-mark" src="lfai-icons/mark-192.png?v=4" alt="" width="60" height="60"><span class="lfai-word">LFAI</span><span class="ptag">AS · 01</span></a>
+    <a class="logo lfai-brand" href="./" aria-label="LFAI 등기 홈"><img class="lfai-mark" src="lfai-icons/mark-192.png?v=4" alt="" width="60" height="60"><span class="lfai-word">LFAI</span><span class="ptag">등기</span></a>
     <span class="brandline" lang="en">Life First, AI Second</span>
     <button class="burger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
     <nav class="nav" id="nav" aria-label="주 메뉴">
-      <a href="#demo">시연</a><a href="#what">기능</a><a href="#scope">안전 범위</a><a href="https://dimas-40.github.io/lfai-as/store.html">카탈로그</a>
-      <a class="cta" href="https://dimas-40.github.io/lfai/contact/">도입 상담</a>
+      <a href="#demo">체험</a><a href="#issue">쿠폰 발급</a><a href="#connect">연결 방법</a><a href="#price">요금</a>
+      <a class="cta" href="#issue">지금 시작</a>
     </nav>
     <button class="lfai-a2hs" type="button" aria-label="앱 설치 — 홈 화면에 추가"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10 19h4"/><g class="ar"><path d="M12 6.5v7"/><path d="M9 11l3 3 3-3"/></g></svg><span>앱 설치</span></button>
   </div>
@@ -62,80 +86,77 @@
 <section class="hero dark phero" id="demo">
   <div class="wrap">
     <div>
-      <p class="cat">LFAI AS · MODULE 01 · 등기 (부동산·법인)</p>
-      <h1>등기 열람·발급을,<br>폰에서 한 단계씩.</h1>
-      <p class="lede">인터넷등기소 주소 검색·발급여부 확인까지.<br>개인정보는 <strong>폰에만</strong>, 결제와 서명은 <strong>본인 인증</strong>으로.</p>
-      <div class="btns"><a class="btn p" href="https://dimas-40.github.io/lfai-registry/app/">앱으로 열기</a><a class="btn s" href="#what">기능 보기</a></div>
+      <p class="cat">등기 열람 서비스 · 부동산·법인</p>
+      <h1>등기 열람,<br>폰에서 바로.</h1>
+      <p class="lede">체험해 보고, <strong>ADB 연결 쿠폰</strong>을 발급받아 지금 시작하세요.<br>개인정보는 <strong>폰에만</strong>, 결제·서명은 <strong>본인 인증</strong>으로.</p>
+      <div class="btns"><a class="btn p" href="#issue">무료 체험 쿠폰 발급</a><a class="btn s" href="#connect">연결 방법</a></div>
     </div>
     <figure class="stage" aria-label="폰에서 도는 등기 열람 시연">
       <div class="phone"><span class="glow"></span>
         <iframe src="app/" title="LFAI 등기 시연 — 폰에서 도는 실제 플로우" loading="lazy"></iframe>
       </div>
-      <figcaption class="stagecap"><span class="lv"><i></i>LIVE</span> 실제 플로우 시연 · <a href="https://dimas-40.github.io/lfai-registry/app/">전체화면</a></figcaption>
+      <figcaption class="stagecap"><span class="lv"><i></i>LIVE</span> 실제 플로우 시연</figcaption>
     </figure>
   </div>
 </section>
 
-<section class="facts" aria-label="REGISTRY 기본 사양">
+<section class="facts" aria-label="서비스 요약">
   <div class="wrap">
-    <div><p>모듈</p><strong>01 · 등기 (부동산·법인)</strong></div>
+    <div><p>대상</p><strong>부동산·법인 등기 열람</strong></div>
+    <div><p>시작</p><strong>ADB 연결 쿠폰 1장</strong></div>
     <div><p>개인정보</p><strong>폰에만 · 서버는 안 받음</strong></div>
-    <div><p>엔진</p><strong>AutoJS6 온디바이스</strong></div>
-    <div><p>원칙</p><strong>결제·발급·서명은 본인</strong></div>
+    <div><p>결제·서명</p><strong>본인 인증</strong></div>
   </div>
 </section>
 
-<section class="sec alt" id="what">
+<!-- ★ 쿠폰 발급 = 서비스 시작 -->
+<section class="sec" id="issue">
   <div class="wrap">
-    <div class="head2"><div><p class="label">What it does</p><h2>등기를 다루는<br>도구 묶음.</h2></div><p>저장소에 있는 실제 도구 이름 그대로. 서버는 길을 찾고, 폰이 실행합니다.</p></div>
-    <div class="rv">
-      <details open><summary><span class="n">01</span><h3>인터넷등기소(IROS) MCP</h3><span class="s">열람 6종</span></summary><div class="rb"><ul class="mods tools">
-        <li><b>iros_connect</b><span>일회성 무선ADB(페어링 코드=1회용 토큰)로 폰 연결 · 세션 끝나면 토큰 폐기</span><em class="r-mid">확인 필요</em></li>
-        <li><b>iros_open · iros_status</b><span>모바일 등기소 진입 · 상태 확인 — 길찾기만, 개인정보 없음</span><em class="r-safe">일반</em></li>
-        <li><b>iros_search_realty</b><span>부동산 주소 검색까지 — 주소는 폰 로컬 입력, <b>결제·발급 직전 정지</b></span><em class="r-mid">확인 필요</em></li>
-        <li><b>iros_dump</b><span>화면 구조만 덤프 — 개편 시 셀렉터 재매핑, 개인정보 미포함</span><em class="r-safe">일반</em></li>
-      </ul></div></details>
-      <details><summary><span class="n">02</span><h3>온디바이스 엔진 · 안전장치</h3><span class="s">AutoJS6 + guard</span></summary><div class="rb"><ul class="mods tools">
-        <li><b>AutoJS6 (접근성)</b><span>폰 앱이 접근성으로 직접 실행 — PC·ADB 없이 폰 자체, 개인정보 로컬</span><em class="r-safe">표준 엔진</em></li>
-        <li><b>guard.check_label</b><span>결제·납부·발급·서명·제출·삭제 라벨은 자동 클릭 차단 — 본인만</span><em class="r-safe">안전장치</em></li>
-        <li><b>guard.is_app_gate</b><span>'앱에서만 사용가능' 게이트 감지 → 앱경로로 전환 안내(실측 반영)</span><em class="r-safe">안전장치</em></li>
-      </ul></div></details>
-      <details><summary><span class="n">03</span><h3>등기 신청 준비 · 자료</h3><span class="s">작성까지 · 제출은 사람</span></summary><div class="rb"><ul class="mods tools">
-        <li><b>부동산·법인등기 신청</b><span>기입 항목·첨부 체크리스트 정리 — <b>전자제출 화면에서 정지</b></span><em class="r-high">전문가 검토</em></li>
-        <li><b>발급여부 확인</b><span>발급한 등기사항증명서의 진위·발급 여부 조회</span><em class="r-safe">일반</em></li>
-        <li><b>FINDINGS · STANDARD</b><span>2026-10-22 실기기 QA 기록 · 기술 표준 결정 근거</span><em class="r-safe">일반</em></li>
-      </ul></div></details>
+    <div class="head2"><div><p class="label">Start now</p><h2>쿠폰 발급받고<br>바로 시작.</h2></div><p>쿠폰 = 폰↔서버 1회 세션을 여는 <strong>일회성 토큰</strong>. 발급받아 폰 연결 때 입력하면 열람이 돌아갑니다.</p></div>
+    <div class="issue">
+      <div class="cp-tiers" role="group" aria-label="쿠폰 종류">
+        <button type="button" class="cp-tier" data-tier="TRIAL" aria-pressed="true"><b>체험</b><span>1회 · 24시간</span><em>무료</em></button>
+        <button type="button" class="cp-tier" data-tier="R1" aria-pressed="false"><b>1회권</b><span>1회 · 3일</span><em>3,000원</em></button>
+        <button type="button" class="cp-tier" data-tier="R10" aria-pressed="false"><b>10회권</b><span>10회 · 30일</span><em>25,000원</em></button>
+      </div>
+      <button type="button" class="btn p" id="issueBtn">무료 체험 쿠폰 발급</button>
+      <div class="cp-out" id="couponOut" hidden></div>
+      <div class="cp-hist" id="couponHist"></div>
+      <p class="cp-note" style="margin-top:14px">베타: 코드 발급·보관은 브라우저에. 유료권 결제 연동·서버 검증은 순차 오픈합니다. 등기 수수료(정부 납부분)는 열람 시 본인이 별도로 냅니다.</p>
     </div>
   </div>
 </section>
 
-<section class="sec" id="scope">
+<!-- 연결 방법 = 쿠폰 사용 -->
+<section class="sec alt" id="connect">
   <div class="wrap">
-    <div class="head2"><div><p class="label">Boundary</p><h2>넘지 않는 선.</h2></div><p>본인 폰·본인 세션·본인 결제로만 돕습니다. 등기 신청을 남 대신 하는 건 법무사·변호사 업무 — 그 선 앞에서 멈춥니다.</p></div>
+    <div class="head2"><div><p class="label">Connect</p><h2>폰 연결,<br>세 걸음.</h2></div><p>PC 없이 폰 자체에서. 쿠폰을 입력해 세션을 열고, 열람은 폰에서 로컬 실행됩니다.</p></div>
+    <div class="steps3">
+      <div class="tiers"><div><p class="dk">1</p><h3>앱·에이전트 설치</h3><p>폰에 LFAI 등기 앱(온디바이스 엔진)을 1회 설치. 무선 디버깅을 켭니다.</p></div></div>
+      <div class="tiers"><div><p class="dk">2</p><h3>쿠폰 입력 → 페어링</h3><p>발급받은 쿠폰 코드와 폰의 1회용 페어링 코드를 입력해 세션을 엽니다. 세션 끝나면 토큰 폐기.</p></div></div>
+      <div class="tiers"><div><p class="dk">3</p><h3>열람 실행</h3><p>주소 검색·열람까지 자동. 개인정보는 폰에만. 결제·발급·서명은 본인이 폰에서.</p></div></div>
+    </div>
+    <p class="pair"><b>개인정보는 폰에만.</b> 서버는 '어느 화면 어느 버튼'인지 익명 지시만 주고, 주소·등기 내용·결제는 폰을 떠나지 않습니다. <a class="more" href="https://github.com/dimas-40/lfai-registry/blob/main/iros/FINDINGS.md">실기기 검증 →</a></p>
+  </div>
+</section>
+
+<!-- 요금 = 쿠폰 구매 -->
+<section class="sec" id="price">
+  <div class="wrap">
+    <div class="head2"><div><p class="label">Price</p><h2>쓴 만큼,<br>쿠폰으로.</h2></div><p>월 구독 없음. 필요한 만큼 쿠폰으로. 가격·범위를 미리 공개합니다.</p></div>
     <div class="tiers">
-      <div><p class="dk">Tool</p><h3>도구가 한다</h3><p>진입·길찾기, 주소/법인 검색, 발급여부 조회, 신청 서식 준비.</p></div>
-      <div><p class="dk">Person</p><h3>사람이 한다</h3><p>결제, 발급 확정, 인증서 서명, 최종 제출(본인 인증).</p></div>
-      <div><p class="dk">Stop</p><h3>코드가 멈춘다</h3><p>결제·납부·발급·서명·제출·삭제 버튼은 guard가 차단.</p></div>
+      <div><p class="dk">체험</p><h3>무료</h3><p>1회 · 24시간 · 열람 플로우 체험</p><a class="btn s sm" href="#issue" style="margin-top:12px">발급</a></div>
+      <div><p class="dk">1회권</p><h3>3,000원</h3><p>부동산·법인 열람 1회 · 3일</p><a class="btn s sm" href="#issue" style="margin-top:12px">발급</a></div>
+      <div><p class="dk">10회권</p><h3>25,000원</h3><p>열람 10회 · 30일 · 건당 2,500원</p><a class="btn s sm" href="#issue" style="margin-top:12px">발급</a></div>
     </div>
-    <p class="pair"><b>개인정보는 폰에만.</b> 열람·발급은 공개등기라 인증서 없이 결제만으로 되지만, 결제·발급 확정은 본인이 합니다. <a class="more" href="https://github.com/dimas-40/lfai-registry/blob/main/iros/FINDINGS.md">실기기 검증 기록 →</a></p>
-  </div>
-</section>
-
-<section class="sec slim lineup" id="lineup">
-  <div class="wrap">
-    <div class="head2"><div><p class="label">Lineup</p><h2>같은 엔진,<br>모듈 하나.</h2></div><p>LFAI AS의 첫 모듈입니다. 스토어에서 다른 모듈을 고르거나, 태블릿 한 대로 시작할 수 있습니다.</p></div>
-    <div class="lu">
-      <a href="https://dimas-40.github.io/lfai-as/"><p class="dk">Store</p><h3>LFAI AS</h3><p>에이전트 모듈 스토어 · 28개 모듈</p><span>카탈로그 보기 →</span></a>
-      <a class="on" href="./" aria-current="page"><p class="dk">Module 01</p><h3>LFAI REGISTRY</h3><p>등기 (부동산·법인)</p><span>지금 보는 곳</span></a>
-      <a href="https://dimas-40.github.io/lfai-smos/"><p class="dk">Device</p><h3>LFAI SMOS</h3><p>턴키 운영 디바이스 · 태블릿</p><span>디바이스 보기 →</span></a>
-    </div>
+    <p class="pair"><b>넘지 않는 선:</b> 도구는 진입·검색·열람선택까지. 결제·발급 확정·서명·제출은 <b>본인만</b>(guard 코드 차단). 등기 신청(소유권이전 등)은 전문가 검토.</p>
   </div>
 </section>
 
 <section class="close">
   <div class="wrap">
-    <div><h2>첫 모듈부터, 작게 시작하세요.</h2><p>어떤 등기를 떼실지 알려 주시면 맞는 범위와 등급을 안내드립니다.</p></div>
-    <div class="btns"><a class="btn p" href="https://dimas-40.github.io/lfai/contact/">도입 상담</a><a class="btn s" href="https://dimas-40.github.io/lfai-registry/app/">앱으로 열기</a></div>
+    <div><h2>지금 무료로 체험하세요.</h2><p>체험 쿠폰 1장이면 폰에서 바로 열람 플로우가 돕니다.</p></div>
+    <div class="btns"><a class="btn p" href="#issue">무료 체험 쿠폰 발급</a><a class="btn s" href="https://dimas-40.github.io/lfai-registry/app/">앱으로 열기</a></div>
   </div>
 </section>
 </main>
@@ -149,10 +170,10 @@
         <details open><summary><span class="br">├──</span> lineup/</summary><ul>
           <li><span class="br">│   ├──</span> <a href="https://dimas-40.github.io/lfai/">LFAI</a> <span># AI 에이전틱 SI</span></li>
           <li><span class="br">│   ├──</span> <a href="https://dimas-40.github.io/lfai-as/">as</a> <span># 에이전트 모듈 스토어</span></li>
-          <li><span class="br">│   │   └──</span> <a href="https://dimas-40.github.io/lfai-registry/">registry</a> <span># 모듈 01 · 등기 (부동산·법인)</span></li>
+          <li><span class="br">│   │   └──</span> <a href="https://dimas-40.github.io/lfai-registry/">registry</a> <span># 등기 (부동산·법인)</span></li>
           <li><span class="br">│   └──</span> <a href="https://dimas-40.github.io/lfai-smos/">smos</a> <span># 턴키 운영 디바이스</span></li></ul></details>
-        <details><summary><span class="br">├──</span> contact/</summary><ul>
-          <li><span class="br">│   ├──</span> <a href="https://dimas-40.github.io/lfai/contact/">inquiry</a> <span># 도입 상담</span></li>
+        <details><summary><span class="br">├──</span> start/</summary><ul>
+          <li><span class="br">│   ├──</span> <a href="#issue">coupon</a> <span># 쿠폰 발급</span></li>
           <li><span class="br">│   └──</span> <a href="mailto:contact@carusworks.com">contact@carusworks.com</a></li></ul></details>
         <details><summary><span class="br">└──</span> legal/</summary><ul>
           <li><span class="br">    ├──</span> <a href="https://dimas-40.github.io/lfai/privacy/">privacy</a> <span># 개인정보처리방침</span></li>
@@ -160,11 +181,12 @@
         <p class="pr last"><b>~/LFAI/as/registry</b> <em>$</em> <span class="cur" aria-hidden="true"></span></p>
       </div>
     </div>
-    <p class="copy">© 2026 LFAI · AS · Module 01 · <span class="slg" lang="en">Life First, AI Second</span></p>
+    <p class="copy">© 2026 LFAI · 등기 · <span class="slg" lang="en">Life First, AI Second</span></p>
   </div>
 </footer>
-<div class="stick" id="stick"><a class="btn p" href="https://dimas-40.github.io/lfai/contact/">도입 상담</a><a class="btn s" href="https://dimas-40.github.io/lfai-registry/app/">앱으로 열기</a></div>
+<div class="stick" id="stick"><a class="btn p" href="#issue">쿠폰 발급</a><a class="btn s" href="https://dimas-40.github.io/lfai-registry/app/">앱으로 열기</a></div>
 <script src="assets/cw.js?v=1" defer></script>
+<script src="assets/coupon.js?v=1" defer></script>
 <script src="lfai-icons/lfai-head.js?v=4" defer></script>
 </body>
 </html>
