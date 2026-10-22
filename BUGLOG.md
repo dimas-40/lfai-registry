@@ -55,7 +55,7 @@
 | ⚠️O1 | 폰 상시 가동(삼성 배터리킬·화면off 벽) | 운영 | start-on-boot+watchdog+포그라운드서비스. SOLUTION-ARCHITECTURE §2·REQUIREMENTS §5 |
 | ⚠️O2 | TWA 전체화면(주소창 제거) | 배포 | 루트 `.well-known/assetlinks.json` 필요 → GitHub Pages 프로젝트사이트 제약, 커스텀도메인 권장. app/README |
 | ⚠️O3 | IROS 앱 UI 개편 시 셀렉터 깨짐 | 유지보수 | 서버 self-heal 재배포로 흡수(설계상 예정) |
-| ⚠️O4 | AutoJS6 .js 1호(앱 접근성) 미작성 | 구현 | D1 확정에 따른 다음 작업. 웹 recon 셀렉터는 참고용 |
+| 🔶O4 | AutoJS6 .js 1호(앱 접근성) | 구현 | **작성완료** `iros/autojs6/iros_yeollam.js`(health/dump/yeollam + guard). 실기기 full run은 IROS앱 설치+로그인(소유자·PII) 후 |
 
 ## 테스트 자산 (재현용)
 - `iros/test/recon.py` — pages/dump/flow 3모드 실기기 하네스
