@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dimas-40.github.io/lfai-registry/sitemap.xml
