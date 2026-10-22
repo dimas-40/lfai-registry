@@ -72,3 +72,38 @@
   document.addEventListener("keydown",function(e){ if(e.key==="Escape") close(); });
   window.addEventListener("resize",function(){ if(window.innerWidth>760) close(); else sync(); });
 })();
+
+/* Voice Terminal Drawer v0.2 — 항목 아이콘(◉ 말로 / ◈ 살펴보기), '말로 진단 시작'·'조용히 둘러보기' */
+(function(){
+  var burger=document.querySelector(".top .burger"), nav=document.getElementById("nav"); if(!burger||!nav) return;
+  var q=nav.querySelector(".lfai-navq");
+  if(q){ q.querySelector("h3").textContent="어디부터 시작할까요?"; q.querySelectorAll("p")[1].textContent="말로 말씀하시거나, 손으로 고르세요."; }
+  var VOICE=/#gate$|^진단$|HQ 문답|\/lfai\/$|#try$|실행기|시연/;
+  Array.prototype.forEach.call(nav.querySelectorAll(":scope > a:not(.cta)"),function(a){
+    if(a.querySelector(".ic")) return;
+    var v=VOICE.test(a.getAttribute("href")||"")||VOICE.test((a.querySelector(".t")||a).textContent.trim());
+    a.insertAdjacentHTML("beforeend",'<span class="ic'+(v?' rec':'')+'" aria-hidden="true">'+(v?'◉':'◈')+'</span><span class="ghost" aria-hidden="true">'+(v?'말로 시작':'살펴보기')+'</span>');
+  });
+  if(!nav.querySelector(".lfai-navcta")){
+    var c=document.createElement("div"); c.className="lfai-navcta";
+    c.innerHTML='<button type="button" class="go-voice"><span class="dot" aria-hidden="true"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>말로 진단 시작</button><button type="button" class="browse">조용히 둘러보기</button>';
+    var foot=nav.querySelector(".lfai-navfoot"); nav.insertBefore(c,foot||null);
+    function close(){ if(nav.classList.contains("open")) burger.click(); }
+    c.querySelector(".browse").addEventListener("click",close);
+    c.querySelector(".go-voice").addEventListener("click",function(){
+      var mic=document.getElementById("vMic"), gate=document.getElementById("gate");
+      close();
+      if(mic&&gate){
+        if(!mic.disabled){ try{ mic.click(); }catch(e){} }           /* 같은 터치 안에서 마이크 시작(브라우저 규칙) */
+        else { var t=document.getElementById("vModeT"); if(t) t.click(); }
+        setTimeout(function(){ (document.getElementById("nv")||gate).scrollIntoView({behavior:"smooth",block:"center"}); },60);
+      } else { location.href="https://dimas-40.github.io/lfai/?talk=1#gate"; }
+    });
+  }
+})();
+/* 다른 사이트에서 '말로 진단 시작'으로 넘어온 경우: 마이크 버튼 강조 */
+(function(){
+  if(!/[?&]talk=1/.test(location.search)) return;
+  var mic=document.getElementById("vMic"); if(!mic) return;
+  setTimeout(function(){ (document.getElementById("nv")||mic).scrollIntoView({behavior:"smooth",block:"center"}); mic.classList.add("lfai-callout"); var l=document.getElementById("vMicL"); if(l&&!mic.disabled) l.textContent="여기를 눌러 말씀하세요"; },500);
+})();

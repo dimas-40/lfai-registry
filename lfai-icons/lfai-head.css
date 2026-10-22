@@ -102,3 +102,39 @@
   html.lfai-menu-open header.top{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;filter:none!important;transform:none!important;background:#fbf8f1!important}
 }
 @media (prefers-reduced-motion:reduce){.top .nav.open,.top .nav.open > a{animation:none!important;opacity:1!important;transform:none!important}}
+
+/* 2026-10-22 Voice Terminal Drawer v0.2 */
+@media (max-width:760px){
+  .top .nav.open{background:linear-gradient(180deg,#ece5d6 0%,#f9f6f0 30%,#f9f6f0 100%)!important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 0 0 100vmax rgba(10,42,31,.10);padding:30px 22px calc(26px + env(safe-area-inset-bottom,0px))!important;animation:lfaiRise .4s cubic-bezier(.2,.8,.2,1)!important}
+  @keyframes lfaiRise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  html.lfai-menu-open .lfai-a2hs{display:none!important}
+  html.lfai-menu-open .top .wrap .burger{margin-left:auto!important}
+  .lfai-navq{margin:0 0 22px!important;padding-bottom:24px!important;border-bottom:1px solid #EAE6DF!important}
+  .lfai-navq .k{font-size:11px!important;letter-spacing:.3em!important;color:#C2A47A!important;opacity:.8;margin:0 0 18px!important}
+  .lfai-navq h3{font-family:"Noto Serif KR",Georgia,serif!important;font-weight:600!important;font-size:32px!important;line-height:1.2!important;color:#0A2A1F!important}
+  .lfai-navq p{margin:12px 0 0!important;font-size:14px!important;color:#6B6B6B!important}
+  .top .nav.open > a:not(.cta){position:relative;overflow:hidden;grid-template-columns:30px 1fr 44px!important;column-gap:12px!important;padding:20px 6px!important;border-bottom:1px solid #EAE6DF!important;border-radius:0;transition:background .25s ease;animation-delay:calc(var(--i,0) * 50ms + 120ms)!important}
+  .top .nav.open > a .n{font-size:12px!important;color:#C2A47A!important}
+  .top .nav.open > a .t{font-size:24px!important;color:#0A2A1F}
+  .top .nav.open > a .d{font-size:13px!important}
+  .top .nav.open > a .go{display:none}
+  .top .nav.open > a .ic{grid-row:1 / span 2;grid-column:3;justify-self:end;position:relative;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:17px;color:#0A2A1F;border:1px solid rgba(10,42,31,.14);background:#fffdf8;transition:transform .25s ease,opacity .25s ease}
+  .top .nav.open > a .ic.rec{color:#b8473a}
+  .top .nav.open > a .ic.rec::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid rgba(184,71,58,.45);animation:lfaiPulse 1.8s ease-out infinite}
+  @keyframes lfaiPulse{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.35);opacity:0}}
+  .top .nav.open > a .ghost{position:absolute;right:58px;top:50%;transform:translate(16px,-50%);opacity:0;font:600 12.5px/1 Pretendard,system-ui,sans-serif;color:#0A2A1F;letter-spacing:.02em;transition:transform .3s ease,opacity .3s ease;pointer-events:none;white-space:nowrap}
+  .top .nav.open > a:hover,.top .nav.open > a:focus-visible,.top .nav.open > a:active{background:rgba(10,42,31,.05)}
+  .top .nav.open > a:hover .ghost,.top .nav.open > a:focus-visible .ghost,.top .nav.open > a:active .ghost{opacity:.55;transform:translate(0,-50%)}
+  .top .nav.open > a:hover .d,.top .nav.open > a:active .d{opacity:.25}
+  .top .nav.open > a.cta{display:none!important}
+  .lfai-navcta{margin-top:auto;padding-top:26px;display:grid;gap:14px;opacity:0;animation:lfaiItem .4s .35s forwards}
+  .lfai-navcta .go-voice{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:56px;border:0;border-radius:16px;background:#0A2A1F;color:#F9F6F0;font:700 16px/1 Pretendard,system-ui,sans-serif;letter-spacing:.01em;cursor:pointer;box-shadow:0 16px 32px -18px rgba(10,42,31,.8)}
+  .lfai-navcta .go-voice svg{width:20px;height:20px}
+  .lfai-navcta .go-voice .dot{width:8px;height:8px;border-radius:50%;background:#e06a5a;box-shadow:0 0 0 0 rgba(224,106,90,.6);animation:lfaiDot 1.6s ease-out infinite}
+  @keyframes lfaiDot{0%{box-shadow:0 0 0 0 rgba(224,106,90,.55)}100%{box-shadow:0 0 0 9px rgba(224,106,90,0)}}
+  .lfai-navcta .browse{justify-self:center;background:none;border:0;font:400 13px/1.4 Pretendard,system-ui,sans-serif;color:#8A8A8A;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px 8px}
+  .lfai-navfoot{opacity:.6!important;margin-top:18px!important}
+}
+@media (prefers-reduced-motion:reduce){.lfai-navcta{animation:none!important;opacity:1}.top .nav.open > a .ic.rec::after,.lfai-navcta .go-voice .dot{animation:none}}
+.vmic.lfai-callout{box-shadow:0 0 0 0 rgba(201,168,119,.7);animation:lfaiCall 1.4s ease-out 4}
+@keyframes lfaiCall{0%{box-shadow:0 0 0 0 rgba(201,168,119,.7)}100%{box-shadow:0 0 0 18px rgba(201,168,119,0)}}
