@@ -52,3 +52,30 @@
 @media (max-width:600px){.top-nav .lfai-slogan{font-size:13.5px!important}.top-nav .lfai-slogan span{display:block!important}}
 @media (max-width:440px){.top .wrap .brandline,.top .wrap .lfai-bl{font-size:13.5px!important;max-width:72px!important;padding-left:9px!important}}
 @media (max-width:360px){.top .wrap .brandline,.top .wrap .lfai-bl{display:none!important}}
+
+/* 2026-10-22 헤더 버튼 v2 — 앱 설치 + 햄버거 한 쌍 */
+.lfai-a2hs,.top .wrap .burger{height:42px!important;border-radius:13px!important;border:1px solid rgba(13,42,33,.16)!important;background:linear-gradient(180deg,#fffdf8,#f4efe4)!important;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 6px 16px -10px rgba(6,26,19,.45)!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;cursor:pointer}
+.lfai-a2hs:hover,.top .wrap .burger:hover{transform:translateY(-1px);border-color:rgba(13,42,33,.35)!important;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 22px -12px rgba(6,26,19,.55)!important}
+.lfai-a2hs:active,.top .wrap .burger:active{transform:translateY(0) scale(.97)}
+.lfai-a2hs{padding:0 16px 0 12px!important;gap:9px!important;color:#0d2a21!important;font:700 13px/1 Pretendard,system-ui,sans-serif!important;letter-spacing:.01em}
+.lfai-a2hs svg{width:20px!important;height:20px!important}
+.lfai-a2hs .ar{stroke:#b8873a}
+.lfai-a2hs:hover .ar{animation:lfaiDrop .7s ease}
+@keyframes lfaiDrop{0%{transform:translateY(-3px);opacity:.3}60%{transform:translateY(1px);opacity:1}100%{transform:none}}
+.top-nav .lfai-a2hs{height:34px!important;border-radius:10px!important;background:rgba(243,239,228,.06)!important;border-color:rgba(243,239,228,.28)!important;color:#f3efe4!important;box-shadow:none!important;font-size:12px!important}
+.top-nav .lfai-a2hs .ar{stroke:#e2c48f}
+/* 햄버거: 길이 다른 세 줄, 가운데 금색 → 열면 X */
+.top .wrap .burger{width:42px!important;padding:0!important;display:none;position:relative;flex-direction:column;align-items:flex-end!important;justify-content:center;gap:5px!important;padding-right:11px!important}
+.top .wrap .burger span{display:block;height:2px!important;border-radius:2px;background:#0d2a21!important;transition:transform .3s cubic-bezier(.6,.05,.3,1.3),width .25s ease,opacity .2s ease,background .2s}
+.top .wrap .burger span:nth-child(1){width:20px!important}
+.top .wrap .burger span:nth-child(2){width:13px!important;background:#b8873a!important}
+.top .wrap .burger span:nth-child(3){width:17px!important}
+.top .wrap .burger:hover span{width:20px!important}
+.top .wrap .burger[aria-expanded="true"]{background:#0d2a21!important;border-color:#0d2a21!important}
+.top .wrap .burger[aria-expanded="true"] span{background:#f4efe4!important;width:20px!important}
+.top .wrap .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.top .wrap .burger[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(.2)}
+.top .wrap .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:760px){.top .wrap .burger{display:flex!important}.top .wrap .lfai-a2hs{width:42px!important;padding:0!important;justify-content:center}}
+@media (max-width:440px){.lfai-a2hs,.top .wrap .burger{height:40px!important}.top .wrap .lfai-a2hs,.top .wrap .burger{width:40px!important}.top .wrap .burger{padding-right:10px!important}}
+@media (prefers-reduced-motion:reduce){.lfai-a2hs,.top .wrap .burger,.top .wrap .burger span{transition:none!important}.lfai-a2hs:hover .ar{animation:none}}
