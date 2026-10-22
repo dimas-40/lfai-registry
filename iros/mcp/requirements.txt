@@ -1,0 +1,3 @@
+mcp==1.29.1
+playwright>=1.40
+# + 시스템: android-tools(adb), 폰 크롬. 비루트.
