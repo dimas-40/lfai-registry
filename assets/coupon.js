@@ -5,9 +5,11 @@
   var $ = function (i) { return document.getElementById(i); };
   if (!$("issueBtn")) return;
 
-  // 로컬(개발)이면 로컬 백엔드, 아니면 공개(Funnel) 엔드포인트.
+  // 로컬(개발)이면 로컬 백엔드, 아니면 공개 엔드포인트.
+  // 베타 공개: cloudflared quick tunnel(임시 URL — 재시작 시 변경, 끊기면 로컬발급 폴백).
+  // 영구화: Tailscale Funnel(dev-batch.tail73c9cc.ts.net) 관리자 활성화 시 그쪽으로 교체.
   var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  var API = LOCAL ? "http://127.0.0.1:8787" : "https://dev-batch.tail73c9cc.ts.net";
+  var API = LOCAL ? "http://127.0.0.1:8787" : "https://excluding-wellness-camping-mardi.trycloudflare.com";
 
   var TIERS = {
     TRIAL: { name: "체험", uses: 1,  won: 0,    hours: 24 },
