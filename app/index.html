@@ -212,8 +212,14 @@ body{font-family:"Pretendard Variable",system-ui,sans-serif;background:var(--bg)
     },reduce?0:1100));
   }
   function guardStop(){          // 결제 시도 → 차단 안내
-    var b=$("cta");b.disabled=true;b.textContent="🔒 guard 차단 — 본인만";
+    var b=$("cta");b.disabled=true;b.textContent="본인 인증 필요 · guard 차단";
     tm.push(setTimeout(function(){b.disabled=false;b.textContent="결제·발급 (본인 인증)";},1600));
+  }
+  function staticDone(){         // reduced-motion: 전체 스토리를 즉시 정적 표시(빈 화면 방지)
+    clr();$("addr").value=ADDR;$("mReal").classList.add("hot");
+    $("odb").classList.add("on");$("rcard").classList.remove("hidden");$("mdim").classList.remove("on");
+    lit(4);$("cta").disabled=false;$("cta").textContent="결제·발급 (본인 인증)";$("cta").className="pri";
+    state=4;auto=false;
   }
   // CTA 디스패치
   $("cta").addEventListener("click",function(){
@@ -222,12 +228,12 @@ body{font-family:"Pretendard Variable",system-ui,sans-serif;background:var(--bg)
   $("goBtn").addEventListener("click",function(){if(state===1)doSearch();else if(state===0)toSearch();});
   $("mOk").addEventListener("click",toApp);
   $("mCancel").addEventListener("click",function(){$("mdim").classList.remove("on");});
-  $("replay").addEventListener("click",function(){reset();auto=true;if(!reduce)tm.push(setTimeout(toSearch,500));});
+  $("replay").addEventListener("click",function(){reset();auto=true;if(reduce)staticDone();else tm.push(setTimeout(toSearch,500));});
   $("segC").addEventListener("click",function(){$("segC").setAttribute("aria-pressed","true");$("segR").setAttribute("aria-pressed","false")});
   $("segR").addEventListener("click",function(){$("segR").setAttribute("aria-pressed","true");$("segC").setAttribute("aria-pressed","false")});
-  // 자동 시연
+  // 자동 시연 (reduced-motion이면 정적 완성본 즉시 표시)
   reset();auto=true;
-  if(!reduce)tm.push(setTimeout(toSearch,900));
+  if(reduce)staticDone();else tm.push(setTimeout(toSearch,900));
   // PWA: 서비스워커(오프라인 시연)
   if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
 })();
