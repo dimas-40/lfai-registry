@@ -1,0 +1,19 @@
+{
+  "id": "/lfai-registry/app/",
+  "name": "LFAI 등기 시연",
+  "short_name": "LFAI 등기",
+  "description": "인터넷등기소 부동산·법인 등기 열람을 폰에서 — 개인정보는 폰에만, 결제·서명은 본인 인증.",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef0f3",
+  "theme_color": "#eef0f3",
+  "categories": ["business", "utilities"],
+  "icons": [
+    { "src": "../lfai-icons/icon-192.png?v=3", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../lfai-icons/icon-512.png?v=3", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "../lfai-icons/icon-maskable-512.png?v=3", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
