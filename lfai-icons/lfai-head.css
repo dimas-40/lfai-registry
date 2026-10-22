@@ -28,3 +28,17 @@
 .lfai-sheet button{margin-left:auto;flex:none;background:none;border:1px solid #2f4a3f;color:#c6d6cc;font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;cursor:pointer}
 .lfai-bl{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#56645d;border-left:1px solid #e2e9e5;padding-left:16px;margin-left:-24px;white-space:nowrap;line-height:1.4}
 @media (max-width:900px){.lfai-bl{font-size:9px;letter-spacing:.06em;padding-left:10px;margin-left:-4px;white-space:normal;line-height:1.25;max-width:84px}}
+/* 2026-10-22 확대: 마크 ×1.7, 세로 가운데 정렬 */
+.top .wrap{align-items:center}
+.lfai-brand{gap:14px;align-items:center}
+.top .logo img.lfai-mark,.lfai-brand img.lfai-mark{width:60px!important;height:60px!important;border-radius:15px}
+.lfai-word{font-size:30px;letter-spacing:.08em}
+.top-nav .lfai-brand img.lfai-mark{width:48px!important;height:48px!important;border-radius:12px}
+.top-nav .lfai-word{font-size:24px}
+.top-nav .lfai-brand{gap:11px}
+.top .brandline,.top .lfai-bl,.top-nav .lfai-slogan{align-self:center}
+.top .ptag{align-self:center}
+@media (max-width:760px){.top .logo img.lfai-mark{width:48px!important;height:48px!important;border-radius:12px}.lfai-word{font-size:24px}.lfai-brand{gap:10px}}
+@media (max-width:600px){.top-nav .lfai-brand img.lfai-mark{width:40px!important;height:40px!important}.top-nav .lfai-word{font-size:20px}}
+@media (max-width:440px){.top .logo img.lfai-mark{width:46px!important;height:46px!important;border-radius:11px}.lfai-word{font-size:21px}.lfai-brand{gap:8px}}
+@media (max-width:380px){.top .logo img.lfai-mark{width:40px!important;height:40px!important}.lfai-word{font-size:18px}}
