@@ -46,6 +46,19 @@
 > ✅ 그 전까지 **전부 실제로 작동**: AutoJS6 엔진 온디바이스 실행(result.json), Play 설치 트리거, 접근성 ON,
 > 앱 실행, 권한 다이얼로그 처리(uiautomator bounds 정확탭). 마지막 벽만 코드 밖 요인(VPN·점검).
 
+## F. ADB 세션 파이프라인 (쿠폰→실기기 자동구동, server/adb_runner.py)
+| # | 증상 | 원인 | 해결 | 상태 |
+|---|---|---|---|---|
+| F1 | CDP `Runtime.evaluate` 연쇄 호출 timeout | 브라우저ws가 45개 열린탭 이벤트로 홍수 | **탭 전용 debugger ws 직결**(browser ws는 탭생성만) | ✅ |
+| F2 | `Input.dispatchTouchEvent`·`captureScreenshot` 무한 행 | 백그라운드 탭엔 Input/스샷 도메인 안 먹음(과부하 기기) | 검색을 **WebSquare 컴포넌트 `.click()`**(신뢰 채널 Runtime.evaluate)로 트리거, 스샷 제거·본문텍스트로 판정 | ✅ |
+| F3 | 검색 후 본문 빈값 | SPA 전환 타이밍 | 본문 폴링(2s×7, 게이트/결과 키워드 대기)+href 확인 | ✅ |
+| F4 | 점검 오탐 | 공지 제목의 '점검'에 매칭 | 점검'화면' 문구만(`점검중입니다`/`접속이 일시 중단`) | ✅ |
+
+> ✅ **완성·실동작**: `쿠폰발급 → /api/session/run → adb connect/forward → m.iros 탭 → 부동산 선택
+> → 주소 setValue → 검색(comp.click) → 결과판정 → 탭닫기`가 실기기에서 신뢰성 있게 구동.
+> 쿠폰은 기기 구동 전 원자적 소진(재사용 차단 검증). 주소검색까지 ADB 전구간 자동화.
+> 웹 열람은 app_gate(IROS 정책)에서 정지 → 최종 열람 렌더는 AutoJS6 온디바이스(무VPN 기기).
+
 ## E. 시연 PWA (`app/`)
 | # | 증상 | 원인 | 해결 | 상태 |
 |---|---|---|---|---|

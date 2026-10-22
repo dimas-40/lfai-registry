@@ -182,6 +182,19 @@ class H(BaseHTTPRequestHandler):
             return self._send({"ok": True, **validate(b.get("code", ""))})
         if self.path == "/api/coupon/redeem":
             return self._send(redeem(b.get("code", "")))
+        if self.path == "/api/session/run":
+            # 쿠폰 1회 사용(원자적) → 실기기 ADB 세션 구동. address=PII(폰 로컬 복원용, 서버 저장 안 함).
+            rd = redeem(b.get("code", ""))
+            if not rd.get("ok"):
+                return self._send({"ok": False, "stage": "coupon", **rd})
+            try:
+                import adb_runner
+                run = adb_runner.run_yeollam(b.get("address", ""), rd["session_id"])
+            except Exception as e:
+                return self._send({"ok": False, "stage": "runner_error", "error": repr(e),
+                                   "session_id": rd["session_id"]})
+            run["remaining"] = rd.get("remaining")
+            return self._send(run)
         self._send({"ok": False, "error": "not_found"}, 404)
 
     def log_message(self, *a):

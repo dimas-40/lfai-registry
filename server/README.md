@@ -16,7 +16,16 @@ LFAI_COUPON_PORT=8787 python3 server/coupon_server.py
 | POST | `/api/coupon/issue` | `{tier}` | `{ok,code,tier,uses,status,expires}` |
 | POST | `/api/coupon/validate` | `{code}` | `{ok,valid,status,remaining}` |
 | POST | `/api/coupon/redeem` | `{code}` | `{ok,session_id,remaining}` (1회 원자적 차감) |
+| POST | `/api/session/run` | `{code,address}` | 쿠폰 소진 후 **실기기 ADB 세션 구동**(adb_runner) → `{ok,stage,search,url,...}` |
 | GET | `/api/stats` | — | `{issued,redeemed}` (PII 없음) |
+
+### /api/session/run — 쿠폰→실기기 ADB 자동구동
+`adb_runner.py` 가 폰 크롬을 CDP로 잡아 m.iros 부동산 열람 플로우 구동:
+`adb connect/forward → m.iros 탭 → 부동산 선택 → 주소 setValue → 검색(WebSquare comp.click) → 결과판정 → 탭닫기`.
+- 쿠폰은 **기기 구동 전 원자적 소진**(재사용 차단). `address`=PII는 서버 저장 안 함(길이만).
+- 반환 `stage`: `searched`(검색완료) / `app_gate`(웹 열람 앱전용 → AutoJS6 경로) / `payment_gate`(결제=사람) / `maintenance` / `no_device`.
+- 환경변수: `IROS_DEVICE`(기본 Tab S9 Tailscale), `IROS_CDP_PORT`(9222).
+- ⚠️ 이 엔드포인트는 **서버에 연결된 기기**를 구동 — 프로덕션에선 각 유저 폰(무선ADB 페어링)으로 바인딩.
 
 - 티어: `TRIAL`(무료·1회·24h, 즉시활성) · `R1`(3000원·1회·72h) · `R10`(25000원·10회·720h).
 - 유료는 `status=pending_payment` → **PG 연동 전엔 redeem 차단**(정직). 결제 붙으면 active 전환.
