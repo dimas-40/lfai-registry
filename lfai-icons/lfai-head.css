@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap");
 /* LFAI 공통 헤더 브랜드 + 홈 화면 추가 버튼 */
 .lfai-brand{display:inline-flex!important;align-items:center;gap:10px;text-decoration:none!important;color:inherit;flex:none}
 .top .logo img.lfai-mark,.lfai-brand img.lfai-mark{width:36px!important;height:36px!important;border-radius:9px;box-shadow:0 2px 10px rgba(1,17,11,.28);display:block;flex:none}
@@ -42,3 +43,12 @@
 @media (max-width:600px){.top-nav .lfai-brand img.lfai-mark{width:40px!important;height:40px!important}.top-nav .lfai-word{font-size:20px}}
 @media (max-width:440px){.top .logo img.lfai-mark{width:46px!important;height:46px!important;border-radius:11px}.lfai-word{font-size:21px}.lfai-brand{gap:8px}}
 @media (max-width:380px){.top .logo img.lfai-mark{width:40px!important;height:40px!important}.lfai-word{font-size:18px}}
+/* 2026-10-22 슬로건: 검정 세리프 이탤릭 — 가독성·격 */
+.top .wrap .brandline,.top .wrap .lfai-bl{font-family:"Cormorant Garamond","Noto Serif KR",Georgia,"Times New Roman",serif!important;font-style:italic!important;font-weight:600!important;font-size:19px!important;letter-spacing:.005em!important;text-transform:none!important;color:#111!important;line-height:1.1!important;border-left:1px solid rgba(17,17,17,.22)!important;padding-left:18px!important;margin-left:-6px!important;white-space:nowrap!important;max-width:none!important;display:inline-block!important;-webkit-font-smoothing:antialiased}
+.top-nav .lfai-slogan{font-family:"Cormorant Garamond","Noto Serif KR",Georgia,serif!important;font-style:italic;font-weight:600;font-size:17px!important;letter-spacing:.005em!important;text-transform:none!important;color:#f3efe4!important;border-left-color:rgba(243,239,228,.3)!important;padding-left:14px!important;line-height:1.15}
+.top-nav .lfai-slogan span{display:inline!important}
+@media (max-width:900px){.top .wrap .brandline,.top .wrap .lfai-bl{font-size:16px!important;padding-left:12px!important;margin-left:-2px!important}}
+@media (max-width:760px){.top .wrap .brandline,.top .wrap .lfai-bl{font-size:14.5px!important;white-space:normal!important;max-width:80px!important;line-height:1.08!important;padding-left:10px!important;margin-left:0!important}}
+@media (max-width:600px){.top-nav .lfai-slogan{font-size:13.5px!important}.top-nav .lfai-slogan span{display:block!important}}
+@media (max-width:440px){.top .wrap .brandline,.top .wrap .lfai-bl{font-size:13.5px!important;max-width:72px!important;padding-left:9px!important}}
+@media (max-width:360px){.top .wrap .brandline,.top .wrap .lfai-bl{display:none!important}}
