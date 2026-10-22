@@ -9,19 +9,19 @@
 <link rel="apple-touch-icon" sizes="180x180" href="lfai-icons/apple-touch-icon.png?v=3">
 <link rel="manifest" href="lfai.webmanifest?v=3">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LFAI 등기">
-<title>LFAI REGISTRY — 등기·전자소송 모듈 · LFAI AS</title>
-<meta name="description" content="등기·전자소송 업무를 사건 조회·기한 계산·서식 준비까지 모듈로 맡깁니다. MCP로 쓰던 AI 에이전트에 연결하고, 최종 제출과 서명은 본인 인증으로 남깁니다.">
+<title>LFAI REGISTRY — 등기 모듈 · LFAI AS</title>
+<meta name="description" content="부동산·법인 등기 열람·발급을 폰에서. 주소 검색·발급여부 확인·신청 서식 준비까지 모듈로 맡기고, 결제와 서명은 본인 인증으로 남깁니다. 개인정보는 폰에만 — 서버는 받지 않습니다.">
 <meta name="theme-color" content="#0d2a21">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://dimas-40.github.io/lfai-registry/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="LFAI REGISTRY">
-<meta property="og:title" content="LFAI REGISTRY — 등기·전자소송 모듈 · LFAI AS"><meta property="og:description" content="사건 조회·기한 계산·서식 준비까지 모듈로. 최종 제출과 서명은 본인 인증으로 남깁니다.">
+<meta property="og:title" content="LFAI REGISTRY — 등기 모듈 · LFAI AS"><meta property="og:description" content="부동산·법인 등기 열람·발급을 폰에서. 결제와 서명은 본인 인증으로. 개인정보는 폰에만.">
 <meta property="og:url" content="https://dimas-40.github.io/lfai-registry/">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dimas-40.github.io/lfai-as/assets/brand/og-lfai-as.jpg"><meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LFAI REGISTRY — 등기·전자소송 모듈">
+<meta name="twitter:title" content="LFAI REGISTRY — 등기 모듈">
 <meta name="twitter:image" content="https://dimas-40.github.io/lfai-as/assets/brand/og-lfai-as.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LFAI REGISTRY","alternateName":"등기·전자소송 모듈","url":"https://dimas-40.github.io/lfai-registry/","applicationCategory":"BusinessApplication","operatingSystem":"MCP · Windows · Android","isPartOf":{"@type":"WebSite","name":"LFAI AS","url":"https://dimas-40.github.io/lfai-as/"},"provider":{"@type":"Organization","name":"LFAI","legalName":"엘에프에이아이 주식회사","url":"https://dimas-40.github.io/lfai/"},"description":"전자소송 MCP와 화면 자동화로 사건 조회·기한 계산·서식 준비를 돕는 에이전트 모듈. 최종 제출과 서명은 본인 인증으로 진행합니다."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LFAI REGISTRY","alternateName":"등기 모듈","url":"https://dimas-40.github.io/lfai-registry/","applicationCategory":"BusinessApplication","operatingSystem":"MCP · Android · Windows","isPartOf":{"@type":"WebSite","name":"LFAI AS","url":"https://dimas-40.github.io/lfai-as/"},"provider":{"@type":"Organization","name":"LFAI","legalName":"엘에프에이아이 주식회사","url":"https://dimas-40.github.io/lfai/"},"description":"인터넷등기소(IROS) 부동산·법인 등기 열람·발급을 폰에서 돕는 에이전트 모듈. 개인정보는 폰에만 두고, 결제·발급 확정·서명은 본인 인증으로 진행합니다."}</script>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
@@ -47,91 +47,90 @@
 <section class="hero dark phero">
   <div class="wrap">
     <div>
-      <p class="cat">LFAI AS · MODULE 01 · 등기·전자소송</p>
-      <h1>등기와 소송 준비를,<br>한 단계씩.</h1>
-      <p class="lede">전자소송 MCP와 화면 자동화로<br>사건 조회·기한 계산·서식 준비까지.<br>제출과 서명은 <strong>본인 인증</strong>으로 남깁니다.</p>
+      <p class="cat">LFAI AS · MODULE 01 · 등기 (부동산·법인)</p>
+      <h1>등기 열람·발급을,<br>폰에서 한 단계씩.</h1>
+      <p class="lede">인터넷등기소 주소 검색·발급여부 확인·신청 서식 준비까지.<br>개인정보는 <strong>폰에만</strong> 두고, 결제와 서명은 <strong>본인 인증</strong>으로 남깁니다.</p>
       <div class="btns"><a class="btn p" href="#try">모듈 돌려 보기</a><a class="btn s" href="#parts">기능 살펴보기</a></div>
     </div>
     <figure class="demo runner" id="try" aria-label="모듈 실행 예시">
       <div class="bar"><i></i><i></i><i></i><span>REGISTRY 모듈 실행기 · 예시</span></div>
-      <div class="dtabs" role="tablist" aria-label="모듈 선택"><button type="button" data-m="0">전자소송</button><button type="button" data-m="1">송달·기한</button><button type="button" data-m="2">등기</button><button type="button" data-m="3">화면 자동화</button></div>
+      <div class="dtabs" role="tablist" aria-label="모듈 선택"><button type="button" data-m="0">부동산 열람</button><button type="button" data-m="1">법인 열람</button><button type="button" data-m="2">발급여부 확인</button><button type="button" data-m="3">모바일 자동화</button></div>
       <div class="say"><small>지시</small><span id="rSay"></span></div>
       <ol id="rSteps"></ol>
       <div class="rfoot"><span id="rRisk"></span><button type="button" id="rBtn">실행</button></div>
-      <p class="note" id="rNote">예시 화면 · 판단과 최종 제출은 고객이 합니다.</p>
+      <p class="note" id="rNote">예시 화면 · 결제·발급 확정과 서명은 고객이 합니다.</p>
     </figure>
   </div>
 </section>
 
 <section class="facts" aria-label="REGISTRY 기본 사양">
   <div class="wrap">
-    <div><p>모듈</p><strong>01 · 등기·전자소송</strong></div>
-    <div><p>연결</p><strong>MCP · 사건 도구 30여 종</strong></div>
-    <div><p>범위</p><strong>조회 · 기한 · 서식 준비</strong></div>
-    <div><p>원칙</p><strong>제출·서명은 본인 인증</strong></div>
+    <div><p>모듈</p><strong>01 · 등기 (부동산·법인)</strong></div>
+    <div><p>연결</p><strong>MCP · IROS 도구 6종</strong></div>
+    <div><p>개인정보</p><strong>폰에만 · 서버는 안 받음</strong></div>
+    <div><p>원칙</p><strong>결제·발급·서명은 본인 인증</strong></div>
   </div>
 </section>
 
 <section class="sec core" id="core">
   <div class="wrap">
-    <div class="head2"><div><p class="label">Same principles</p><h2>도구는 준비까지,<br>결정은 사람이.</h2></div><p>사건을 맡기지 않습니다. 준비를 맡깁니다. 조회와 계산은 도구가, 판단과 제출은 사람이 합니다.</p></div>
+    <div class="head2"><div><p class="label">How it works</p><h2>서버는 길을 찾고,<br>폰이 실행합니다.</h2></div><p>서버는 "어느 화면 어느 버튼"인지만 안내합니다. 주소·등기 내용 같은 개인정보는 폰을 떠나지 않고, 결제·발급은 본인이 폰에서 합니다.</p></div>
     <div class="pwrap">
       <div class="ptabs" role="tablist">
-        <button type="button" role="tab" data-p="1" aria-selected="true"><b>01</b><strong>말로 지시</strong><span>쓰던 AI 에이전트에 한 문장으로 맡깁니다. 앱을 새로 깔지 않습니다.</span></button>
-        <button type="button" role="tab" data-p="2" aria-selected="false"><b>02</b><strong>모듈 = 표준 절차</strong><span>조회 → 기한 → 서식 준비 → 사람 확인. 금지 버튼은 코드로 막습니다.</span></button>
-        <button type="button" role="tab" data-p="3" aria-selected="false"><b>03</b><strong>아낀 시간 = 돈</strong><span>준비에 드는 시간과 모듈 비용을 같은 단위(원)로 비교합니다.</span></button>
+        <button type="button" role="tab" data-p="1" aria-selected="true"><b>01</b><strong>말로 지시</strong><span>쓰던 AI 에이전트에 한 문장으로 맡깁니다. PC 없이 폰에서.</span></button>
+        <button type="button" role="tab" data-p="2" aria-selected="false"><b>02</b><strong>모듈 = 표준 절차</strong><span>진입 → 주소 검색 → 열람 선택 → 본인 확인. 결제·발급 버튼은 코드로 막습니다.</span></button>
+        <button type="button" role="tab" data-p="3" aria-selected="false"><b>03</b><strong>아낀 시간 = 돈</strong><span>등기 떼러 오가던 시간과 모듈 비용을 같은 단위(원)로 비교합니다.</span></button>
       </div>
       <div class="ppanes">
-        <figure class="c3v chat pp on" data-p="1"><p class="me">이번 주 송달문서 전부 읽고, 보정명령 온 사건 기한부터 정리해 줘</p><p class="ai"><small>REGISTRY · 전자소송 모듈</small>전체송달문서 7건 · 보정명령 1건<br>수신일 2026-09-18 · 마감 2026-10-12(월)<br>보정서 기입 항목까지 준비할까요?<span class="bt"><button type="button">준비</button><button type="button">보류</button></span></p><p class="me">준비</p><p class="ai ok"><small>REGISTRY</small>✓ 기입 준비 완료 · 제출은 본인 인증으로 진행하세요</p><figcaption>예시 화면</figcaption></figure>
-        <figure class="c3v fab pp" data-p="2"><table><thead><tr><th scope="col">반도체 팹</th><th scope="col">REGISTRY 모듈</th></tr></thead><tbody>
-          <tr><td>레시피</td><td>모듈별 고정 절차 — 조회 → 기한 계산 → 서식 준비 → 사람 확인</td></tr>
-          <tr><td>공정 등급</td><td>위험 등급 — 일반 / 확인 필요 / 전문가 검토</td></tr>
-          <tr><td>품질 게이트</td><td>문서제출·서명·결제·납부·삭제 버튼 코드 차단</td></tr>
-          <tr><td>로트 추적</td><td>실행 이력 — journal · audit · 사건별 기록</td></tr>
+        <figure class="c3v chat pp on" data-p="1"><p class="me">우리 아파트 등기 열람할 거야. 주소 검색까지만 띄워 줘</p><p class="ai"><small>REGISTRY · 등기 모듈</small>인터넷등기소(부동산) 진입 · 주소 검색 완료<br>해당 부동산 1건 조회됨<br>열람할 항목 선택하면 결제 화면까지 안내할까요?<span class="bt"><button type="button">안내</button><button type="button">보류</button></span></p><p class="me">안내</p><p class="ai ok"><small>REGISTRY</small>✓ 열람 선택까지 준비 · 결제·발급은 본인 인증으로 진행하세요</p><figcaption>예시 화면</figcaption></figure>
+        <figure class="c3v fab pp" data-p="2"><table><thead><tr><th scope="col">등기 업무</th><th scope="col">REGISTRY 모듈</th></tr></thead><tbody>
+          <tr><td>표준 절차</td><td>진입 → 주소/법인 검색 → 열람·발급 선택 → 본인 확인</td></tr>
+          <tr><td>위험 등급</td><td>일반 / 확인 필요 / 전문가 검토</td></tr>
+          <tr><td>안전 게이트</td><td>결제·발급 확정·서명·납부·삭제 버튼 코드 차단</td></tr>
+          <tr><td>개인정보</td><td>주소·등기 내용은 폰에만 · 서버는 익명 지시만</td></tr>
           <tr><td>표준원가</td><td>등급별 1회 가격 — 3,000원 / 5,000원 / 주문형</td></tr>
         </tbody></table></figure>
         <figure class="c3v rep pp" data-p="3" id="asCalc"></figure>
       </div>
     </div>
-    <p class="appnote">계산식 · 월 절감 = 월 처리 건수 × 건당 직접 처리 시간 × 시간당 가치 − 월 처리 건수 × 1회 이용료. 입력값은 예시이며 업무마다 다릅니다. 법률 자문이 아닙니다.</p>
+    <p class="appnote">계산식 · 월 절감 = 월 처리 건수 × 건당 직접 처리 시간 × 시간당 가치 − 월 처리 건수 × 1회 이용료. 입력값은 예시이며 업무마다 다릅니다. 등기 수수료(정부 납부분)는 별도입니다.</p>
   </div>
 </section>
 
 <section class="sec alt" id="parts">
   <div class="wrap">
-    <div class="head2"><div><p class="label">Parts</p><h2>사건을 다루는<br>도구 묶음.</h2></div><p>필요한 묶음만 펼쳐 보세요. 저장소에 있는 실제 도구 이름 그대로 적었습니다.</p></div>
+    <div class="head2"><div><p class="label">Parts</p><h2>등기를 다루는<br>도구 묶음.</h2></div><p>필요한 묶음만 펼쳐 보세요. 저장소에 있는 실제 도구 이름 그대로 적었습니다.</p></div>
     <div class="rv">
-      <details open><summary><span class="n">01</span><h3>전자소송 MCP</h3><span class="s">v1.0.0 · 조회 4종</span></summary><div class="rb"><ul class="mods tools">
-        <li><b>ecourt_status</b><span>전용 Chrome 상태·로그인 여부 확인</span><em class="r-safe">일반</em></li>
-        <li><b>ecourt_open_login</b><span>로그인 화면 → 아이디 → 인증서 창까지. 암호 입력은 사람이</span><em class="r-mid">확인 필요</em></li>
-        <li><b>ecourt_service_list</b><span>전체송달문서 조회 + 수신일 기준 마감 계산</span><em class="r-safe">일반</em></li>
-        <li><b>ecourt_deadline</b><span>불변기간 마감 계산만 — 초일 불산입·주말·공휴일 순연</span><em class="r-safe">일반</em></li>
-        <li><b>ecourt_prepare_filing</b><span>관련서류 등록 → 목록 추가 → 작성완료 → <b>전자제출 화면에서 정지</b> (동석 시험 예정)</span><em class="r-high">전문가 검토</em></li>
+      <details open><summary><span class="n">01</span><h3>인터넷등기소(IROS) MCP</h3><span class="s">부동산·법인 열람</span></summary><div class="rb"><ul class="mods tools">
+        <li><b>iros_connect</b><span>일회성 무선ADB(페어링 코드=1회용 토큰)로 폰 연결 + 크롬 연동. 토큰은 세션 끝나면 폐기</span><em class="r-mid">확인 필요</em></li>
+        <li><b>iros_status</b><span>연결·크롬·열린 탭 확인 — 화면 안 바꿈</span><em class="r-safe">일반</em></li>
+        <li><b>iros_open</b><span>모바일 인터넷등기소 진입. 길찾기만 · 개인정보 없음</span><em class="r-safe">일반</em></li>
+        <li><b>iros_search_realty</b><span>부동산 주소 검색까지 — 주소는 폰 로컬 입력. <b>결제·발급 직전에서 정지</b></span><em class="r-mid">확인 필요</em></li>
+        <li><b>iros_dump</b><span>화면 구조만 덤프(태그·라벨) — 사이트 개편 시 셀렉터 재매핑. 개인정보 미포함</span><em class="r-safe">일반</em></li>
+        <li><b>iros_disconnect</b><span>세션 종료 — 연결·일회성 토큰 폐기</span><em class="r-safe">일반</em></li>
       </ul></div></details>
-      <details><summary><span class="n">02</span><h3>기한·금액 계산</h3><span class="s">달력과 숫자</span></summary><div class="rb"><ul class="mods tools">
-        <li><b>kr_deadline</b><span>초일 불산입, 토·일·공휴일 순연, 2026–27 공휴일 표</span><em class="r-safe">일반</em></li>
-        <li><b>ecourt_interest</b><span>원금·사고일·송달일 기준 지연이자 계산</span><em class="r-safe">일반</em></li>
-        <li><b>ecourt_fault_table</b><span>과실 비율별 예상 금액 표</span><em class="r-safe">일반</em></li>
-        <li><b>실측 예</b><span>2026-09-18 수신 + 21일 → 2026-10-12(월), 사건 기록과 일치</span><em class="r-safe">검증</em></li>
+      <details><summary><span class="n">02</span><h3>모바일 온디바이스 엔진</h3><span class="s">AutoJS6 · 폰 자체</span></summary><div class="rb"><ul class="mods tools">
+        <li><b>AutoJS6 (접근성)</b><span>폰 앱이 접근성으로 직접 실행 — PC·ADB 없이 폰 자체에서. 개인정보 로컬</span><em class="r-safe">표준 엔진</em></li>
+        <li><b>폰 = MCP 서버</b><span>AutoJs6-Plugin-MCP-Server · 토큰 인증 Wi-Fi · 비전/스샷 없이 노드트리로 셀프힐링</span><em class="r-safe">일반</em></li>
+        <li><b>일회성 스크립트</b><span>서버가 밀어주는 .js = 다운로드 → 실행 → 만료. 좌표 바뀌면 서버에서 재배포</span><em class="r-safe">일반</em></li>
+        <li><b>실측 근거</b><span>m.iros 웹은 열람을 '앱 전용'으로 차단 → 앱을 접근성으로 조작하는 경로가 정답(실기기 검증)</span><em class="r-safe">검증</em></li>
       </ul></div></details>
-      <details><summary><span class="n">03</span><h3>판례·사건 정리</h3><span class="s">찾고, 비교하고, 남김</span></summary><div class="rb"><ul class="mods tools">
-        <li><b>law_search_prec · law_get_prec</b><span>판례 검색·본문 조회, 사건번호 검증</span><em class="r-safe">일반</em></li>
-        <li><b>ecourt_parse_answer</b><span>답변서에서 사건명·주장·금액 항목 추출</span><em class="r-safe">일반</em></li>
-        <li><b>case_chronology · case_strategy</b><span>사건 연혁·쟁점·반박·증거 목록 정리</span><em class="r-safe">일반</em></li>
-        <li><b>case_settlement_zone · ecourt_expected_value</b><span>화해 구간과 기대값 계산 — 판단은 사람이</span><em class="r-mid">확인 필요</em></li>
-        <li><b>case_docket_alerts</b><span>사건 진행 기일·기한 알림</span><em class="r-safe">일반</em></li>
+      <details><summary><span class="n">03</span><h3>안전장치 guard</h3><span class="s">넘지 말아야 할 버튼</span></summary><div class="rb"><ul class="mods tools">
+        <li><b>check_label</b><span>결제·납부·발급·서명·제출·삭제·인증서 라벨은 자동 클릭 차단 — 본인만</span><em class="r-safe">안전장치</em></li>
+        <li><b>on_modal</b><span>인증서 암호·카드번호·간편결제 모달 뜨면 확정 클릭 금지</span><em class="r-safe">안전장치</em></li>
+        <li><b>is_app_gate</b><span>'앱에서만 사용가능' 게이트 감지 — 웹경로 불가 시 앱경로로 전환 안내</span><em class="r-safe">안전장치</em></li>
       </ul></div></details>
-      <details><summary><span class="n">04</span><h3>화면 자동화</h3><span class="s">PC · 안드로이드</span></summary><div class="rb"><ul class="mods tools">
-        <li><b>win_cdp</b><span>Windows 전용 Chrome(9444)을 CDP로 조작 — DOM·글자 기준</span><em class="r-mid">확인 필요</em></li>
-        <li><b>guard.py</b><span>문서제출·서명·결제·납부·삭제 버튼 코드 차단 + 글자 확인 후 클릭</span><em class="r-safe">안전장치</em></li>
-        <li><b>ScreenPilot</b><span>Windows 화면 보기·클릭·창 조작 MCP</span><em class="r-mid">확인 필요</em></li>
-        <li><b>phone-cdp</b><span>안드로이드 크롬 CDP·ADB 조작 — Meta API 개통 때 사용</span><em class="r-mid">확인 필요</em></li>
+      <details><summary><span class="n">04</span><h3>등기 신청 준비</h3><span class="s">작성까지 · 제출은 사람</span></summary><div class="rb"><ul class="mods tools">
+        <li><b>부동산등기 신청</b><span>신청서 기입 항목·첨부 서류 목록 정리 — <b>전자제출 화면에서 정지</b></span><em class="r-high">전문가 검토</em></li>
+        <li><b>법인등기 신청</b><span>등기 원인·당사자 확인 → 기입 항목 정리 → 첨부 체크리스트</span><em class="r-high">전문가 검토</em></li>
+        <li><b>발급여부 확인</b><span>발급한 등기사항증명서의 진위·발급 여부 조회</span><em class="r-safe">일반</em></li>
+        <li><b>startbiz 연계</b><span>법인설립 포털(startbiz) 등기 관련 절차 구조 매핑</span><em class="r-mid">확인 필요</em></li>
       </ul></div></details>
-      <details><summary><span class="n">05</span><h3>자료와 이력</h3><span class="s">94개 파일 · 41곳 마스킹</span></summary><div class="rb"><ul class="mods tools">
-        <li><b>journal</b><span>소장 접수·보정·답변서 처리의 사고 기록 3종</span><em class="r-safe">일반</em></li>
-        <li><b>history</b><span>개발일지 072–075, 커밋 이력, MCP 기본 세팅 기록</span><em class="r-safe">일반</em></li>
-        <li><b>notes</b><span>인증서 PC→모바일 이전 준비, 전자소송포털 이용약관</span><em class="r-safe">일반</em></li>
-        <li><b>마스킹</b><span>사건번호·당사자·법원명 41곳 마스킹. 실제 사건 자료는 옮기지 않음</span><em class="r-safe">공개 범위</em></li>
+      <details><summary><span class="n">05</span><h3>자료와 이력</h3><span class="s">실기기 QA 기록</span></summary><div class="rb"><ul class="mods tools">
+        <li><b>FINDINGS.md</b><span>Tab S9 실기기로 IROS 열람 끝까지 몰아본 기록 · 셀렉터 매핑 · 디버깅 체인</span><em class="r-safe">일반</em></li>
+        <li><b>STANDARD.md</b><span>온디바이스(AutoJS6) vs 원격 ADB-MCP 지형 비교 · 기술 표준 결정 근거</span><em class="r-safe">일반</em></li>
+        <li><b>SOLUTION-ARCHITECTURE.md</b><span>"서버는 연산, 폰은 개인정보+실행" 전체 설계 · 백그라운드 실행 한계</span><em class="r-safe">일반</em></li>
+        <li><b>개인정보</b><span>실제 등기 내용·주소는 저장소에 올리지 않음 — 공개 테스트 주소(공공건물)만 사용</span><em class="r-safe">공개 범위</em></li>
       </ul></div></details>
     </div>
   </div>
@@ -139,13 +138,13 @@
 
 <section class="sec" id="scope">
   <div class="wrap">
-    <div class="head2"><div><p class="label">Boundary</p><h2>넘지 않는 선.</h2></div><p>등기·소송 신청을 남 대신 하는 것은 법무사·변호사 업무입니다. 이 모듈은 그 선 앞에서 멈춥니다.</p></div>
+    <div class="head2"><div><p class="label">Boundary</p><h2>넘지 않는 선.</h2></div><p>등기 신청을 남 대신 하는 것은 법무사·변호사 업무입니다. 이 모듈은 본인 폰·본인 세션·본인 결제로만 돕고, 그 선 앞에서 멈춥니다.</p></div>
     <div class="tiers">
-      <div><p class="dk">Tool</p><h3>도구가 한다</h3><p>서식 기입 보조, 서류 준비, 기한 계산, 진행 상태 조회, 기록·장부.</p></div>
-      <div><p class="dk">Person</p><h3>사람이 한다</h3><p>최종 제출, 공동·금융인증서 서명, 클릭·저장·폼 제출(본인 동석).</p></div>
-      <div><p class="dk">Stop</p><h3>코드가 멈춘다</h3><p>문서제출·서명·결제·납부·삭제 버튼은 guard.py가 차단합니다.</p></div>
+      <div><p class="dk">Tool</p><h3>도구가 한다</h3><p>진입·길찾기, 주소/법인 검색, 화면 구조 확인, 발급여부 조회, 신청 서식 준비.</p></div>
+      <div><p class="dk">Person</p><h3>사람이 한다</h3><p>결제, 발급 확정, 공동·금융인증서 서명, 최종 제출(본인 인증).</p></div>
+      <div><p class="dk">Stop</p><h3>코드가 멈춘다</h3><p>결제·납부·발급·서명·제출·삭제 버튼은 guard가 차단합니다.</p></div>
     </div>
-    <p class="pair"><b>법률·세무 자문이 아닙니다.</b> 고위험 업무는 전문가 검토를 거쳐 제공하며, 최종 판단과 제출은 고객이 합니다.</p>
+    <p class="pair"><b>개인정보는 폰에만.</b> 열람·발급은 공개등기라 인증서 없이 결제만으로 되지만, 결제와 발급 확정은 본인이 합니다. 등기 신청(소유권이전 등)은 전문가 검토를 거칩니다.</p>
   </div>
 </section>
 
@@ -154,24 +153,24 @@
     <div class="head2"><div><p class="label">Before you start</p><h2>쓰기 전에<br>확인하실 것.</h2></div><p>필요한 항목만 펼쳐 보세요.</p></div>
     <div class="rv">
       <details><summary><span class="n">01</span><h3>이용 방법</h3><span class="s">네 걸음</span></summary><div class="rb"><div class="steps four">
-        <div><b>01</b><h3>MCP 연결</h3><p>쓰던 AI 에이전트에 모듈 주소와 키를 넣습니다.</p></div>
-        <div><b>02</b><h3>모듈 선택</h3><p>전자소송·등기·화면 자동화 중 필요한 범위만 고릅니다.</p></div>
-        <div><b>03</b><h3>지시</h3><p>판단은 고객의 AI가 하고, 모듈은 조회·계산·기입 준비를 합니다.</p></div>
-        <div><b>04</b><h3>본인 인증</h3><p>제출과 서명은 고객 인증으로 고객이 마칩니다.</p></div>
+        <div><b>01</b><h3>폰 연동</h3><p>폰에 온디바이스 엔진을 1회 세팅합니다(무선 페어링, PC 불필요).</p></div>
+        <div><b>02</b><h3>업무 선택</h3><p>부동산 열람·법인 열람·발급여부·신청 준비 중 필요한 범위만 고릅니다.</p></div>
+        <div><b>03</b><h3>지시</h3><p>판단은 고객의 AI가 하고, 모듈은 진입·검색·서식 준비를 합니다.</p></div>
+        <div><b>04</b><h3>본인 인증</h3><p>결제·발급 확정과 서명은 고객 인증으로 고객이 마칩니다.</p></div>
       </div></div></details>
       <details><summary><span class="n">02</span><h3>요금</h3><span class="s">등급이 곧 가격</span></summary><div class="rb"><div class="tiers">
-        <div><p class="dk">Junior</p><h3>3,000원~</h3><p>단순 조회·발급 · 1회</p></div>
-        <div><p class="dk">Senior</p><h3>5,000원~</h3><p>여러 단계가 있는 일 · 1회</p></div>
-        <div><p class="dk">Expert</p><h3>주문형</h3><p>고난도 · 전문가 검토 포함</p></div>
-      </div><p class="pair"><b>월 구독은 없습니다.</b> 모듈마다 가격과 범위를 미리 공개하고, 실행 이력을 남깁니다.</p></div></details>
+        <div><p class="dk">Junior</p><h3>3,000원~</h3><p>단순 열람·발급여부 확인 · 1회</p></div>
+        <div><p class="dk">Senior</p><h3>5,000원~</h3><p>여러 단계가 있는 열람·발급 준비 · 1회</p></div>
+        <div><p class="dk">Expert</p><h3>주문형</h3><p>등기 신청 준비 · 전문가 검토 포함</p></div>
+      </div><p class="pair"><b>월 구독은 없습니다.</b> 모듈마다 가격과 범위를 미리 공개합니다. 등기 수수료(정부 납부분)는 본인이 별도로 냅니다.</p></div></details>
       <details><summary><span class="n">03</span><h3>책임 범위</h3><span class="s">자문이 아니라 기능</span></summary><div class="rb"><div class="tiers">
-        <div><p class="dk">Module</p><h3>기능</h3><p>서류 작성 보조, 첨부, 포털 조작, 등록 준비.</p></div>
-        <div><p class="dk">Customer</p><h3>판단</h3><p>무엇을 할지, 내용이 맞는지. AI 모델도 고객이 가져옵니다.</p></div>
-        <div><p class="dk">Submit</p><h3>본인 인증</h3><p>전자 등록과 최종 제출은 고객 인증으로 고객이 마칩니다.</p></div>
-      </div><p class="pair"><b>법률·세무 자문이 아닙니다.</b> 전자소송·등기 같은 고위험 업무는 전문가 검토를 거쳐 제공합니다.</p></div></details>
+        <div><p class="dk">Module</p><h3>기능</h3><p>진입, 검색, 서식 준비, 발급여부 조회, 화면 구조 매핑.</p></div>
+        <div><p class="dk">Customer</p><h3>판단</h3><p>무엇을 떼고 어디에 쓸지. AI 모델도 고객이 가져옵니다.</p></div>
+        <div><p class="dk">Submit</p><h3>본인 인증</h3><p>결제·발급 확정과 최종 제출은 고객 인증으로 고객이 마칩니다.</p></div>
+      </div><p class="pair"><b>법률·세무 자문이 아닙니다.</b> 등기 신청 같은 고위험 업무는 전문가 검토를 거쳐 제공합니다.</p></div></details>
       <details><summary><span class="n">04</span><h3>지금 상태</h3><span class="s">정직하게</span></summary><div class="rb">
-        <p class="pair"><b>v1.0.0 · 2026-10-21 이관.</b> 조회·기한 계산은 가동 중이고, 서식 준비(<code>ecourt_prepare_filing</code>)는 동석 시험 예정입니다. 이 저장소는 이관 사본이며, MCP 정본은 아직 원본 경로에서 돕니다 — 이쪽으로 옮길지는 결정 대기입니다.</p>
-        <p class="pair">실제 사건 자료는 옮기지 않았습니다. 사건번호·당사자·법원명 41곳을 마스킹했고, 상세 장부는 <a class="more" href="https://github.com/dimas-40/lfai-registry/blob/main/MANIFEST.md">MANIFEST.md</a>에 있습니다.</p>
+        <p class="pair"><b>2026-10-22 · 실기기 검증.</b> 갤럭시 Tab S9 실기기로 인터넷등기소 부동산 열람 플로우를 끝까지 몰아본 결과, 모바일 '웹'은 열람을 <b>앱 전용</b>으로 막는 것을 확인했습니다. 그래서 실제 자동화는 <b>IROS 앱을 접근성(AutoJS6)으로</b> 조작하는 경로로 갑니다. 셀렉터 매핑·디버깅 전 과정은 <a class="more" href="https://github.com/dimas-40/lfai-registry/blob/main/iros/FINDINGS.md">FINDINGS.md</a>에 있습니다.</p>
+        <p class="pair">실제 등기 내용·개인 주소는 저장소에 올리지 않았습니다. 검증에는 공개 공공건물 주소만 사용했고, 기술 표준 결정 근거는 <a class="more" href="https://github.com/dimas-40/lfai-registry/blob/main/STANDARD.md">STANDARD.md</a>에 있습니다.</p>
       </div></details>
     </div>
   </div>
@@ -182,7 +181,7 @@
     <div class="head2"><div><p class="label">Lineup</p><h2>같은 엔진,<br>모듈 하나.</h2></div><p>LFAI AS의 첫 모듈입니다. 스토어에서 다른 모듈을 고르거나, 태블릿 한 대로 시작할 수 있습니다.</p></div>
     <div class="lu">
       <a href="https://dimas-40.github.io/lfai-as/"><p class="dk">Store</p><h3>LFAI AS</h3><p>에이전트 모듈 스토어 · 28개 모듈</p><span>카탈로그 보기 →</span></a>
-      <a class="on" href="./" aria-current="page"><p class="dk">Module 01</p><h3>LFAI REGISTRY</h3><p>등기·전자소송 · 조회·기한·서식 준비</p><span>지금 보는 곳</span></a>
+      <a class="on" href="./" aria-current="page"><p class="dk">Module 01</p><h3>LFAI REGISTRY</h3><p>등기 (부동산·법인) · 열람·발급·신청 준비</p><span>지금 보는 곳</span></a>
       <a href="https://dimas-40.github.io/lfai-smos/"><p class="dk">Device</p><h3>LFAI SMOS</h3><p>턴키 운영 디바이스 · 태블릿</p><span>디바이스 보기 →</span></a>
     </div>
   </div>
@@ -190,7 +189,7 @@
 
 <section class="close">
   <div class="wrap">
-    <div><h2>첫 모듈부터, 작게 시작하세요.</h2><p>어떤 사건·서류를 준비하실지 알려 주시면 맞는 범위와 등급을 안내드립니다.</p></div>
+    <div><h2>첫 모듈부터, 작게 시작하세요.</h2><p>어떤 등기를 떼실지 알려 주시면 맞는 범위와 등급을 안내드립니다.</p></div>
     <div class="btns"><a class="btn p" href="https://dimas-40.github.io/lfai/contact/">도입 상담</a></div>
   </div>
 </section>
@@ -205,7 +204,7 @@
         <details open><summary><span class="br">├──</span> lineup/</summary><ul>
           <li><span class="br">│   ├──</span> <a href="https://dimas-40.github.io/lfai/">LFAI</a> <span># AI 에이전틱 SI</span></li>
           <li><span class="br">│   ├──</span> <a href="https://dimas-40.github.io/lfai-as/">as</a> <span># 에이전트 모듈 스토어</span></li>
-          <li><span class="br">│   │   └──</span> <a href="https://dimas-40.github.io/lfai-registry/">registry</a> <span># 모듈 01 · 등기·전자소송</span></li>
+          <li><span class="br">│   │   └──</span> <a href="https://dimas-40.github.io/lfai-registry/">registry</a> <span># 모듈 01 · 등기 (부동산·법인)</span></li>
           <li><span class="br">│   └──</span> <a href="https://dimas-40.github.io/lfai-smos/">smos</a> <span># 턴키 운영 디바이스</span></li></ul></details>
         <details><summary><span class="br">├──</span> contact/</summary><ul>
           <li><span class="br">│   ├──</span> <a href="https://dimas-40.github.io/lfai/contact/">inquiry</a> <span># 도입 상담</span></li>
