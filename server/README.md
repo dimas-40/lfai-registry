@@ -57,7 +57,8 @@ IROS_DEVICE=<폰IP:포트> ./up.sh   # 서버 PC선 연결된 폰 IP 지정
 - `Dockerfile`: python:3.12-slim + android-tools-adb + websocket-client. 그 외 표준 라이브러리.
 - `docker-compose.yml`: `network_mode: host`(실기기 ADB·CDP forward 접근), `restart: unless-stopped`,
   `./data`에 쿠폰 DB·세션 산출물 영속 → **이식 시 `./data` 폴더만 옮기면 데이터 보존.**
-- 검증: 이미지 빌드·컨테이너 쿠폰 발급·컨테이너 내 adb 1.0.41 확인(2026-10-22).
+- up.sh/down.sh는 docker compose 없으면 `docker run` 자동 폴백(이식성).
+- 검증: 이미지 빌드·컨테이너 쿠폰발급·컨테이너 내 adb 1.0.41·라이브 전환(데이터 보존)·공개URL E2E 확인(2026-10-22).
 - 공개 터널: compose의 `cloudflared` 서비스 주석 해제(임시 URL) 또는 서버 PC 고정도메인/Funnel.
 
 ## 상주(재부팅 생존)
