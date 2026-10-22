@@ -1,0 +1,32 @@
+{
+  "id": "./",
+  "name": "LFAI 등기",
+  "short_name": "LFAI 등기",
+  "description": "Life First, AI Second",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#01110b",
+  "theme_color": "#01110b",
+  "icons": [
+    {
+      "src": "lfai-icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "lfai-icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "lfai-icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
