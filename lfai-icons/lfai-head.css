@@ -79,3 +79,26 @@
 @media (max-width:760px){.top .wrap .burger{display:flex!important}.top .wrap .lfai-a2hs{width:42px!important;padding:0!important;justify-content:center}}
 @media (max-width:440px){.lfai-a2hs,.top .wrap .burger{height:40px!important}.top .wrap .lfai-a2hs,.top .wrap .burger{width:40px!important}.top .wrap .burger{padding-right:10px!important}}
 @media (prefers-reduced-motion:reduce){.lfai-a2hs,.top .wrap .burger,.top .wrap .burger span{transition:none!important}.lfai-a2hs:hover .ar{animation:none}}
+
+/* 2026-10-22 모바일 메뉴 시트 — 질문 + 설명 카드 */
+@media (max-width:760px){
+  .top .nav.open{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:var(--lfai-navtop,64px)!important;z-index:60;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:22px 20px calc(24px + env(safe-area-inset-bottom,0px))!important;overflow-y:auto;border:0!important;background:radial-gradient(120% 60% at 100% 0%,rgba(201,168,119,.16),transparent 60%),linear-gradient(180deg,#fbf8f1 0%,#f3eee3 100%)!important;animation:lfaiSheet .32s cubic-bezier(.2,.8,.2,1)}
+  @keyframes lfaiSheet{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  .lfai-navq{margin:0 0 18px;padding-bottom:18px;border-bottom:1px solid rgba(13,42,33,.12)}
+  .lfai-navq .k{margin:0 0 10px;font:600 10px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.24em;color:#b8873a}
+  .lfai-navq h3{margin:0;font-family:"Noto Serif KR",Georgia,serif;font-weight:500;font-size:26px;line-height:1.3;color:#0d2a21;letter-spacing:-.01em}
+  .lfai-navq p{margin:8px 0 0;font-size:14px;line-height:1.6;color:#56645d}
+  .top .nav.open > a:not(.cta){display:grid!important;grid-template-columns:34px 1fr 18px;align-items:center;column-gap:10px;padding:15px 4px!important;border:0!important;border-bottom:1px solid rgba(13,42,33,.09)!important;color:#0d2a21!important;text-decoration:none;opacity:0;transform:translateX(-8px);animation:lfaiItem .4s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i,0) * 55ms + 80ms)}
+  @keyframes lfaiItem{to{opacity:1;transform:none}}
+  .top .nav.open > a .n{grid-row:1 / span 2;font:500 11px/1 "JetBrains Mono",ui-monospace,monospace;color:#b8873a;letter-spacing:.06em}
+  .top .nav.open > a .t{font-family:"Noto Serif KR",Georgia,serif;font-size:19px;font-weight:500;line-height:1.3;letter-spacing:-.01em}
+  .top .nav.open > a .d{grid-column:2;font-family:Pretendard,system-ui,sans-serif;font-size:13px;font-weight:400;color:#6b766f;line-height:1.5;margin-top:2px}
+  .top .nav.open > a .go{grid-row:1 / span 2;grid-column:3;color:#b8873a;font-size:16px;transition:transform .2s}
+  .top .nav.open > a:active .go{transform:translateX(4px)}
+  .top .nav.open > a.cta{margin-top:auto!important;padding:16px 18px!important;border-radius:14px!important;background:#0d2a21!important;color:#f6f1e6!important;text-align:center!important;font-weight:700;border:0!important;opacity:0;animation:lfaiItem .4s .35s forwards;box-shadow:0 14px 30px -18px rgba(6,26,19,.7)}
+  .lfai-navfoot{margin-top:16px;text-align:center;font-family:"Cormorant Garamond","Noto Serif KR",Georgia,serif;font-style:italic;font-weight:600;font-size:16px;color:#0d2a21;opacity:.75}
+  .lfai-navfoot small{display:block;margin-top:4px;font-family:Pretendard,system-ui,sans-serif;font-style:normal;font-weight:400;font-size:11.5px;color:#7a847d;opacity:1}
+  html.lfai-menu-open,html.lfai-menu-open body{overflow:hidden}
+  html.lfai-menu-open header.top{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;filter:none!important;transform:none!important;background:#fbf8f1!important}
+}
+@media (prefers-reduced-motion:reduce){.top .nav.open,.top .nav.open > a{animation:none!important;opacity:1!important;transform:none!important}}
