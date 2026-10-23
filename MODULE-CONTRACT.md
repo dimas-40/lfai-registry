@@ -1,10 +1,10 @@
 # 모듈 계약 (LFAI AS 에이전틱 모듈 표준)
 
-> 모든 스토어 모듈은 이 레이아웃을 따른다 → **termux-bridge(베이스)가 어떤 모듈이든 똑같이 설치**.
+> 모든 스토어 모듈은 이 레이아웃을 따른다 → **LFAI 에이전트 설치기(베이스, lfai-as/learn/g)와 `mod add` 가 어떤 모듈이든 똑같이 설치**.
 > 등기 = 1호 레퍼런스.
 
 ## 베이스 vs 모듈
-- **베이스 = termux-bridge** (한 번 설치): 에이전트(claude-code/DeepSeek/Aider) + adb + core.
+- **베이스 = LFAI 에이전트 설치기** (한 번 설치): `pkg install -y curl && curl -O https://dimas-40.github.io/lfai-as/learn/g && bash g` → 에이전트(Claude Code · Aider, DeepSeek 키) + 위젯 + `mod` 명령.
 - **모듈 = lfai-as 스토어 각 항목**(등기·세무·민원…): 베이스 위에 플러그인.
 
 ## 모듈 필수 구성 (레포 루트)
@@ -25,7 +25,8 @@ agent/               # (선택) 마스터 시스템 프롬프트
 
 ## 설치 흐름
 ```
-curl ...termux-bridge... | bash        # 베이스(에이전트)
-→ mod add deunggi                       # 모듈(등기) = lfai-registry/install.sh 호출
+pkg install -y curl && curl -O https://dimas-40.github.io/lfai-as/learn/g && bash g   # 베이스(에이전트)
+mod add deunggi        # 모듈(등기) = lfai-as/mod/index.txt → lfai-registry/install.sh 실행
+# 새 모듈은 lfai-as/mod/index.txt 에 한 줄(모듈ID 설치주소 이름) 추가
 → 접근성 1회 + 유저 AI로 서식 + 이용권 → 실행
 ```

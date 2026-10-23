@@ -9,7 +9,7 @@
   "landing": "https://dimas-40.github.io/lfai-registry/",
   "install": "install.sh",
   "needs": {
-    "base": "termux-bridge",
+    "base": "lfai-as/learn/g",
     "autojs6": true,
     "accessibility": true,
     "user_llm": true

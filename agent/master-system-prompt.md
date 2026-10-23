@@ -29,7 +29,9 @@
 
 ## 사용 (유저 터미널, 선택 — 파워유저 레인)
 ```bash
-# termux-bridge 로 설치한 에이전트 사용 예
-claude --model deepseek-chat --system-prompt agent/master-system-prompt.md
+# LFAI 에이전트 설치기 + mod add deunggi 뒤 (폰)
+deunggi draft
+# PC 등에서 직접
+claude --append-system-prompt "$(cat agent/master-system-prompt.md)"
 # 또는 그냥 웹 ChatGPT/Claude 에 위 블록 + 프롬프트 팩 붙여넣기 (설치 0, 대중 레인)
 ```

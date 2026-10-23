@@ -56,52 +56,52 @@ body{font-family:"JetBrains Mono",monospace;background:#000;color:var(--w);displ
 <span class="foot">Termux 앱을 열고 — 여기서부터 시작.</span></div>
 
   <!-- 2 -->
-  <div class="scr"><span class="tag">설치</span><span class="pr">~$</span> <span class="cmd">curl -fsSL dtslib1979.github.io/\
-  termux-bridge/g | bash</span>
-<span class="yel">[*]</span> termux-bridge installer v1.2
-<span class="dim">    pkg install git nodejs-lts python rust jq …</span>
-<span class="dim">    Reading package lists... </span><span class="ok">Done</span>
-<span class="blu">    Unpacking (18) </span><span class="bar2">████████████░░░</span> 78%<span class="cur"></span></div>
+  <div class="scr"><span class="tag">설치</span><span class="pr">~$</span> <span class="cmd">pkg install -y curl && curl -O \
+  dimas-40.github.io/lfai-as/learn/g && bash g</span>
+<span class="yel">  LFAI · 에이전트 첫 설치</span>
+<span class="dim">  API 키: sk-3f9a••••c21</span>  <span class="ok">✅ 키 저장(이 폰에만)</span>
+<span class="yel">  ▶</span>  [1/5] 기본 패키지  <span class="ok">✅</span>
+<span class="yel">  ▶</span>  [2/5] 폰 위에 리눅스(Ubuntu)
+<span class="blu">    Unpacking </span><span class="bar2">████████████░░░</span> 78%<span class="cur"></span></div>
 
   <!-- 3 -->
-  <div class="scr"><span class="tag">에이전트</span><span class="yel">[*]</span> npm i -g @anthropic-ai/claude-code
-<span class="dim">    added 142 packages in 23s</span>
-<span class="yel">[*]</span> pip install aider-chat
-<span class="dim">    Successfully installed aider-chat-0.64</span>
-<span class="yel">[*]</span> DeepSeek API 연동
-<span class="ok">[✓]</span> agent ready · claude-code 2.1.3
-<span class="dim">[*] 설치 스크립트 self-destruct … </span><span class="ok">done</span>
-<span class="pr">~/lfai$</span> <span class="cur"></span></div>
+  <div class="scr"><span class="tag">에이전트</span><span class="yel">  ▶</span>  [3/5] 에이전트 — Aider · Claude Code
+<span class="ok">  ✅</span> Aider  <span class="ok">✅</span> Claude Code
+<span class="yel">  ▶</span>  [4/5] 실행 래퍼 · 위젯
+<span class="ok">  ✅</span> 위젯 2개 · 작업 폴더 ~/work
+<span class="ok">  ✅</span> mod — 모듈 설치 명령
+<span class="ok">  ✅</span> [5/5] SSH 키 · 설치 끝
+<span class="pr">~/work$</span> <span class="cur"></span></div>
 
   <!-- 4 -->
-  <div class="scr"><span class="tag">모듈</span><span class="pr">~/lfai$</span> <span class="cmd">mod add deunggi</span>
-<span class="dim">    fetch github.com/dimas-40/lfai-registry</span>
-<span class="ok">    ✓</span> navigator/iros_register.js  (AutoJS6)
-<span class="ok">    ✓</span> navigator/guard.js
-<span class="ok">    ✓</span> prompts/법인설립_서식_프롬프트팩
-<span class="ok">    ✓</span> profile/법인설립_프로필.schema.json
-<span class="cy">[deunggi]</span> 모듈 01 설치됨 · <span class="dim">mod list 로 확인</span>
-<span class="pr">~/lfai$</span> <span class="cur"></span></div>
+  <div class="scr"><span class="tag">모듈</span><span class="pr">~/work$</span> <span class="cmd">mod add deunggi</span>
+<span class="dim">  ▶  deunggi 설치 — lfai-registry/install.sh</span>
+<span class="ok">[등기]</span> 내비게이터 설치됨: iros_register.js (+guard.js)
+<span class="ok">[등기]</span> 프로필 틀 생성: lfai-iros/profile.json
+<span class="ok">[등기]</span> 서식 프롬프트 · 에이전트 지침
+<span class="ok">[등기]</span> 명령 설치: deunggi draft | run | status
+<span class="cy">  ✅ deunggi 설치됨</span> · <span class="dim">mod list 로 확인</span>
+<span class="pr">~/work$</span> <span class="cur"></span></div>
 
   <!-- 5 -->
-  <div class="scr"><span class="tag">서식·내 AI</span><span class="pr">~/lfai$</span> <span class="cmd">deunggi draft</span>
+  <div class="scr"><span class="tag">서식·내 AI</span><span class="pr">~/work$</span> <span class="cmd">deunggi draft</span>
 <div class="box"><div class="h">● claude · deunggi</div><div class="b"><span class="q">›</span> 어떤 등기인가요? 상호·자본금·임원을 알려주시면 표준서식으로 작성합니다.</div><div class="meta">model deepseek-chat · 유저 과금 · 작성=본인</div></div>
 <span class="pr">› </span><span class="cmd">법인설립 세움테크 5천만원 대표 김세움</span><span class="cur"></span></div>
 
   <!-- 6 -->
   <div class="scr"><span class="tag">작성 완료</span><div class="box"><div class="h">● claude · deunggi</div><div class="b">정관·발기인총회의사록·주주명부·취임승낙서 생성 완료.<br><span class="dim">→ profile.json 으로 요약 저장(내 폰 로컬).</span><br><br>※ 법률 자문 아님 · 내용 검토는 본인.</div><div class="meta">4 docs · 1,820 tokens · 저장 ~/lfai/data/</div></div>
-<span class="pr">~/lfai$</span> <span class="cur"></span></div>
+<span class="pr">~/work$</span> <span class="cur"></span></div>
 
   <!-- 7 -->
-  <div class="scr"><span class="tag">이용권·MCP</span><span class="pr">~/lfai$</span> <span class="cmd">deunggi use LFAI-TRIAL-6DEX-QS43</span>
+  <div class="scr"><span class="tag">이용권·MCP</span><span class="pr">~/work$</span> <span class="cmd">deunggi use LFAI-TRIAL-6DEX-QS43</span>
 <span class="ok">[✓]</span> MCP 연결 · 1회용 토큰 검증
 <span class="dim">    loaded:</span> how_to_write · navigation · explain_next
 <span class="cy">[MCP]</span> 전산 내비 지침 준비 완료
 <span class="dim">    (우리 MCP = 안내만 · 생성·PII 안 받음)</span>
-<span class="pr">~/lfai$</span> <span class="cur"></span></div>
+<span class="pr">~/work$</span> <span class="cur"></span></div>
 
   <!-- 8 -->
-  <div class="scr"><span class="tag">집중·실행</span><span class="pr">~/lfai$</span> <span class="cmd">deunggi run</span>
+  <div class="scr"><span class="tag">집중·실행</span><span class="pr">~/work$</span> <span class="cmd">deunggi run</span>
 <span class="ok">[✓]</span> 방해금지(DND) ON · 30분 집중
 <span class="dim">    (전화·알림 차단 · 비행기모드 아님)</span>
 <span class="ok">[✓]</span> 접근성 서비스 확인

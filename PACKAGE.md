@@ -19,7 +19,7 @@ index.html / app/              # PWA 앞단(쿠폰 발급·안내·시연)
 
 ## 두 레인 (온보딩)
 - **A · 대중(설치 최소):** 웹 ChatGPT/Claude 에 프롬프트 붙여넣어 서식 → PWA에서 이용권 → "등기 도우미" 앱 1개 + 접근성 토글 1회 → 자동입력 → 제출(본인).
-- **B · 파워유저:** termux-bridge 로 claude-code(+DeepSeek, 유저 과금) 설치 → `agent/run.sh` 로 서식 생성 → 내비게이터. (설치 장벽 낮음, 개발자/프로슈머)
+- **B · 파워유저:** LFAI 에이전트 설치기(lfai-as/learn/g)로 Claude Code(+DeepSeek, 유저 과금) 설치 → `mod add deunggi` → `deunggi draft` 로 서식 생성 → 내비게이터. (설치 장벽 낮음, 개발자/프로슈머)
 
 ## 흐름 (핸드오프)
 ```
@@ -31,9 +31,11 @@ index.html / app/              # PWA 앞단(쿠폰 발급·안내·시연)
 
 ## 설치
 ```bash
-curl -fsSL https://dimas-40.github.io/lfai-registry/install.sh | bash   # Termux/adb
+pkg install -y curl && curl -O https://dimas-40.github.io/lfai-as/learn/g && bash g   # 베이스(한 번)
+mod add deunggi                                                                 # 이 모듈
+# (직접: curl -fsSL https://dimas-40.github.io/lfai-registry/install.sh | bash)
 ```
-그다음 (1회 수동): ① 접근성 켜기 ② 유저 AI로 프로필 작성 ③ `iros_register.js` 실행.
+그다음 (1회 수동): ① 접근성 켜기 ② `deunggi draft`(또는 쓰던 AI)로 프로필 작성 ③ `deunggi run`.
 
 ## 내비게이터 모드 (브리지 cmd.json)
 | op | 동작 |
