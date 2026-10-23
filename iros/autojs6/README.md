@@ -10,7 +10,7 @@
 - 검증 기기(2026-10-22): Galaxy Tab S9(SM-X716N)에 AutoJS6 6.7.0 설치 확인. **IROS 앱 미설치 상태**라 full run 은 앱 설치 후.
 
 ## 모드 (cmd.json 의 `op`)
-브리지: `/sdcard/Download/lfai-iros/` 의 `cmd.json`(입력) → `result.json`(결과, PII 미포함).
+브리지: `/sdcard/Download/lfai/deunggi/` 의 `cmd.json`(입력) → `result.json`(결과, PII 미포함).
 
 | op | 하는 일 |
 |---|---|

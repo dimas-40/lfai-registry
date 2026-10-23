@@ -2,14 +2,13 @@
   "id": "deunggi",
   "name": "등기 전산 내비게이터",
   "title_ko": "등기 (부동산·법인)",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "module_no": 1,
   "repo": "https://github.com/dimas-40/lfai-registry",
   "store": "https://dimas-40.github.io/lfai-as/",
   "landing": "https://dimas-40.github.io/lfai-registry/",
-  "install": "install.sh",
   "needs": {
-    "base": "lfai-as/learn/g",
+    "bolt": 1,
     "autojs6": true,
     "accessibility": true,
     "user_llm": true
@@ -19,9 +18,26 @@
     "guard": "navigator/guard.js",
     "prompts": "prompts/법인설립_서식_프롬프트팩.md",
     "profile_schema": "profile/법인설립_프로필.schema.json",
-    "agent_prompt": "agent/master-system-prompt.md"
+    "agent_prompt": "agent/master-system-prompt.md",
+    "mcp": "mcp/server.py"
   },
-  "portals": ["startbiz.go.kr", "iros.go.kr"],
+  "portals": [
+    "startbiz.go.kr",
+    "iros.go.kr"
+  ],
   "legal": "셀프 전산 보조 도구(대행 아님) · 서식=유저 AI · 결제·서명·제출=본인 · 법률 자문 아님",
-  "status": "beta"
+  "status": "beta",
+  "bolt": 1,
+  "mcp": {
+    "server": "mcp/server.py",
+    "tools": [
+      "deunggi_guide",
+      "deunggi_profile_schema",
+      "deunggi_save_profile",
+      "deunggi_run",
+      "deunggi_status"
+    ]
+  },
+  "bridge": "/sdcard/Download/lfai/deunggi",
+  "install": "install.sh"
 }

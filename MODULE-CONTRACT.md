@@ -25,8 +25,8 @@ agent/               # (선택) 마스터 시스템 프롬프트
 
 ## 설치 흐름
 ```
-pkg install -y curl && curl -O https://dimas-40.github.io/lfai-as/learn/g && bash g   # 베이스(에이전트)
-mod add deunggi        # 모듈(등기) = lfai-as/mod/index.txt → lfai-registry/install.sh 실행
-# 새 모듈은 lfai-as/mod/index.txt 에 한 줄(모듈ID 설치주소 이름) 추가
+pkg install -y curl && curl -O https://dimas-40.github.io/lfai-as/learn/g && bash g   # 볼트 v1(한 번)
+mod add deunggi        # 너트: index.txt → module.json → install.sh → claude mcp add
+# 규격 전문: lfai-as/docs/설계/02-볼트-너트-표준.md
 → 접근성 1회 + 유저 AI로 서식 + 이용권 → 실행
 ```

@@ -6,7 +6,7 @@
 //            (상태머신: 채움 → ⏸유저 승인 대기 → ▶재개). 서식 '생성'도 안 한다(그건 유저 AI).
 //
 // 전제: 접근성 서비스 ON. 대상 앱/포털은 화면에 접근성 노드를 노출(정부앱=법적 접근성 의무).
-// 브리지: /sdcard/Download/lfai-iros/ 의 profile.json(입력) · state.json(진행) · result.json(결과, PII 미포함)
+// 브리지: /sdcard/Download/lfai/deunggi/ 의 profile.json(입력) · state.json(진행) · result.json(결과, PII 미포함)
 //
 // ★셀렉터(STEPS[].fields[].sel)는 무VPN 실기기에서 'dump' 모드로 실측 매핑해 채운다(지금은 골격).
 
@@ -16,7 +16,7 @@ auto.setMode("fast");
 
 var guard = require("./guard.js");
 
-var BR = "/sdcard/Download/lfai-iros/";
+var BR = "/sdcard/Download/lfai/deunggi/";
 var F_PROFILE = BR + "profile.json";
 var F_STATE = BR + "state.json";
 var F_RESULT = BR + "result.json";

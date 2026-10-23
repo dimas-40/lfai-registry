@@ -19,7 +19,7 @@ index.html / app/              # PWA 앞단(쿠폰 발급·안내·시연)
 
 ## 두 레인 (온보딩)
 - **A · 대중(설치 최소):** 웹 ChatGPT/Claude 에 프롬프트 붙여넣어 서식 → PWA에서 이용권 → "등기 도우미" 앱 1개 + 접근성 토글 1회 → 자동입력 → 제출(본인).
-- **B · 파워유저:** LFAI 에이전트 설치기(lfai-as/learn/g)로 Claude Code(+DeepSeek, 유저 과금) 설치 → `mod add deunggi` → `deunggi draft` 로 서식 생성 → 내비게이터. (설치 장벽 낮음, 개발자/프로슈머)
+- **B · 파워유저:** LFAI 에이전트 설치기(lfai-as/learn/g)로 Claude Code(+DeepSeek, 유저 과금) 설치 → `mod add deunggi` → `lfai` 로 에이전트를 열고 말로 서식 작성(MCP deunggi_*) → 내비게이터. (설치 장벽 낮음, 개발자/프로슈머)
 
 ## 흐름 (핸드오프)
 ```
@@ -35,7 +35,7 @@ pkg install -y curl && curl -O https://dimas-40.github.io/lfai-as/learn/g && bas
 mod add deunggi                                                                 # 이 모듈
 # (직접: curl -fsSL https://dimas-40.github.io/lfai-registry/install.sh | bash)
 ```
-그다음 (1회 수동): ① 접근성 켜기 ② `deunggi draft`(또는 쓰던 AI)로 프로필 작성 ③ `deunggi run`.
+그다음: ① AutoJS6 접근성 켜기(1회) ② `lfai` → "법인 설립 등기 준비 도와줘" — 에이전트가 MCP로 프로필 저장 · 실행 지시 ③ AutoJS6에서 iros_register.js 실행.
 
 ## 내비게이터 모드 (브리지 cmd.json)
 | op | 동작 |

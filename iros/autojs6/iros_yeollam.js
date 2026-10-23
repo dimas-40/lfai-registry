@@ -17,7 +17,7 @@
 auto.waitFor();
 auto.setMode("fast");
 
-var BRIDGE = "/sdcard/Download/lfai-iros/";
+var BRIDGE = "/sdcard/Download/lfai/deunggi/";
 var CMD = BRIDGE + "cmd.json";       // {op, address?} — address(PII)는 폰 로컬에서만
 var RES = BRIDGE + "result.json";    // 상태 요약 — PII 미포함
 files.createWithDirs(BRIDGE);
