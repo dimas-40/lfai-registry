@@ -61,6 +61,25 @@
 .svc{display:inline-block;font-size:11.5px;font-weight:700;margin-top:10px;color:#7f988c}
 .svc.up{color:#6fd3a4}
 .svc.down{color:#c0a9e0}
+.run-panel{margin-top:16px;background:#07140f;border:1px solid #1f3a30;border-radius:16px;padding:16px}
+.run-t{font-size:13px;font-weight:800;color:#dcebe3;margin-bottom:10px}
+.run-t span{float:right;font-weight:600;color:#7f988c;font-size:11.5px}
+.run-t code{color:#6fd3a4;font-family:"JetBrains Mono",monospace}
+.run-in{display:flex;gap:8px}
+.run-in input{flex:1;background:#04120c;border:1.5px solid #234;border-radius:11px;padding:12px 13px;color:#fff;font:inherit;font-size:13.5px;outline:0}
+.run-in input:focus{border-color:#2fbf7f}
+.run-in .btn{white-space:nowrap}
+.run-hint{font-size:11px;color:#7f988c;margin-top:9px;line-height:1.5}
+.run-out{margin-top:12px;background:#04120c;border:1px solid #1f3a30;border-radius:12px;padding:13px;font-size:12.5px}
+.run-step{display:flex;align-items:center;gap:9px;padding:5px 0;color:#a9c2b6}
+.run-step i{width:8px;height:8px;border-radius:50%;background:#2a4034;flex:none}
+.run-step.on i{background:#2fbf7f;box-shadow:0 0 0 3px #2fbf7f22}
+.run-step.on{color:#dcebe3}
+.run-verdict{margin-top:10px;padding:11px;border-radius:10px;font-size:12.5px;line-height:1.55}
+.run-verdict.ok{background:#0f271c;color:#cfe3d9;border:1px solid #2fbf7f44}
+.run-verdict.gate{background:#2a2433;color:#d9c9f0;border:1px solid #6a5a9a44}
+.run-verdict.err{background:#2a1416;color:#f0b0b0;border:1px solid #d2443a44}
+.run-verdict b{color:#fff}
 .cp-meta{font-size:12px;color:#a9c2b6}
 .cp-code{font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:700;letter-spacing:1px;color:#fff;background:#04120c;border:1px dashed #2fbf7f66;border-radius:11px;padding:14px;text-align:center;user-select:all}
 .cp-act{display:flex;gap:8px;margin-top:12px}
@@ -127,6 +146,18 @@
       <button type="button" class="btn p" id="issueBtn">무료 체험 쿠폰 발급</button>
       <div><span class="svc" id="svcStat">서버 확인 중…</span></div>
       <div class="cp-out" id="couponOut" hidden></div>
+
+      <!-- ★ 실행 패널 — 발급한 쿠폰으로 실기기 열람 세션 구동 -->
+      <div class="run-panel" id="runPanel" hidden>
+        <p class="run-t">② 열람 실행 <span>쿠폰 <code id="runCode"></code></span></p>
+        <div class="run-in">
+          <input id="runAddr" value="서울특별시 중구 세종대로 110" placeholder="부동산 주소(지번/도로명)">
+          <button type="button" class="btn p" id="runBtn">열람 실행</button>
+        </div>
+        <p class="run-hint">※ 시연 기본값은 공개 공공건물 주소입니다. 실행하면 연결된 실기기에서 실제 구동됩니다(최대 1분).</p>
+        <div class="run-out" id="runOut" hidden></div>
+      </div>
+
       <div class="cp-hist" id="couponHist"></div>
       <p class="cp-note" style="margin-top:14px">베타: 코드 발급·보관은 브라우저에. 유료권 결제 연동·서버 검증은 순차 오픈합니다. 등기 수수료(정부 납부분)는 열람 시 본인이 별도로 냅니다.</p>
     </div>

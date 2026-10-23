@@ -66,8 +66,69 @@
       var b = $("cpCopy"); if (navigator.clipboard) navigator.clipboard.writeText(rec.code).then(ok, ok); else ok();
       function ok() { b.textContent = "복사됨 ✓"; setTimeout(function () { b.textContent = "코드 복사"; }, 1600); }
     });
+    // 발급되면 실행 패널 노출(활성 쿠폰만 — 결제 전 유료권은 redeem 차단이라 체험 위주)
+    if ($("runPanel")) {
+      activeCode = rec.code;
+      $("runCode").textContent = rec.code;
+      $("runPanel").hidden = false;
+      $("runOut").hidden = true;
+      $("runBtn").disabled = false;
+      $("runBtn").textContent = "열람 실행";
+    }
     renderHistory();
   }
+
+  // ── 실기기 열람 세션 실행 ───────────────────────────────
+  var activeCode = null;
+  function runSession() {
+    if (!activeCode) return;
+    var btn = $("runBtn"), out = $("runOut"), addr = ($("runAddr").value || "").trim();
+    if (!addr) { addr = "서울특별시 중구 세종대로 110"; $("runAddr").value = addr; }
+    btn.disabled = true; btn.textContent = "실행 중…";
+    out.hidden = false;
+    var steps = [["폰 연결(ADB)", 0], ["인터넷등기소 진입", 1], ["주소 검색", 2], ["결과 판정", 3]];
+    out.innerHTML = steps.map(function (s) {
+      return '<div class="run-step" data-k="' + s[1] + '"><i></i><span>' + s[0] + '</span></div>';
+    }).join("") + '<div class="run-verdict" id="runV" style="display:none"></div>';
+    var k = 0, anim = setInterval(function () {
+      var el = out.querySelector('.run-step[data-k="' + k + '"]'); if (el) el.classList.add("on");
+      k++; if (k >= steps.length) clearInterval(anim);
+    }, 1200);
+
+    var ctl = new AbortController();
+    var to = setTimeout(function () { ctl.abort(); }, 125000);
+    fetch(API + "/api/session/run", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: activeCode, address: addr }), signal: ctl.signal
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      clearTimeout(to); clearInterval(anim);
+      [].forEach.call(out.querySelectorAll(".run-step"), function (e) { e.classList.add("on"); });
+      var v = $("runV"); v.style.display = "block";
+      var stage = d.stage || "", msg = d.msg || "";
+      if (d.ok && stage === "app_gate") {
+        v.className = "run-verdict gate";
+        v.innerHTML = "<b>검색까지 실제 구동됨</b> — 폰 연결→진입→주소검색 완료. 최종 열람 렌더는 <b>앱(AutoJS6)</b> 경로입니다(IROS 웹 정책). 결제·발급은 본인.";
+      } else if (d.ok && (stage === "searched" || stage === "payment_gate")) {
+        v.className = "run-verdict ok";
+        v.innerHTML = "<b>열람 검색 완료</b> — 결제·발급·서명은 본인이 폰에서(guard 차단).";
+      } else if (stage === "maintenance") {
+        v.className = "run-verdict err"; v.innerHTML = "<b>IROS 서비스 점검중</b> — 점검 종료 후 재시도.";
+      } else if (stage === "no_device") {
+        v.className = "run-verdict err"; v.innerHTML = "<b>기기 미연결</b> — 실행용 폰이 연결돼야 합니다.";
+      } else if (d.stage === "coupon") {
+        v.className = "run-verdict err"; v.innerHTML = "<b>쿠폰 사용 불가</b> — " + (d.status || "만료/사용됨") + ". 새로 발급하세요.";
+      } else {
+        v.className = "run-verdict err"; v.innerHTML = "<b>" + (stage || "실행 실패") + "</b> — " + msg;
+      }
+      btn.textContent = "완료"; activeCode = null;  // 1회용 소진
+    }).catch(function () {
+      clearTimeout(to); clearInterval(anim);
+      var v = $("runV"); v.style.display = "block"; v.className = "run-verdict err";
+      v.innerHTML = "<b>실행 서버에 연결 못 함</b> — 베타 백엔드가 꺼져 있을 수 있습니다(서버 상태 표시 확인).";
+      btn.disabled = false; btn.textContent = "다시 실행";
+    });
+  }
+  if ($("runBtn")) $("runBtn").addEventListener("click", runSession);
 
   function renderHistory() {
     var h = $("couponHist"); if (!h) return;
