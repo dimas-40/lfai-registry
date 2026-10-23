@@ -141,9 +141,10 @@ textarea:focus,input.ti:focus{border-color:var(--grn)}
     <div class="demo-row">
       <div class="phone"><iframe src="app/" title="등기 도우미 작동 시연" loading="lazy"></iframe></div>
       <ul class="demo-note">
-        <li><b>초록(내 AI·본인)</b> = 내가 하는 것 · <b>파랑(도구)</b> = 자동화되는 것</li>
-        <li>왼쪽 시연: ③번 <b>전산 자동입력</b>이 실제로 폼을 채우는 모습</li>
-        <li>입력이 끝나면 ④ <b>확정 단계</b>에서 멈추고 본인에게 넘어갑니다</li>
+        <li>왼쪽 시연 = <b>춤추듯 번갈아</b>: 에이전트가 입력하고 → 멈춰 "확인?" → 본인이 반응</li>
+        <li><b>에이전트</b>가 지루한 입력을 끌고, <b>본인</b>은 승인·서명·제출 턴만</li>
+        <li>화면을 "뺏기는" 게 아니라 <b>감독하는 오토파일럿</b> — 언제든 멈춤</li>
+        <li>시작 전 <b>방해금지(DND)</b> 켜면 전화·알림에 안 끊깁니다</li>
         <li>내 정보(주소·주민번호 등)는 <b>내 폰에만</b>, 서버로 안 나감</li>
       </ul>
     </div>
@@ -152,12 +153,12 @@ textarea:focus,input.ti:focus{border-color:var(--grn)}
   <!-- ② 사용법 -->
   <section class="tier" id="guide">
     <p class="tlabel">STEP 2 · 사용법</p>
-    <h2 class="ttitle">네 걸음이면 끝 <small>처음이어도</small></h2>
+    <h2 class="ttitle">에이전트 설치부터 <small>내 폰에 한 줄로 깔고 시작</small></h2>
     <div class="guide">
-      <div class="gstep"><b class="n">1</b><h4>서식 만들기</h4><p>쓰던 AI에 <a href="https://github.com/dimas-40/lfai-registry/blob/main/prompts/법인설립_서식_프롬프트팩.md" target="_blank" rel="noopener">무료 프롬프트</a> 붙여넣어 서식(프로필) 완성</p></div>
-      <div class="gstep"><b class="n">2</b><h4>이용권 받기</h4><p>아래 서비스 창에서 무료 체험 이용권 발급</p></div>
-      <div class="gstep"><b class="n">3</b><h4>앱 켜고 실행</h4><p>"등기 도우미" 설치(<a href="https://github.com/dimas-40/lfai-registry/blob/main/install.sh" target="_blank" rel="noopener">한 줄</a>)·접근성 1회 → 전산 입력 실행</p></div>
-      <div class="gstep"><b class="n">4</b><h4>본인 제출</h4><p>자동 입력된 내용 확인 후 결제·전자서명·제출은 본인이</p></div>
+      <div class="gstep"><b class="n">1</b><h4>에이전트 설치</h4><p>내 폰에 에이전트 베이스 <a href="https://dtslib1979.github.io/termux-bridge/" target="_blank" rel="noopener">termux-bridge</a>를 <b>curl 한 줄</b>로. 여기서부터 시작 + 등기 모듈 추가.</p></div>
+      <div class="gstep"><b class="n">2</b><h4>서식 만들기</h4><p>깔아둔 내 AI에 <a href="https://github.com/dimas-40/lfai-registry/blob/main/prompts/법인설립_서식_프롬프트팩.md" target="_blank" rel="noopener">무료 프롬프트</a> 넣어 정관·의사록 등 서식 완성 + 이용권 발급.</p></div>
+      <div class="gstep"><b class="n">3</b><h4>방해금지 켜기</h4><p>실행 전 <b>방해금지(DND)</b>로 전화·알림 차단 → 30분 집중. 중간에 안 끊깁니다.</p></div>
+      <div class="gstep"><b class="n">4</b><h4>실행 → 본인</h4><p>에이전트가 끌고(자동입력) 본인이 승인·서명·제출. <b>춤추듯 번갈아</b> 진행.</p></div>
     </div>
   </section>
 
@@ -190,7 +191,7 @@ textarea:focus,input.ti:focus{border-color:var(--grn)}
       </div>
       <div class="card lock" id="card3">
         <div class="ch"><span class="n">3</span><h3>전산 입력 실행</h3><span class="badge" id="b3">대기</span></div>
-        <p class="d">서식·이용권이 준비되면 전산 입력을 도구가 채웁니다. <b>결제·서명·제출은 본인</b>.</p>
+        <p class="d">서식·이용권이 준비되면 전산 입력을 도구가 채웁니다. 에이전트가 끌고 <b>본인이 턴마다 반응</b> — 결제·서명·제출은 본인. <br><span style="color:#f2b632">※ 실행 전 방해금지(DND) 켜두면 전화·알림에 안 끊깁니다.</span></p>
         <input class="ti" id="runAddr" value="서울특별시 중구 세종대로 110" placeholder="부동산 주소" style="margin-top:10px">
         <div class="row"><button class="btn p full" id="runBtn" type="button" disabled>전산 입력 실행</button></div>
         <div class="run-out hidden" id="runOut"></div>

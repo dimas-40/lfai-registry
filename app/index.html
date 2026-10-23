@@ -3,162 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>등기 도우미 — 작동 순서</title>
+<title>등기 도우미 — 작동 시나리오</title>
 <meta name="theme-color" content="#eef0f3">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="../lfai-icons/icon-192.png?v=3">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-:root{--bg:#eef0f3;--ink:#1b2430;--sub:#6a7482;--line:#dfe3e9;--blue:#2b5fd0;--green:#1f9d6b;--amber:#f3b63a;--pur:#6a5a9a}
+:root{--bg:#eef0f3;--ink:#1b2430;--sub:#6a7482;--line:#dfe3e9;--blue:#2b5fd0;--green:#1f9d6b;--amber:#f3b63a;--amberd:#8a6a00}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
 body{font-family:"Pretendard Variable",system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;font-size:15px}
 .bar{display:flex;align-items:center;gap:8px;padding:12px 14px;background:#0b1e17;color:#dcebe3}
 .bar .mk{width:22px;height:22px;border-radius:6px;background:#14402e;display:grid;place-items:center;color:#6fd3a4;font-weight:800;font-size:10px}
-.bar b{font-size:13px}
-.bar .st{margin-left:auto;font-size:10px;color:#8fb3a3}
-/* 캐러셀 */
-.car{flex:1;position:relative;overflow:hidden}
-.track{display:flex;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1)}
-.slide{min-width:100%;height:100%;padding:16px 15px 14px;display:flex;flex-direction:column;position:relative}
-.slabel{font-size:11px;font-weight:800;color:var(--blue);letter-spacing:.3px}
-.stitle{font-size:16px;font-weight:800;margin:3px 0 2px}
-.sdesc{font-size:12px;color:var(--sub);line-height:1.5;margin-bottom:12px}
-.scr{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;position:relative;overflow:hidden}
-/* 미니 UI 요소 */
-.mrow{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink);padding:9px 10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:#fafbfc}
-.mrow.hl{border-color:var(--blue);box-shadow:0 0 0 3px #2b5fd022}
-.mbtn{width:100%;text-align:center;padding:12px;border-radius:11px;font-weight:800;font-size:13.5px;color:#fff;background:var(--blue);position:relative}
-.mbtn.g{background:var(--green)} .mbtn.a{background:#2b2f8a}
-.mlb{font-size:10.5px;color:var(--sub);font-weight:700}
-.mval{font-size:13px;font-weight:600;margin-top:3px}
-.chk{margin-left:auto;color:var(--green)}
-.seg{display:flex;gap:6px;margin-bottom:10px}
-.seg div{flex:1;border:1.5px solid var(--line);border-radius:9px;padding:8px 4px;text-align:center;font-size:11px;color:var(--sub)}
-.seg div.on{border-color:var(--green);background:#f0faf5;color:var(--ink);font-weight:700}
-.tog{display:flex;align-items:center;gap:8px;padding:11px;border:1px solid var(--line);border-radius:11px}
-.tog .sw{margin-left:auto;width:40px;height:24px;border-radius:999px;background:#d2d8e0;position:relative;transition:.3s}
-.tog .sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.3s}
-.slide.on .tog .sw{background:var(--green)} .slide.on .tog .sw::after{left:19px}
-/* 탭(누르는 곳) 인디케이터 */
-.tap{position:absolute;width:40px;height:40px;border-radius:50%;border:3px solid var(--amber);pointer-events:none;animation:tap 1.3s ease-out infinite}
-@keyframes tap{0%{transform:scale(.6);opacity:1}70%{transform:scale(1.25);opacity:.25}100%{transform:scale(1.35);opacity:0}}
-.taphint{position:absolute;font-size:10.5px;font-weight:800;color:#3a2b00;background:var(--amber);padding:3px 8px;border-radius:999px;white-space:nowrap}
-/* 폼 자동입력(4번) */
-.fld{border:1px solid var(--line);border-radius:9px;padding:8px 10px;margin-bottom:7px}
+.bar b{font-size:13px}.bar .st{margin-left:auto;font-size:10px;color:#8fb3a3}
+.screen{flex:1;overflow-y:auto;position:relative}
+.wrap{padding:13px 14px 180px}
+.ghead{display:flex;align-items:center;font-size:12px;color:var(--sub);margin-bottom:10px}
+.ghead b{color:var(--ink);font-size:13.5px}.ghead .tag{margin-left:auto;font-size:10px;font-weight:800;background:#e6edfb;color:var(--blue);padding:3px 8px;border-radius:999px}
+.fld{border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:8px;background:#fff;transition:.25s}
+.fld.active{border-color:var(--blue);box-shadow:0 0 0 3px #2b5fd022}
 .fld.done{border-color:#bfe3d2;background:#f5fbf8}
-.fld .l{font-size:10px;color:var(--sub);font-weight:700;display:flex}
-.fld .v{font-size:12.5px;font-weight:600;margin-top:2px;min-height:17px;color:var(--ink)}
-.prog{height:5px;border-radius:5px;background:#e4e7ee;overflow:hidden;margin-bottom:9px}
-.prog i{display:block;height:100%;width:60%;background:linear-gradient(90deg,#2b5fd0,#1f9d6b)}
-/* 확정 시트(5번) */
-.sheet{background:#fff8ec;border:1px solid #f3d79a;border-radius:12px;padding:12px}
-.sheet h5{font-size:13px}.sheet p{font-size:11px;color:var(--sub);margin-top:4px}
-.gl{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0}
-.gl span{font-size:10px;font-weight:700;background:#fdeceb;color:#d2443a;padding:3px 7px;border-radius:999px}
-/* 하단 점 */
-.dots{display:flex;justify-content:center;gap:6px;padding:11px}
-.dots b{width:7px;height:7px;border-radius:50%;background:#c3ccd6;transition:.3s}
-.dots b.on{background:var(--blue);width:18px;border-radius:4px}
+.fld .l{font-size:10.5px;color:var(--sub);font-weight:700;display:flex;align-items:center}
+.fld .l .ck{margin-left:auto;color:var(--green);opacity:0;transition:.2s}.fld.done .l .ck{opacity:1}
+.fld .v{font-size:13px;font-weight:600;margin-top:3px;min-height:18px}.fld .v.ph{color:#b7bfc9;font-weight:400}
+.fld .v .cur{display:inline-block;width:2px;height:15px;background:var(--blue);vertical-align:-3px;animation:bk .9s step-end infinite}@keyframes bk{50%{opacity:0}}
+/* 턴 독(춤) */
+.dock{position:absolute;left:0;right:0;bottom:0;padding:12px 14px calc(13px + env(safe-area-inset-bottom));background:linear-gradient(#ffffff00,#fff 20%)}
+.turn{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:13px;box-shadow:0 8px 28px -12px #0b122133;transition:.25s}
+.turn.agent{border-color:#bcd0f5}
+.turn.user{border-color:#9fe0c3}
+.turn.gate{border-color:#f3d79a;background:#fffdf6}
+.who{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;margin-bottom:9px}
+.who.a{background:#e6edfb;color:var(--blue)}.who.u{background:#e7f7ef;color:var(--green)}.who.g{background:#fdf0d6;color:var(--amberd)}
+.who .d{width:7px;height:7px;border-radius:50%;background:currentColor}.who.a .d{animation:pl 1s infinite}
+@keyframes pl{0%{opacity:1}50%{opacity:.3}100%{opacity:1}}
+.tmsg{font-size:13px;line-height:1.5;color:var(--ink)}
+.tmsg b{color:var(--blue)}
+.tbtn{width:100%;margin-top:11px;border:0;border-radius:12px;padding:13px;font:inherit;font-weight:800;font-size:14px;color:#fff;background:var(--green);position:relative;overflow:hidden}
+.tbtn.gate{background:#2b2f8a}
+.tbtn::after{content:"";position:absolute;inset:0;border-radius:12px;box-shadow:0 0 0 0 #1f9d6b55;animation:ring 1.4s infinite}
+.tbtn.gate::after{box-shadow:0 0 0 0 #2b2f8a55;animation:ringb 1.4s infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 #1f9d6b66}70%{box-shadow:0 0 0 12px #1f9d6b00}100%{box-shadow:0 0 0 0 #1f9d6b00}}
+@keyframes ringb{0%{box-shadow:0 0 0 0 #2b2f8a66}70%{box-shadow:0 0 0 12px #2b2f8a00}100%{box-shadow:0 0 0 0 #2b2f8a00}}
+.tbtn.hidepulse::after{display:none}
+/* 턴 리본(에이전트 ⇄ 본인) */
+.ribbon{display:flex;align-items:center;justify-content:center;gap:8px;font-size:10.5px;color:var(--sub);margin-bottom:9px}
+.ribbon .b{font-weight:800}.ribbon .ag{color:var(--blue)}.ribbon .me{color:var(--green)}
+.replay{position:absolute;right:13px;top:11px;z-index:9;background:#0b1e17;color:#cfe3d9;border:0;border-radius:999px;padding:7px 12px;font:inherit;font-size:11.5px;font-weight:700;display:none;align-items:center;gap:5px}
+.replay.on{display:inline-flex}
+.done .tmsg{color:var(--green);font-weight:700}
 </style>
 </head>
 <body>
-<div class="bar"><span class="mk">등</span><b>등기 도우미</b><span class="st" id="stp">작동 순서 1/5</span></div>
-
-<div class="car">
-  <div class="track" id="track">
-    <!-- 1 서식 -->
-    <div class="slide" data-s="1">
-      <p class="slabel">STEP 1 · 내 AI</p><h3 class="stitle">서식 만들기</h3>
-      <p class="sdesc">쓰던 AI(ChatGPT·Claude)에 무료 프롬프트를 붙여넣어 정관·의사록을 만듭니다.</p>
-      <div class="scr">
-        <div class="mrow">내 AI에 프롬프트 넣기 — 정관·의사록 생성</div>
-        <div class="mrow hl">완성된 서식(프로필) 붙여넣기 <span class="chk">✓</span></div>
-        <div class="mbtn g" style="margin-top:6px">내 폰에 저장</div>
-        <span class="tap" style="left:120px;bottom:20px"></span>
-        <span class="taphint" style="left:60px;bottom:66px">여기 탭</span>
-      </div>
-    </div>
-    <!-- 2 이용권 -->
-    <div class="slide" data-s="2">
-      <p class="slabel">STEP 2 · 이용권</p><h3 class="stitle">이용권 발급</h3>
-      <p class="sdesc">1회용 이용권을 받습니다. 무료 체험부터.</p>
-      <div class="scr">
-        <div class="seg"><div class="on">체험<br>무료</div><div>1회권<br>3,000</div><div>10회권<br>25,000</div></div>
-        <div class="mbtn g">무료 체험 이용권 발급</div>
-        <span class="tap" style="left:110px;top:70px"></span>
-        <span class="taphint" style="left:52px;top:120px">여기 탭</span>
-      </div>
-    </div>
-    <!-- 3 앱 켜기 -->
-    <div class="slide" data-s="3">
-      <p class="slabel">STEP 3 · 1회 설정</p><h3 class="stitle">등기 도우미 켜기</h3>
-      <p class="sdesc">접근성을 한 번 켜면 도구가 전산 화면을 조작할 수 있어요.</p>
-      <div class="scr">
-        <div class="tog">등기 도우미 접근성<span class="sw"></span></div>
-        <p class="mlb" style="margin-top:9px">켜면 ▶ 자동 입력 준비 완료</p>
-        <span class="tap" style="right:22px;top:24px"></span>
-        <span class="taphint" style="right:12px;top:66px">토글 탭</span>
-      </div>
-    </div>
-    <!-- 4 전산 자동입력 -->
-    <div class="slide" data-s="4">
-      <p class="slabel">STEP 4 · 도구</p><h3 class="stitle">전산 자동입력</h3>
-      <p class="sdesc">정부 전산 창에 내 서식 값이 자동으로 들어갑니다.</p>
-      <div class="scr">
-        <div class="prog"><i id="pb"></i></div>
-        <div class="fld done"><div class="l">상호 <span class="chk" style="margin-left:auto">✓</span></div><div class="v">세움테크 주식회사</div></div>
-        <div class="fld done"><div class="l">자본금 <span class="chk" style="margin-left:auto">✓</span></div><div class="v">50,000,000원</div></div>
-        <div class="fld" id="f3"><div class="l">대표이사</div><div class="v" id="v3">입력 중…</div></div>
-      </div>
-    </div>
-    <!-- 5 본인 제출 -->
-    <div class="slide" data-s="5">
-      <p class="slabel">STEP 5 · 본인</p><h3 class="stitle">결제·서명·제출</h3>
-      <p class="sdesc">도구는 여기서 멈춥니다. 확정은 본인 손가락으로.</p>
-      <div class="scr">
-        <div class="sheet"><h5>여기부터 본인이 직접</h5><p>도구가 대신 누르지 않습니다.</p>
-          <div class="gl"><span>결제·본인</span><span>서명·본인</span><span>제출·본인</span></div></div>
-        <div class="mbtn a" style="margin-top:9px">본인 인증하고 제출</div>
-        <span class="tap" style="left:110px;bottom:22px"></span>
-        <span class="taphint" style="left:52px;bottom:68px">본인 탭</span>
-      </div>
+<div class="bar"><span class="mk">등</span><b>등기 도우미</b><span class="st" id="st">에이전트 작업 중</span></div>
+<div class="screen" id="screen">
+  <button class="replay" id="replay" type="button"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v4h4"/></svg>다시</button>
+  <div class="wrap">
+    <div class="ghead"><b>법인 설립 등기 신청</b><span class="tag">startbiz · 전산</span></div>
+    <div class="fld" data-k="0"><div class="l">상호<svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="v ph">—</div></div>
+    <div class="fld" data-k="1"><div class="l">자본금<svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="v ph">—</div></div>
+    <div class="fld" data-k="2"><div class="l">대표이사<svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="v ph">—</div></div>
+    <div class="fld" data-k="3"><div class="l">사업목적<svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="v ph">—</div></div>
+  </div>
+  <!-- 턴 독 -->
+  <div class="dock">
+    <div class="ribbon"><span class="b ag">에이전트</span><span><svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="#6a7482" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><path d="M7 3 3 7l4 4"/><path d="M3 7h12"/><path d="M17 13l4-4-4-4"/><path d="M21 9H9"/></svg></span><span class="b me">본인</span><span id="rib">· 번갈아 진행</span></div>
+    <div class="turn agent" id="turn">
+      <span class="who a" id="who"><span class="d"></span>에이전트</span>
+      <div class="tmsg" id="msg">서식을 읽고 전산에 입력하는 중…</div>
+      <button class="tbtn hidepulse" id="btn" type="button" style="display:none">다음</button>
     </div>
   </div>
 </div>
-<div class="dots" id="dots"></div>
-
 <script>
 (function(){
-  var $=function(s){return document.getElementById(s)},
-      reduce=matchMedia("(prefers-reduced-motion:reduce)").matches,
-      track=$("track"),slides=[].slice.call(document.querySelectorAll(".slide")),
-      N=slides.length,i=0,timer=null;
-  // 점
-  var dots=$("dots");for(var k=0;k<N;k++){var b=document.createElement("b");dots.appendChild(b);}
-  var dnodes=[].slice.call(dots.children);
-  function show(n){
-    i=((n%N)+N)%N;
-    track.style.transform="translateX("+(-i*100)+"%)";
-    slides.forEach(function(s,j){s.classList.toggle("on",j===i);});
-    dnodes.forEach(function(d,j){d.classList.toggle("on",j===i);});
-    $("stp").textContent="작동 순서 "+(i+1)+"/"+N;
-    if(i===3) fill4();   // 4번 슬라이드 진입 시 폼 애니
+  var $=function(s){return document.getElementById(s)},reduce=matchMedia("(prefers-reduced-motion:reduce)").matches,
+      flds=[].slice.call(document.querySelectorAll(".fld")),VALS=["세움테크 주식회사","50,000,000원","김세움","소프트웨어 개발·공급"],tm=[];
+  function clr(){tm.forEach(clearTimeout);tm=[]}
+  function wait(ms,f){tm.push(setTimeout(f,reduce?0:ms))}
+  function type(el,str,done){var i=0;el.classList.remove("ph");(function t(){if(i<=str.length){el.innerHTML=str.slice(0,i)+'<span class="cur"></span>';i++;tm.push(setTimeout(t,reduce?0:32))}else{el.textContent=str;done&&done()}})();}
+  // 에이전트 턴: 필드 채우기
+  function agentFill(ks,done){
+    $("turn").className="turn agent";$("who").className="who a";$("who").innerHTML='<span class="d"></span>에이전트';
+    $("st").textContent="에이전트 작업 중";$("msg").textContent="전산에 입력하는 중…";$("btn").style.display="none";
+    var idx=0;(function nx(){ if(idx>=ks.length){done();return;} var k=ks[idx],f=flds[k],el=f.querySelector(".v");
+      f.classList.add("active"); type(el,VALS[k],function(){f.classList.remove("active");f.classList.add("done");idx++;wait(250,nx);}); })();
   }
-  // 4번 자동입력 애니
-  var f4done=false;
-  function fill4(){
-    if(f4done)return;f4done=true;
-    var v=$("v3"),pb=$("pb"),full="김세움",c=0;
-    (function t(){ if(c<=full.length){v.textContent=full.slice(0,c)||"입력 중…";c++;setTimeout(t,reduce?0:70);} else {$("f3").classList.add("done");v.textContent=full;pb.style.width="100%";} })();
-    pb.style.width="66%";
+  // 유저 턴: 메시지 + 버튼(펄스) → 자동 "탭"
+  function userTurn(cls,whoTxt,whoCls,msg,btnTxt,btnCls,auto,done){
+    $("turn").className="turn "+cls;$("who").className="who "+whoCls;$("who").innerHTML='<span class="d"></span>'+whoTxt;
+    $("st").textContent="본인 차례";$("msg").innerHTML=msg;
+    var b=$("btn");b.style.display="block";b.textContent=btnTxt;b.className="tbtn "+(btnCls||"");
+    function go(){ b.className="tbtn "+(btnCls||"")+" hidepulse";b.textContent="✓ "+btnTxt;wait(500,function(){done();}); }
+    b.onclick=go;
+    if(!reduce&&auto)wait(1700,go);
   }
-  function next(){show(i+1);}
-  function start(){ if(timer)clearInterval(timer); if(!reduce)timer=setInterval(next, i===3?3400:2600); }
-  dnodes.forEach(function(d,j){d.addEventListener("click",function(){show(j);start();});});
-  show(0);
-  // 각 슬라이드 체류시간 다르게(자동입력은 길게)
-  if(!reduce){ timer=setInterval(function(){ next(); }, 2800); }
+  function run(){
+    clr();flds.forEach(function(f,i){f.classList.remove("active","done");var el=f.querySelector(".v");el.className="v ph";el.textContent="—";});
+    $("replay").classList.remove("on");
+    // 1) 에이전트: 상호·자본금
+    agentFill([0,1],function(){
+      // 유저 턴: 확인
+      userTurn("user","본인","u","에이전트가 <b>기본정보</b>를 입력했어요. 확인하고 다음?","다음","",true,function(){
+        // 2) 에이전트: 대표이사·목적
+        agentFill([2,3],function(){
+          userTurn("user","본인","u","<b>임원·목적</b>까지 입력 완료. 계속할까요?","계속","",true,function(){
+            // 3) 게이트: 전자서명(본인만)
+            userTurn("gate","본인 전용","g","<b>전자서명</b>이 필요해요 — 본인만 할 수 있어요.","내가 인증","gate",true,function(){
+              // 4) 게이트: 제출(본인)
+              userTurn("gate","본인 전용","g","다 됐어요. <b>제출</b>만 남았어요 — 본인이 마무리.","내가 제출","gate",true,function(){
+                // 완료
+                $("turn").className="turn done";$("who").className="who u";$("who").innerHTML='<span class="d"></span>완료';
+                $("st").textContent="완료";$("msg").innerHTML="신청 제출 완료 — 입력은 도구가, 제출은 본인이.";$("btn").style.display="none";
+                $("replay").classList.add("on");
+              });
+            });
+          });
+        });
+      });
+    });
+  }
+  $("replay").onclick=run;
+  run();
   if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
 })();
 </script>
