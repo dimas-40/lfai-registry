@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dimas-40.github.io/lfai-registry/profile/법인설립_프로필.schema.json",
+  "title": "법인설립(주식회사) 셀프 등록 프로필",
+  "description": "유저가 자기 AI로 완성한 값을 담는 로컬 프로필. 내비게이터가 이 값을 정부 전산 폼에 자동 입력한다. ★이 파일은 스키마(빈 틀)이며, 실제 값(PII)은 유저 폰 로컬에만 저장한다. 서버/레포에 올리지 않는다.",
+  "type": "object",
+  "required": ["company", "shares", "shareholders", "officers", "meeting"],
+  "properties": {
+    "company": {
+      "type": "object",
+      "required": ["nameKo", "address", "purposes"],
+      "properties": {
+        "nameKo": { "type": "string", "description": "상호(국문)" },
+        "nameEn": { "type": ["string", "null"], "description": "상호(영문, 선택)" },
+        "address": { "type": "string", "description": "본점 소재지 도로명 주소" },
+        "purposes": { "type": "array", "items": { "type": "string" }, "description": "사업목적 목록" },
+        "fiscalYearEnd": { "type": "string", "description": "결산기", "default": "매년 12월 31일" },
+        "publicNotice": { "type": "string", "description": "공고방법" }
+      }
+    },
+    "shares": {
+      "type": "object",
+      "required": ["parValue", "issuedAtIncorporation", "capital"],
+      "properties": {
+        "parValue": { "type": "integer", "description": "1주 금액(원)", "default": 5000 },
+        "authorizedTotal": { "type": ["integer", "null"], "description": "발행예정주식총수" },
+        "issuedAtIncorporation": { "type": "integer", "description": "설립 시 발행주식총수" },
+        "capital": { "type": "integer", "description": "자본금(원) = parValue × issuedAtIncorporation" }
+      }
+    },
+    "shareholders": {
+      "type": "array",
+      "description": "발기인/주주 목록 (PII — 로컬 전용)",
+      "items": {
+        "type": "object",
+        "required": ["name", "rrn", "address", "sharesSubscribed"],
+        "properties": {
+          "name": { "type": "string", "description": "성명" },
+          "rrn": { "type": "string", "description": "주민등록번호 (★로컬 전용, 서버 전송 금지)" },
+          "address": { "type": "string", "description": "주소" },
+          "sharesSubscribed": { "type": "integer", "description": "인수주식수" }
+        }
+      }
+    },
+    "officers": {
+      "type": "array",
+      "description": "임원 목록",
+      "items": {
+        "type": "object",
+        "required": ["role", "name", "rrn", "address"],
+        "properties": {
+          "role": { "type": "string", "enum": ["대표이사", "사내이사", "감사"], "description": "직위" },
+          "name": { "type": "string" },
+          "rrn": { "type": "string", "description": "주민등록번호 (★로컬 전용)" },
+          "address": { "type": "string" }
+        }
+      }
+    },
+    "meeting": {
+      "type": "object",
+      "required": ["date"],
+      "properties": {
+        "date": { "type": "string", "format": "date", "description": "발기인총회(창립총회) 일자" }
+      }
+    },
+    "_meta": {
+      "type": "object",
+      "description": "내비게이터용 메타. 생성·검토 이력(값 없음).",
+      "properties": {
+        "generatedBy": { "type": "string", "description": "유저가 사용한 AI(예: ChatGPT/Claude). 기록용", "default": "user-own-llm" },
+        "reviewedByUser": { "type": "boolean", "description": "유저 최종 검토 여부", "default": false }
+      }
+    }
+  }
+}
