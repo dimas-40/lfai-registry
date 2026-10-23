@@ -32,7 +32,6 @@
 /* 폰 베젤 + 임베드 시연 */
 .stage{display:flex;flex-direction:column;align-items:center;gap:14px}
 .phone{position:relative;width:296px;max-width:80vw;aspect-ratio:9/19.3;border-radius:46px;background:#070b09;padding:10px;box-shadow:0 34px 80px -24px #000c,0 0 0 2px #22332b inset,0 0 0 7px #0c1512}
-.phone::before{content:"";position:absolute;top:19px;left:50%;transform:translateX(-50%);width:92px;height:23px;background:#070b09;border-radius:0 0 16px 16px;z-index:3}
 .phone::after{content:"";position:absolute;right:-3px;top:150px;width:3px;height:58px;background:#1a2a23;border-radius:0 3px 3px 0}
 .phone iframe{width:100%;height:100%;border:0;border-radius:37px;display:block;background:#eef0f3}
 .phone .glow{position:absolute;inset:-30px;border-radius:60px;background:radial-gradient(60% 40% at 50% 0,#2fbf7f33,transparent 70%);z-index:-1;pointer-events:none}
@@ -100,7 +99,7 @@
     <span class="brandline" lang="en">Life First, AI Second</span>
     <button class="burger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
     <nav class="nav" id="nav" aria-label="주 메뉴">
-      <a href="#demo">체험</a><a href="#issue">쿠폰 발급</a><a href="#connect">연결 방법</a><a href="#price">요금</a>
+      <a href="#demo">체험</a><a href="#issue">쿠폰 발급·요금</a><a href="#connect">연결 방법</a>
       <a class="cta" href="#issue">지금 시작</a>
     </nav>
     <button class="lfai-a2hs" type="button" aria-label="앱 설치 — 홈 화면에 추가"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10 19h4"/><g class="ar"><path d="M12 6.5v7"/><path d="M9 11l3 3 3-3"/></g></svg><span>앱 설치</span></button>
@@ -159,7 +158,7 @@
       </div>
 
       <div class="cp-hist" id="couponHist"></div>
-      <p class="cp-note" style="margin-top:14px">베타: 코드 발급·보관은 브라우저에. 유료권 결제 연동·서버 검증은 순차 오픈합니다. 등기 수수료(정부 납부분)는 열람 시 본인이 별도로 냅니다.</p>
+      <p class="cp-note" style="margin-top:14px"><b>넘지 않는 선:</b> 도구는 진입·검색·열람선택까지. 결제·발급 확정·서명은 <b>본인만</b>(guard 코드 차단). 월 구독 없이 쿠폰으로. 유료권 결제 연동은 순차 오픈(베타). 등기 수수료(정부 납부분)는 본인 별도 부담.</p>
     </div>
   </div>
 </section>
@@ -174,19 +173,6 @@
       <div class="tiers"><div><p class="dk">3</p><h3>열람 실행</h3><p>주소 검색·열람까지 자동. 개인정보는 폰에만. 결제·발급·서명은 본인이 폰에서.</p></div></div>
     </div>
     <p class="pair"><b>개인정보는 폰에만.</b> 서버는 '어느 화면 어느 버튼'인지 익명 지시만 주고, 주소·등기 내용·결제는 폰을 떠나지 않습니다. <a class="more" href="https://github.com/dimas-40/lfai-registry/blob/main/iros/FINDINGS.md">실기기 검증 →</a></p>
-  </div>
-</section>
-
-<!-- 요금 = 쿠폰 구매 -->
-<section class="sec" id="price">
-  <div class="wrap">
-    <div class="head2"><div><p class="label">Price</p><h2>쓴 만큼,<br>쿠폰으로.</h2></div><p>월 구독 없음. 필요한 만큼 쿠폰으로. 가격·범위를 미리 공개합니다.</p></div>
-    <div class="tiers">
-      <div><p class="dk">체험</p><h3>무료</h3><p>1회 · 24시간 · 열람 플로우 체험</p><a class="btn s sm" href="#issue" style="margin-top:12px">발급</a></div>
-      <div><p class="dk">1회권</p><h3>3,000원</h3><p>부동산·법인 열람 1회 · 3일</p><a class="btn s sm" href="#issue" style="margin-top:12px">발급</a></div>
-      <div><p class="dk">10회권</p><h3>25,000원</h3><p>열람 10회 · 30일 · 건당 2,500원</p><a class="btn s sm" href="#issue" style="margin-top:12px">발급</a></div>
-    </div>
-    <p class="pair"><b>넘지 않는 선:</b> 도구는 진입·검색·열람선택까지. 결제·발급 확정·서명·제출은 <b>본인만</b>(guard 코드 차단). 등기 신청(소유권이전 등)은 전문가 검토.</p>
   </div>
 </section>
 
