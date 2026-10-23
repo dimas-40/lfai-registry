@@ -8,52 +8,70 @@
 <link rel="manifest" href="lfai.webmanifest?v=3">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LFAI 등기">
 <title>LFAI 등기 — 셀프 등기 전산 내비게이터</title>
-<meta name="description" content="부동산·법인 셀프 등기 전산 내비게이터 대시보드. 서식은 내 AI가, 복잡한 전산 입력은 도구가, 결제·서명·제출은 본인이. 내 정보는 내 폰에만.">
+<meta name="description" content="부동산·법인 셀프 등기 전산 내비게이터. 작동 방식·사용법·실제 서비스까지. 서식은 내 AI가, 전산 입력은 도구가, 결제·서명·제출은 본인이. 내 정보는 내 폰에만.">
 <meta name="theme-color" content="#071a12">
 <link rel="canonical" href="https://dimas-40.github.io/lfai-registry/">
-<meta property="og:type" content="website"><meta property="og:title" content="LFAI 등기 — 셀프 등기 전산 내비게이터"><meta property="og:description" content="서식은 내 AI가, 전산 입력은 도구가, 제출은 본인. 내 정보는 내 폰에만."><meta property="og:url" content="https://dimas-40.github.io/lfai-registry/"><meta property="og:image" content="https://dimas-40.github.io/lfai-as/assets/brand/og-lfai-as.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website"><meta property="og:title" content="LFAI 등기 — 셀프 등기 전산 내비게이터"><meta property="og:description" content="작동 방식·사용법·실제 서비스. 서식은 내 AI가, 전산 입력은 도구가, 제출은 본인."><meta property="og:url" content="https://dimas-40.github.io/lfai-registry/"><meta property="og:image" content="https://dimas-40.github.io/lfai-as/assets/brand/og-lfai-as.jpg"><meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
-<link rel="stylesheet" href="lfai-icons/lfai-head.css?v=11">
 <style>
 :root{--bg:#050f0b;--pan:#0a1a13;--pan2:#07140f;--line:#16271f;--line2:#1f3a30;--ink:#eaf5ef;--sub:#7f988c;--grn:#2fbf7f;--grn2:#6fd3a4;--blue:#5b9bff;--amber:#f2b632;--red:#e0675c}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
 body{font-family:"Pretendard Variable",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5;min-height:100vh}
 a{color:inherit}
-.mono{font-family:"JetBrains Mono",monospace}
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
-/* 헤더 + 상태 스트립 */
+.mono{font-family:"JetBrains Mono",monospace}
+/* 헤더 */
 .top{position:sticky;top:0;z-index:20;background:#040c09ee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:10px;height:56px}
 .lfai-brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
 .lfai-mark{width:34px;height:34px;border-radius:9px;display:block}
 .lfai-word{font-weight:800;letter-spacing:.4px;font-size:18px}
 .ptag{font-size:11px;font-weight:800;color:var(--grn2);background:#0f271c;border:1px solid var(--line2);padding:3px 8px;border-radius:999px}
-.brandline{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13px;color:var(--sub);margin-left:12px;padding-left:12px;border-left:1px solid var(--line2)}
-@media(max-width:620px){.brandline{display:none}}
+.brandline{font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--sub);margin-left:12px;padding-left:12px;border-left:1px solid var(--line2)}
+@media(max-width:640px){.brandline{display:none}}
 .top .sp{flex:1}
 .top .inst{font-size:12.5px;color:var(--sub);text-decoration:none;border:1px solid var(--line2);padding:7px 11px;border-radius:9px}
-.strip{display:flex;gap:8px;flex-wrap:wrap;padding:10px 0}
-.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;background:var(--pan);border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:var(--sub)}
-.chip i{width:8px;height:8px;border-radius:50%;background:#3a4a42}
-.chip.ok{color:var(--grn2)} .chip.ok i{background:var(--grn);animation:pl 1.6s infinite}
-.chip.warn{color:var(--amber)} .chip.warn i{background:var(--amber)}
-@keyframes pl{0%{box-shadow:0 0 0 0 #2fbf7f88}70%{box-shadow:0 0 0 6px #2fbf7f00}100%{box-shadow:0 0 0 0}}
-/* 히어로 한 줄 */
-.lead{padding:14px 0 6px}
-.lead h1{font-size:23px;font-weight:800;letter-spacing:-.4px}
-.lead p{color:var(--sub);font-size:13.5px;margin-top:5px}
-.lead b{color:var(--grn2)}
-/* 대시보드 그리드 */
-.dash{display:grid;grid-template-columns:300px 1fr;gap:18px;padding:12px 0 28px;align-items:start}
-@media(max-width:820px){.dash{grid-template-columns:1fr}}
-/* 폰 베젤 라이브 뷰 */
+/* 리드 */
+.lead{padding:20px 0 6px}.lead h1{font-size:25px;font-weight:800;letter-spacing:-.4px}.lead p{color:var(--sub);font-size:13.5px;margin-top:6px}.lead b{color:var(--grn2)}
+/* 단(tier) 공통 */
+.tier{padding:26px 0;border-top:1px solid var(--line)}
+.tlabel{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--grn);text-transform:uppercase}
+.ttitle{font-size:19px;font-weight:800;margin:4px 0 14px}
+.ttitle small{color:var(--sub);font-weight:600;font-size:13px;margin-left:8px}
+/* ① 워크플로우 다이어그램 */
+.flow{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch}
+.fnode{flex:1;min-width:130px;background:var(--pan);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative}
+.fnode .who{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:8px}
+.fnode.user .who{background:#0f3a28;color:var(--grn2)}
+.fnode.tool .who{background:#122744;color:var(--blue)}
+.fnode.me .who{background:#2a2433;color:#c0a9e0}
+.fnode .ic{width:34px;height:34px;color:var(--grn2);margin-bottom:6px}
+.fnode.tool .ic{color:var(--blue)}.fnode.me .ic{color:#c0a9e0}
+.fnode h4{font-size:14px;font-weight:800}
+.fnode p{font-size:11.5px;color:var(--sub);margin-top:4px;line-height:1.5}
+.fnode .ar{position:absolute;right:-13px;top:50%;transform:translateY(-50%);z-index:2;color:var(--line2);font-size:18px}
+@media(max-width:720px){.flow{flex-direction:column}.fnode .ar{right:50%;top:auto;bottom:-14px;transform:translateX(50%) rotate(90deg)}}
+.demo-row{display:grid;grid-template-columns:280px 1fr;gap:18px;align-items:center;margin-top:18px}
+@media(max-width:720px){.demo-row{grid-template-columns:1fr}}
 .phone{position:relative;width:280px;max-width:82vw;aspect-ratio:9/19.3;border-radius:42px;background:#070b09;padding:9px;box-shadow:0 30px 70px -26px #000c,0 0 0 2px #22332b inset,0 0 0 6px #0c1512;margin:0 auto}
 .phone iframe{width:100%;height:100%;border:0;border-radius:34px;display:block;background:#eef0f3}
-.livecap{text-align:center;font-size:11.5px;color:var(--sub);margin-top:9px;display:flex;align-items:center;justify-content:center;gap:6px}
-.livecap i{width:7px;height:7px;border-radius:50%;background:var(--grn);animation:pl 1.6s infinite}
-/* 작업 카드 */
+.demo-note li{font-size:13px;color:var(--sub);margin:8px 0 8px 18px}.demo-note b{color:var(--ink)}
+/* ② 사용법 */
+.guide{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:720px){.guide{grid-template-columns:1fr 1fr}}
+.gstep{background:var(--pan);border:1px solid var(--line);border-radius:14px;padding:15px}
+.gstep b.n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--grn);color:#04120c;font-weight:800;font-size:13px;margin-bottom:9px}
+.gstep h4{font-size:14px;font-weight:800}.gstep p{font-size:12px;color:var(--sub);margin-top:5px;line-height:1.55}
+.gstep a{color:var(--grn2)}
+/* ③ 서비스 창 */
+.strip{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;background:var(--pan);border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:var(--sub)}
+.chip i{width:8px;height:8px;border-radius:50%;background:#3a4a42}
+.chip.ok{color:var(--grn2)}.chip.ok i{background:var(--grn);animation:pl 1.6s infinite}
+.chip.warn{color:var(--amber)}.chip.warn i{background:var(--amber)}
+@keyframes pl{0%{box-shadow:0 0 0 0 #2fbf7f88}70%{box-shadow:0 0 0 6px #2fbf7f00}100%{box-shadow:0 0 0 0}}
 .cards{display:flex;flex-direction:column;gap:12px}
 .card{background:var(--pan);border:1px solid var(--line);border-radius:16px;padding:15px}
 .card.lock{opacity:.55}
@@ -66,84 +84,100 @@ a{color:inherit}
 .card p.d{font-size:12.5px;color:var(--sub);line-height:1.55}
 .row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .btn{border:0;border-radius:11px;padding:12px 15px;font:inherit;font-weight:800;font-size:13.5px;cursor:pointer}
-.btn.p{background:var(--grn);color:#04120c}
-.btn.p:disabled{background:#2a4034;color:#6f877b;cursor:default}
+.btn.p{background:var(--grn);color:#04120c}.btn.p:disabled{background:#2a4034;color:#6f877b;cursor:default}
 .btn.s{background:var(--pan2);color:var(--ink);border:1px solid var(--line2)}
 .btn.full{width:100%}
 textarea,input.ti{width:100%;background:#04120c;border:1.5px solid var(--line2);border-radius:11px;padding:11px 12px;color:var(--ink);font:inherit;font-size:13px;outline:0;resize:vertical}
 textarea:focus,input.ti:focus{border-color:var(--grn)}
 .seg{display:flex;gap:6px;margin:4px 0 10px}
 .seg button{flex:1;background:#04120c;border:1.5px solid var(--line2);border-radius:10px;padding:9px 6px;font:inherit;color:var(--sub);font-size:12px;cursor:pointer;text-align:center}
-.seg button b{display:block;color:var(--ink);font-size:13px}
-.seg button em{font-style:normal;color:var(--grn2);font-weight:800;font-size:12px}
+.seg button b{display:block;color:var(--ink);font-size:13px}.seg button em{font-style:normal;color:var(--grn2);font-weight:800;font-size:12px}
 .seg button[aria-pressed=true]{border-color:var(--grn);background:#0f271c}
 .code{font-family:"JetBrains Mono",monospace;font-size:18px;font-weight:700;letter-spacing:1px;color:#fff;background:#04120c;border:1px dashed #2fbf7f66;border-radius:10px;padding:12px;text-align:center;user-select:all;margin-top:10px}
 .note{font-size:11px;color:var(--sub);margin-top:9px;line-height:1.5}
-/* 실행 진행 */
-.steps{margin-top:10px}
-.rst{display:flex;align-items:center;gap:9px;padding:5px 0;color:var(--sub);font-size:12.5px}
-.rst i{width:8px;height:8px;border-radius:50%;background:#2a4034;flex:none}
-.rst.on i{background:var(--grn);box-shadow:0 0 0 3px #2fbf7f22}.rst.on{color:var(--ink)}
+.steps{margin-top:10px}.rst{display:flex;align-items:center;gap:9px;padding:5px 0;color:var(--sub);font-size:12.5px}
+.rst i{width:8px;height:8px;border-radius:50%;background:#2a4034;flex:none}.rst.on i{background:var(--grn);box-shadow:0 0 0 3px #2fbf7f22}.rst.on{color:var(--ink)}
 .verdict{margin-top:10px;padding:11px;border-radius:10px;font-size:12.5px;line-height:1.55;border:1px solid}
-.verdict.gate{background:#231d30;color:#d9c9f0;border-color:#6a5a9a55}
-.verdict.ok{background:#0f271c;color:#cfe3d9;border-color:#2fbf7f55}
-.verdict.err{background:#2a1416;color:#f0b0b0;border-color:#d2443a55}
-/* 기록 */
-.log{margin-top:4px}
-.log h4{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);margin:18px 0 8px}
+.verdict.gate{background:#231d30;color:#d9c9f0;border-color:#6a5a9a55}.verdict.ok{background:#0f271c;color:#cfe3d9;border-color:#2fbf7f55}.verdict.err{background:#2a1416;color:#f0b0b0;border-color:#d2443a55}
+.log h4{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);margin:16px 0 8px}
 .lrow{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--sub);padding:9px 12px;background:var(--pan);border:1px solid var(--line);border-radius:10px;margin-bottom:6px}
 .lrow code{color:var(--grn2);font-family:"JetBrains Mono",monospace}
-.foot{border-top:1px solid var(--line);margin-top:24px;padding:20px 0;font-size:12px;color:var(--sub)}
-.foot a{color:var(--sub);text-decoration:underline;text-underline-offset:2px}
+.foot{border-top:1px solid var(--line);margin-top:10px;padding:20px 0;font-size:12px;color:var(--sub)}.foot a{color:var(--sub);text-decoration:underline}
 .hidden{display:none!important}
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="wrap">
-    <a class="logo lfai-brand" href="./" aria-label="LFAI 등기 홈"><img class="lfai-mark" src="lfai-icons/mark-192.png?v=4" alt="" width="34" height="34"><span class="lfai-word">LFAI</span><span class="ptag">등기</span></a>
-    <span class="brandline" lang="en">Life First, AI Second</span>
-    <span class="sp"></span>
-    <a class="inst" href="https://github.com/dimas-40/lfai-registry/blob/main/install.sh">앱 설치</a>
-  </div>
-</header>
+<header class="top"><div class="wrap">
+  <a class="lfai-brand" href="./" aria-label="LFAI 등기 홈"><img class="lfai-mark" src="lfai-icons/mark-192.png?v=4" alt="" width="34" height="34"><span class="lfai-word">LFAI</span><span class="ptag">등기</span></a>
+  <span class="brandline" lang="en">Life First, AI Second</span>
+  <span class="sp"></span>
+  <a class="inst" href="#svc">지금 시작</a>
+</div></header>
 
 <main class="wrap">
-  <!-- 상태 스트립 -->
-  <div class="strip">
-    <span class="chip" id="chSvr"><i></i>서버 확인 중…</span>
-    <span class="chip" id="chDev"><i></i>기기 미연결</span>
-    <span class="chip" id="chCp"><i></i>이용권 0</span>
-  </div>
-
   <div class="lead">
     <h1>셀프 등기 전산 내비게이터</h1>
     <p><b>서식은 내 AI가</b> · <b>전산 입력은 도구가</b> · <b>결제·서명·제출은 본인이</b> — 내 정보는 내 폰에만.</p>
   </div>
 
-  <div class="dash">
-    <!-- 라이브 작동 뷰 -->
-    <figure>
-      <div class="phone"><iframe src="app/" title="등기 도우미 작동 뷰" loading="lazy"></iframe></div>
-      <figcaption class="livecap"><i></i>작동 뷰 · 전산 자동입력 시연</figcaption>
-    </figure>
+  <!-- ① 작동 방식 (워크플로우 시연) -->
+  <section class="tier" id="how">
+    <p class="tlabel">STEP 1 · 작동 방식</p>
+    <h2 class="ttitle">이렇게 돌아갑니다 <small>누가 무엇을 하는지</small></h2>
+    <div class="flow">
+      <div class="fnode user"><span class="who">내 AI</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
+        <h4>① 서식 생성</h4><p>쓰던 AI(ChatGPT·Claude)에 프롬프트 넣어 정관·의사록 등 직접 작성</p><span class="ar">→</span></div>
+      <div class="fnode"><span class="who" style="background:#20301f;color:#a9c2b6">이용권</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#a9c2b6" stroke-width="1.7" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>
+        <h4>② 이용권</h4><p>1회용 이용권 발급 — 세션 열쇠</p><span class="ar">→</span></div>
+      <div class="fnode tool"><span class="who">도구</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M9 6h6M9 10h6M9 14h4"/></svg>
+        <h4>③ 전산 자동입력</h4><p>정부 전산 창을 순서대로 열고 내 서식 값을 자동 입력</p><span class="ar">→</span></div>
+      <div class="fnode me"><span class="who">본인</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 11c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4z"/><path d="M4 21c0-3.3 3.6-6 8-6s8 2.7 8 6"/></svg>
+        <h4>④ 결제·서명·제출</h4><p>확정은 본인 손가락으로 — 도구는 여기서 멈춤</p></div>
+    </div>
+    <div class="demo-row">
+      <div class="phone"><iframe src="app/" title="등기 도우미 작동 시연" loading="lazy"></iframe></div>
+      <ul class="demo-note">
+        <li><b>초록(내 AI·본인)</b> = 내가 하는 것 · <b>파랑(도구)</b> = 자동화되는 것</li>
+        <li>왼쪽 시연: ③번 <b>전산 자동입력</b>이 실제로 폼을 채우는 모습</li>
+        <li>입력이 끝나면 ④ <b>확정 단계</b>에서 멈추고 본인에게 넘어갑니다</li>
+        <li>내 정보(주소·주민번호 등)는 <b>내 폰에만</b>, 서버로 안 나감</li>
+      </ul>
+    </div>
+  </section>
 
-    <!-- 작업 카드 3단계 -->
+  <!-- ② 사용법 -->
+  <section class="tier" id="guide">
+    <p class="tlabel">STEP 2 · 사용법</p>
+    <h2 class="ttitle">네 걸음이면 끝 <small>처음이어도</small></h2>
+    <div class="guide">
+      <div class="gstep"><b class="n">1</b><h4>서식 만들기</h4><p>쓰던 AI에 <a href="https://github.com/dimas-40/lfai-registry/blob/main/prompts/법인설립_서식_프롬프트팩.md" target="_blank" rel="noopener">무료 프롬프트</a> 붙여넣어 서식(프로필) 완성</p></div>
+      <div class="gstep"><b class="n">2</b><h4>이용권 받기</h4><p>아래 서비스 창에서 무료 체험 이용권 발급</p></div>
+      <div class="gstep"><b class="n">3</b><h4>앱 켜고 실행</h4><p>"등기 도우미" 설치(<a href="https://github.com/dimas-40/lfai-registry/blob/main/install.sh" target="_blank" rel="noopener">한 줄</a>)·접근성 1회 → 전산 입력 실행</p></div>
+      <div class="gstep"><b class="n">4</b><h4>본인 제출</h4><p>자동 입력된 내용 확인 후 결제·전자서명·제출은 본인이</p></div>
+    </div>
+  </section>
+
+  <!-- ③ 실제 서비스 창 -->
+  <section class="tier" id="svc">
+    <p class="tlabel">STEP 3 · 실제 서비스</p>
+    <h2 class="ttitle">지금 시작 <small>서식 → 이용권 → 실행</small></h2>
+    <div class="strip">
+      <span class="chip" id="chSvr"><i></i>서버 확인 중…</span>
+      <span class="chip" id="chDev"><i></i>기기 미연결</span>
+      <span class="chip" id="chCp"><i></i>이용권 0</span>
+    </div>
     <div class="cards">
-      <!-- ① 서식 -->
       <div class="card active" id="card1">
         <div class="ch"><span class="n">1</span><h3>서식 준비</h3><span class="badge" id="b1">미작성</span></div>
-        <p class="d">쓰던 AI(ChatGPT·Claude)에 무료 프롬프트를 붙여넣어 정관·의사록 등을 직접 만들고, 완성본(프로필)을 여기 붙여넣으세요.</p>
-        <div class="row">
-          <button class="btn s" id="copyPrompt" type="button">서식 프롬프트 복사</button>
-          <a class="btn s" href="https://github.com/dimas-40/lfai-registry/blob/main/prompts/법인설립_서식_프롬프트팩.md" target="_blank" rel="noopener">프롬프트 보기</a>
-        </div>
-        <textarea id="profile" rows="3" placeholder='내 AI가 만든 프로필(JSON/텍스트)을 여기 붙여넣기' style="margin-top:10px"></textarea>
+        <p class="d">내 AI로 만든 서식(프로필)을 붙여넣으세요. 저장은 이 기기에만.</p>
+        <div class="row"><button class="btn s" id="copyPrompt" type="button">서식 프롬프트 복사</button><a class="btn s" href="https://github.com/dimas-40/lfai-registry/blob/main/prompts/법인설립_서식_프롬프트팩.md" target="_blank" rel="noopener">프롬프트 보기</a></div>
+        <textarea id="profile" rows="3" placeholder="내 AI가 만든 프로필(JSON/텍스트) 붙여넣기" style="margin-top:10px"></textarea>
         <div class="row"><button class="btn p" id="saveProfile" type="button">내 폰에 저장</button></div>
-        <p class="note">저장은 이 기기(브라우저)에만 — 서버로 안 보냅니다.</p>
       </div>
-
-      <!-- ② 이용권 -->
       <div class="card" id="card2">
         <div class="ch"><span class="n">2</span><h3>이용권 발급</h3><span class="badge" id="b2">없음</span></div>
         <div class="seg" role="group" aria-label="이용권">
@@ -154,25 +188,17 @@ textarea:focus,input.ti:focus{border-color:var(--grn)}
         <button class="btn p full" id="issueBtn" type="button">무료 체험 이용권 발급</button>
         <div class="cp-out hidden" id="couponOut"></div>
       </div>
-
-      <!-- ③ 실행 -->
       <div class="card lock" id="card3">
         <div class="ch"><span class="n">3</span><h3>전산 입력 실행</h3><span class="badge" id="b3">대기</span></div>
-        <p class="d">서식·이용권이 준비되면 복잡한 정부 전산 입력을 도구가 대신 채웁니다. <b>결제·서명·제출은 본인</b>이 마무리.</p>
+        <p class="d">서식·이용권이 준비되면 전산 입력을 도구가 채웁니다. <b>결제·서명·제출은 본인</b>.</p>
         <input class="ti" id="runAddr" value="서울특별시 중구 세종대로 110" placeholder="부동산 주소" style="margin-top:10px">
         <div class="row"><button class="btn p full" id="runBtn" type="button" disabled>전산 입력 실행</button></div>
         <div class="run-out hidden" id="runOut"></div>
         <div id="runPanel" class="hidden"><code id="runCode"></code></div>
       </div>
     </div>
-  </div>
-
-  <!-- 기록 -->
-  <div class="log">
-    <h4>세션 기록</h4>
-    <div id="logRows"><div class="lrow"><span>아직 없음 — 이용권을 발급해 보세요</span></div></div>
-    <div id="couponHist" class="hidden"></div>
-  </div>
+    <div class="log"><h4>세션 기록</h4><div id="logRows"><div class="lrow"><span>아직 없음 — 이용권을 발급해 보세요</span></div></div><div id="couponHist" class="hidden"></div></div>
+  </section>
 
   <div class="foot">
     <p>LFAI 등기 · 모듈 01 · <a href="https://dimas-40.github.io/lfai-as/">모듈 스토어</a> · <a href="https://github.com/dimas-40/lfai-registry/blob/main/PACKAGE.md">패키지</a></p>
@@ -180,7 +206,6 @@ textarea:focus,input.ti:focus{border-color:var(--grn)}
   </div>
 </main>
 
-<script src="assets/dashboard.js?v=1" defer></script>
-<script src="lfai-icons/lfai-head.js?v=4" defer></script>
+<script src="assets/dashboard.js?v=2" defer></script>
 </body>
 </html>
