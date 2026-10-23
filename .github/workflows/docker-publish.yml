@@ -1,0 +1,35 @@
+name: coupon 이미지 빌드·GHCR 푸시
+# server/ 변경 시 쿠폰 백엔드 이미지를 ghcr.io/dimas-40/lfai-coupon:latest 로 자동 발행.
+# 서버 PC 이식: docker pull ghcr.io/dimas-40/lfai-coupon:latest 한 번이면 끝(빌드 불요).
+on:
+  push:
+    branches: [main]
+    paths:
+      - "server/**"
+      - ".github/workflows/docker-publish.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: GHCR 로그인
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: 빌드·푸시 (context=server)
+        uses: docker/build-push-action@v5
+        with:
+          context: server
+          file: server/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/dimas-40/lfai-coupon:latest
+            ghcr.io/dimas-40/lfai-coupon:${{ github.sha }}
