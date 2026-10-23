@@ -3,128 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>등기 도우미 — 작동 시나리오</title>
+<title>등기 도우미 — 작동 시뮬레이션</title>
 <meta name="theme-color" content="#eef0f3">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="../lfai-icons/icon-192.png?v=3">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
-:root{--bg:#eef0f3;--ink:#1b2430;--sub:#6a7482;--line:#dfe3e9;--blue:#2b5fd0;--green:#1f9d6b;--amber:#f3b63a;--amberd:#8a6a00}
+:root{--bg:#eef0f3;--ink:#1b2430;--sub:#6a7482;--line:#dfe3e9;--blue:#2b5fd0;--green:#1f9d6b;--amber:#f3b63a;--pur:#6a5a9a}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
 body{font-family:"Pretendard Variable",system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;font-size:15px}
-.bar{display:flex;align-items:center;gap:8px;padding:12px 14px;background:#0b1e17;color:#dcebe3}
+.bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:#0b1e17;color:#dcebe3}
 .bar .mk{width:22px;height:22px;border-radius:6px;background:#14402e;display:grid;place-items:center;color:#6fd3a4;font-weight:800;font-size:10px}
-.bar b{font-size:13px}.bar .st{margin-left:auto;font-size:10px;color:#8fb3a3}
-.screen{flex:1;overflow-y:auto;position:relative}
-.wrap{padding:13px 14px 180px}
-.ghead{display:flex;align-items:center;font-size:12px;color:var(--sub);margin-bottom:10px}
-.ghead b{color:var(--ink);font-size:13.5px}.ghead .tag{margin-left:auto;font-size:10px;font-weight:800;background:#e6edfb;color:var(--blue);padding:3px 8px;border-radius:999px}
-.fld{border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:8px;background:#fff;transition:.25s}
-.fld.active{border-color:var(--blue);box-shadow:0 0 0 3px #2b5fd022}
+.bar b{font-size:12.5px}.bar .st{margin-left:auto;font-size:10px;color:#8fb3a3}
+.car{flex:1;position:relative;overflow:hidden}
+.track{display:flex;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100%;height:100%;padding:14px 13px 12px;display:flex;flex-direction:column}
+.sl{font-size:10.5px;font-weight:800;color:var(--blue);letter-spacing:.3px}
+.st2{font-size:15px;font-weight:800;margin:3px 0 10px;line-height:1.25}
+.scr{flex:1;border-radius:13px;padding:12px;overflow:hidden;position:relative}
+.scr.light{background:#fff;border:1px solid var(--line)}
+.scr.term{background:#0c1512;border:1px solid #1b3128;font-family:"JetBrains Mono",monospace;font-size:11px;color:#cfe3d9;line-height:1.7}
+.scr.sys{background:#f4f6f9;border:1px solid var(--line)}
+.term .p{color:#6fd3a4}.term .c{color:#8fb3a3}.term .ok{color:#7fd6a8}.term .w{color:#f3b63a}
+/* 폼 */
+.fld{border:1px solid var(--line);border-radius:9px;padding:8px 10px;margin-bottom:7px}
 .fld.done{border-color:#bfe3d2;background:#f5fbf8}
-.fld .l{font-size:10.5px;color:var(--sub);font-weight:700;display:flex;align-items:center}
-.fld .l .ck{margin-left:auto;color:var(--green);opacity:0;transition:.2s}.fld.done .l .ck{opacity:1}
-.fld .v{font-size:13px;font-weight:600;margin-top:3px;min-height:18px}.fld .v.ph{color:#b7bfc9;font-weight:400}
-.fld .v .cur{display:inline-block;width:2px;height:15px;background:var(--blue);vertical-align:-3px;animation:bk .9s step-end infinite}@keyframes bk{50%{opacity:0}}
-/* 턴 독(춤) */
-.dock{position:absolute;left:0;right:0;bottom:0;padding:12px 14px calc(13px + env(safe-area-inset-bottom));background:linear-gradient(#ffffff00,#fff 20%)}
-.turn{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:13px;box-shadow:0 8px 28px -12px #0b122133;transition:.25s}
-.turn.agent{border-color:#bcd0f5}
-.turn.user{border-color:#9fe0c3}
-.turn.gate{border-color:#f3d79a;background:#fffdf6}
-.who{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;margin-bottom:9px}
-.who.a{background:#e6edfb;color:var(--blue)}.who.u{background:#e7f7ef;color:var(--green)}.who.g{background:#fdf0d6;color:var(--amberd)}
-.who .d{width:7px;height:7px;border-radius:50%;background:currentColor}.who.a .d{animation:pl 1s infinite}
-@keyframes pl{0%{opacity:1}50%{opacity:.3}100%{opacity:1}}
-.tmsg{font-size:13px;line-height:1.5;color:var(--ink)}
-.tmsg b{color:var(--blue)}
-.tbtn{width:100%;margin-top:11px;border:0;border-radius:12px;padding:13px;font:inherit;font-weight:800;font-size:14px;color:#fff;background:var(--green);position:relative;overflow:hidden}
-.tbtn.gate{background:#2b2f8a}
-.tbtn::after{content:"";position:absolute;inset:0;border-radius:12px;box-shadow:0 0 0 0 #1f9d6b55;animation:ring 1.4s infinite}
-.tbtn.gate::after{box-shadow:0 0 0 0 #2b2f8a55;animation:ringb 1.4s infinite}
-@keyframes ring{0%{box-shadow:0 0 0 0 #1f9d6b66}70%{box-shadow:0 0 0 12px #1f9d6b00}100%{box-shadow:0 0 0 0 #1f9d6b00}}
-@keyframes ringb{0%{box-shadow:0 0 0 0 #2b2f8a66}70%{box-shadow:0 0 0 12px #2b2f8a00}100%{box-shadow:0 0 0 0 #2b2f8a00}}
-.tbtn.hidepulse::after{display:none}
-/* 턴 리본(에이전트 ⇄ 본인) */
-.ribbon{display:flex;align-items:center;justify-content:center;gap:8px;font-size:10.5px;color:var(--sub);margin-bottom:9px}
-.ribbon .b{font-weight:800}.ribbon .ag{color:var(--blue)}.ribbon .me{color:var(--green)}
-.replay{position:absolute;right:13px;top:11px;z-index:9;background:#0b1e17;color:#cfe3d9;border:0;border-radius:999px;padding:7px 12px;font:inherit;font-size:11.5px;font-weight:700;display:none;align-items:center;gap:5px}
-.replay.on{display:inline-flex}
-.done .tmsg{color:var(--green);font-weight:700}
+.fld .l{font-size:10px;color:var(--sub);font-weight:700;display:flex}.fld .l .ck{margin-left:auto;color:var(--green)}
+.fld .v{font-size:12.5px;font-weight:600;margin-top:2px}
+.ghead{display:flex;font-size:11.5px;color:var(--sub);margin-bottom:9px}.ghead b{color:var(--ink);font-size:13px}.ghead .tag{margin-left:auto;font-size:9.5px;font-weight:800;background:#e6edfb;color:var(--blue);padding:2px 7px;border-radius:999px}
+/* 말풍선(에이전트/유저) */
+.bub{border-radius:12px;padding:9px 11px;margin-bottom:7px;font-size:12px;line-height:1.5;max-width:88%}
+.bub.a{background:#e6edfb;color:#1b2430;border-bottom-left-radius:3px}
+.bub.u{background:#e7f7ef;color:#1b2430;margin-left:auto;border-bottom-right-radius:3px}
+.bub .nm{font-size:9.5px;font-weight:800;margin-bottom:3px;opacity:.7}
+/* 토글(DND) */
+.tog{display:flex;align-items:center;gap:9px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.tog .ti{font-size:13px;font-weight:700}.tog .sw{margin-left:auto;width:42px;height:25px;border-radius:999px;background:var(--amber);position:relative}
+.tog .sw::after{content:"";position:absolute;top:3px;left:20px;width:19px;height:19px;border-radius:50%;background:#fff}
+/* 버튼/핀틀 */
+.mbtn{width:100%;text-align:center;padding:11px;border-radius:10px;font-weight:800;font-size:13px;color:#fff;background:var(--green);margin-top:3px}
+.mbtn.g2{background:#2b2f8a}
+.gl{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}.gl span{font-size:10px;font-weight:700;background:#fdeceb;color:#d2443a;padding:3px 7px;border-radius:999px}
+.big{display:grid;place-items:center;height:100%;text-align:center;gap:8px}
+.big .ic{width:48px;height:48px;color:var(--green)}
+.big h4{font-size:16px}.big p{font-size:12px;color:var(--sub)}
+.hl{color:var(--blue);font-weight:700}
+.cap{font-size:11px;color:var(--sub);margin-top:9px;line-height:1.5}
+.dots{display:flex;justify-content:center;gap:5px;padding:9px;flex-wrap:wrap}
+.dots b{width:6px;height:6px;border-radius:50%;background:#c3ccd6;transition:.3s}.dots b.on{background:var(--blue);width:16px;border-radius:3px}
 </style>
 </head>
 <body>
-<div class="bar"><span class="mk">등</span><b>등기 도우미</b><span class="st" id="st">에이전트 작업 중</span></div>
-<div class="screen" id="screen">
-  <button class="replay" id="replay" type="button"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v4h4"/></svg>다시</button>
-  <div class="wrap">
-    <div class="ghead"><b>법인 설립 등기 신청</b><span class="tag">startbiz · 전산</span></div>
-    <div class="fld" data-k="0"><div class="l">상호<svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="v ph">—</div></div>
-    <div class="fld" data-k="1"><div class="l">자본금<svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="v ph">—</div></div>
-    <div class="fld" data-k="2"><div class="l">대표이사<svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="v ph">—</div></div>
-    <div class="fld" data-k="3"><div class="l">사업목적<svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="v ph">—</div></div>
-  </div>
-  <!-- 턴 독 -->
-  <div class="dock">
-    <div class="ribbon"><span class="b ag">에이전트</span><span><svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="#6a7482" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><path d="M7 3 3 7l4 4"/><path d="M3 7h12"/><path d="M17 13l4-4-4-4"/><path d="M21 9H9"/></svg></span><span class="b me">본인</span><span id="rib">· 번갈아 진행</span></div>
-    <div class="turn agent" id="turn">
-      <span class="who a" id="who"><span class="d"></span>에이전트</span>
-      <div class="tmsg" id="msg">서식을 읽고 전산에 입력하는 중…</div>
-      <button class="tbtn hidepulse" id="btn" type="button" style="display:none">다음</button>
-    </div>
-  </div>
-</div>
+<div class="bar"><span class="mk">등</span><b>등기 도우미 · 시뮬레이션</b><span class="st" id="stp">1/12</span></div>
+<div class="car"><div class="track" id="track">
+
+  <!-- 1 -->
+  <div class="slide"><p class="sl">장면 1 · 개요</p><h3 class="st2">내 폰·내 에이전트로 셀프 등기</h3>
+    <div class="scr light"><div class="big">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M9 6h6M9 10h6M9 14h4"/></svg>
+      <h4>서식=내 AI · 전산=도구 · 제출=본인</h4><p>서버 없이, 내 폰 안에서 전부</p></div></div>
+    <p class="cap">실기기 영상 전 <b>가상 시뮬레이션</b>입니다.</p></div>
+
+  <!-- 2 -->
+  <div class="slide"><p class="sl">장면 2 · 설치</p><h3 class="st2">한 줄로 에이전트 설치</h3>
+    <div class="scr term"><div><span class="p">~ $</span> curl -O dtslib1979.github.io/<br>&nbsp;&nbsp;termux-bridge/g && bash g</div>
+      <div class="c" style="margin-top:8px"># 에이전트 베이스 설치 시작…</div></div>
+    <p class="cap">termux-bridge = 에이전트 베이스(claude·DeepSeek·Aider).</p></div>
+
+  <!-- 3 -->
+  <div class="slide"><p class="sl">장면 3 · 설치 완료</p><h3 class="st2">에이전트 올라옴 + 흔적 0</h3>
+    <div class="scr term"><div class="ok">✓ claude-code · DeepSeek · Aider 설치</div>
+      <div class="ok">✓ 등기 모듈(navigator·프롬프트) 추가</div>
+      <div class="ok">✓ 로컬 작업 폴더 생성</div>
+      <div class="w" style="margin-top:7px"># 설치 스크립트 자동 삭제(self-terminate)</div></div>
+    <p class="cap">설치본은 사라지고 에이전트만 남습니다.</p></div>
+
+  <!-- 4 -->
+  <div class="slide"><p class="sl">장면 4 · 문서 공유</p><h3 class="st2">내 문서를 에이전트에게</h3>
+    <div class="scr light"><div class="fld"><div class="l">공유 폴더</div><div class="v">/내 문서/등기</div></div>
+      <div class="fld done"><div class="l">등기 관련 자료<span class="ck">✓</span></div><div class="v">사업계획·인감·잔액증명…</div></div>
+      <p class="cap" style="margin-top:4px">에이전트가 <b>읽어서 참고</b> — 내 폰 안에서만.</p></div></div>
+
+  <!-- 5 -->
+  <div class="slide"><p class="sl">장면 5 · 서식 작성</p><h3 class="st2">에이전트와 서류 쓰기</h3>
+    <div class="scr light"><div class="bub u"><div class="nm">나</div>정관이랑 의사록 만들어줘</div>
+      <div class="bub a"><div class="nm">내 에이전트</div>상호·자본금·임원 알려주시면 표준서식으로 작성할게요</div>
+      <div class="bub u"><div class="nm">나</div>세움테크, 5천만원, 대표 김세움</div>
+      <div class="bub a"><div class="nm">내 에이전트</div>정관·의사록·주주명부 생성 완료 ✓</div></div>
+    <p class="cap">★'작성'은 <b>내가 내 AI로</b> — 법무사법 안전선.</p></div>
+
+  <!-- 6 -->
+  <div class="slide"><p class="sl">장면 6 · 이용권·MCP</p><h3 class="st2">이용권 1장 → MCP 연결</h3>
+    <div class="scr term"><div><span class="p">등기 $</span> use LFAI-TRIAL-6DEX-QS43</div>
+      <div class="ok" style="margin-top:6px">✓ MCP 연결(1회용 토큰)</div>
+      <div class="c">· 작성 요령 · 전산 내비 안내 로드</div>
+      <div class="c">· 다음 단계 설명 준비(explain_next)</div></div>
+    <p class="cap">우리 MCP = <b>안내·지침</b>만. 생성·개인정보는 안 받음.</p></div>
+
+  <!-- 7 -->
+  <div class="slide"><p class="sl">장면 7 · 집중</p><h3 class="st2">방해금지 켜고 30분 집중</h3>
+    <div class="scr sys"><div class="tog"><span class="ti">방해금지(DND)</span><span class="sw"></span></div>
+      <p class="cap" style="margin-top:10px">전화·알림 차단 → 자동화가 <b>중간에 안 끊깁니다.</b><br>(비행기모드 아님 — 네트워크 필요)</p></div></div>
+
+  <!-- 8 -->
+  <div class="slide"><p class="sl">장면 8 · 전산 진입</p><h3 class="st2">정부 전산 열림</h3>
+    <div class="scr light"><div class="ghead"><b>법인 설립 등기 신청</b><span class="tag">startbiz</span></div>
+      <div class="fld"><div class="l">상호</div><div class="v" style="color:#b7bfc9">입력 대기…</div></div>
+      <div class="fld"><div class="l">자본금</div><div class="v" style="color:#b7bfc9">—</div></div>
+      <div class="fld"><div class="l">대표이사</div><div class="v" style="color:#b7bfc9">—</div></div></div>
+    <p class="cap">도구가 전산 화면을 <b>한 스텝씩</b> 엽니다.</p></div>
+
+  <!-- 9 -->
+  <div class="slide"><p class="sl">장면 9 · 춤(자동입력)</p><h3 class="st2">에이전트가 채우고 멈춤</h3>
+    <div class="scr light"><div class="fld done"><div class="l">상호<span class="ck">✓</span></div><div class="v">세움테크 주식회사</div></div>
+      <div class="fld done"><div class="l">자본금<span class="ck">✓</span></div><div class="v">50,000,000원</div></div>
+      <div class="bub a" style="margin-top:4px"><div class="nm">에이전트</div>기본정보 입력했어요. 확인하고 다음?</div>
+      <div class="mbtn">다음</div></div>
+    <p class="cap">에이전트·본인 <b>번갈아(춤)</b> 진행.</p></div>
+
+  <!-- 10 -->
+  <div class="slide"><p class="sl">장면 10 · 대기·설명</p><h3 class="st2">못 따라와도 기다립니다</h3>
+    <div class="scr light"><div class="bub a"><div class="nm">에이전트</div>천천히 하셔도 돼요. <b>다음은 첨부서류</b>입니다 — 준비되면 눌러주세요</div>
+      <div class="bub a"><div class="nm">에이전트</div>궁금하면 "다음 뭐야?" 물어보세요</div></div>
+    <p class="cap">MCP <span class="hl">explain_next</span> — 선생처럼 안내·대기.</p></div>
+
+  <!-- 11 -->
+  <div class="slide"><p class="sl">장면 11 · 본인 차례</p><h3 class="st2">전자서명은 본인만</h3>
+    <div class="scr light"><div class="bub a"><div class="nm">에이전트</div>입력 끝. 여기부터 <b>본인</b>이에요.</div>
+      <div class="gl"><span>결제·본인</span><span>전자서명·본인</span><span>제출·본인</span></div>
+      <div class="mbtn g2">공동인증서로 서명</div></div>
+    <p class="cap">도구는 멈추고, 인증은 <b>내 손가락</b>.</p></div>
+
+  <!-- 12 -->
+  <div class="slide"><p class="sl">장면 12 · 완료</p><h3 class="st2">제출 완료</h3>
+    <div class="scr light"><div class="big">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+      <h4>법인 설립 신청 제출됨</h4><p>입력은 도구가, 제출은 본인이.</p></div></div>
+    <p class="cap">법무사 30~50만원 → 이용권 + 내 AI로 셀프.</p></div>
+
+</div></div>
+<div class="dots" id="dots"></div>
 <script>
 (function(){
   var $=function(s){return document.getElementById(s)},reduce=matchMedia("(prefers-reduced-motion:reduce)").matches,
-      flds=[].slice.call(document.querySelectorAll(".fld")),VALS=["세움테크 주식회사","50,000,000원","김세움","소프트웨어 개발·공급"],tm=[];
-  function clr(){tm.forEach(clearTimeout);tm=[]}
-  function wait(ms,f){tm.push(setTimeout(f,reduce?0:ms))}
-  function type(el,str,done){var i=0;el.classList.remove("ph");(function t(){if(i<=str.length){el.innerHTML=str.slice(0,i)+'<span class="cur"></span>';i++;tm.push(setTimeout(t,reduce?0:32))}else{el.textContent=str;done&&done()}})();}
-  // 에이전트 턴: 필드 채우기
-  function agentFill(ks,done){
-    $("turn").className="turn agent";$("who").className="who a";$("who").innerHTML='<span class="d"></span>에이전트';
-    $("st").textContent="에이전트 작업 중";$("msg").textContent="전산에 입력하는 중…";$("btn").style.display="none";
-    var idx=0;(function nx(){ if(idx>=ks.length){done();return;} var k=ks[idx],f=flds[k],el=f.querySelector(".v");
-      f.classList.add("active"); type(el,VALS[k],function(){f.classList.remove("active");f.classList.add("done");idx++;wait(250,nx);}); })();
-  }
-  // 유저 턴: 메시지 + 버튼(펄스) → 자동 "탭"
-  function userTurn(cls,whoTxt,whoCls,msg,btnTxt,btnCls,auto,done){
-    $("turn").className="turn "+cls;$("who").className="who "+whoCls;$("who").innerHTML='<span class="d"></span>'+whoTxt;
-    $("st").textContent="본인 차례";$("msg").innerHTML=msg;
-    var b=$("btn");b.style.display="block";b.textContent=btnTxt;b.className="tbtn "+(btnCls||"");
-    function go(){ b.className="tbtn "+(btnCls||"")+" hidepulse";b.textContent="✓ "+btnTxt;wait(500,function(){done();}); }
-    b.onclick=go;
-    if(!reduce&&auto)wait(1700,go);
-  }
-  function run(){
-    clr();flds.forEach(function(f,i){f.classList.remove("active","done");var el=f.querySelector(".v");el.className="v ph";el.textContent="—";});
-    $("replay").classList.remove("on");
-    // 1) 에이전트: 상호·자본금
-    agentFill([0,1],function(){
-      // 유저 턴: 확인
-      userTurn("user","본인","u","에이전트가 <b>기본정보</b>를 입력했어요. 확인하고 다음?","다음","",true,function(){
-        // 2) 에이전트: 대표이사·목적
-        agentFill([2,3],function(){
-          userTurn("user","본인","u","<b>임원·목적</b>까지 입력 완료. 계속할까요?","계속","",true,function(){
-            // 3) 게이트: 전자서명(본인만)
-            userTurn("gate","본인 전용","g","<b>전자서명</b>이 필요해요 — 본인만 할 수 있어요.","내가 인증","gate",true,function(){
-              // 4) 게이트: 제출(본인)
-              userTurn("gate","본인 전용","g","다 됐어요. <b>제출</b>만 남았어요 — 본인이 마무리.","내가 제출","gate",true,function(){
-                // 완료
-                $("turn").className="turn done";$("who").className="who u";$("who").innerHTML='<span class="d"></span>완료';
-                $("st").textContent="완료";$("msg").innerHTML="신청 제출 완료 — 입력은 도구가, 제출은 본인이.";$("btn").style.display="none";
-                $("replay").classList.add("on");
-              });
-            });
-          });
-        });
-      });
-    });
-  }
-  $("replay").onclick=run;
-  run();
+      track=$("track"),N=document.querySelectorAll(".slide").length,i=0,dots=$("dots"),timer=null;
+  for(var k=0;k<N;k++)dots.appendChild(document.createElement("b"));
+  var dn=[].slice.call(dots.children);
+  function show(n){i=((n%N)+N)%N;track.style.transform="translateX("+(-i*100)+"%)";dn.forEach(function(d,j){d.classList.toggle("on",j===i);});$("stp").textContent=(i+1)+"/"+N;}
+  dn.forEach(function(d,j){d.addEventListener("click",function(){show(j);restart();});});
+  function restart(){if(timer)clearInterval(timer);if(!reduce)timer=setInterval(function(){show(i+1);},2500);}
+  show(0);restart();
   if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
 })();
 </script>
