@@ -1,6 +1,5 @@
-/* LFAI 등기 — ADB 연결 쿠폰 발급 (실서버 연동 + 오프라인 폴백).
-   쿠폰 = 폰↔서버 1회 세션 일회성 토큰. 서버가 발급·검증·원자적 사용처리(server/coupon_server.py).
-   서버 미가동/미연결 시 브라우저 로컬 발급으로 폴백(베타 체험). */
+/* LFAI 등기 — 이용권 발급 + 열람 실행 프런트.
+   서버가 이용권 발급·확인·사용 처리. 서버 미연결 시 브라우저 임시 발급으로 폴백(베타). */
 (function () {
   var $ = function (i) { return document.getElementById(i); };
   if (!$("issueBtn")) return;
@@ -53,15 +52,15 @@
     var all = load(); all.unshift(rec); save(all);
     var box = $("couponOut"); box.hidden = false;
     var paid = rec.status === "active";
-    var src = rec.source === "server" ? '<span class="cp-badge srv">서버 발급</span>' : '<span class="cp-badge loc">오프라인 발급</span>';
+    var src = rec.source === "server" ? '<span class="cp-badge srv">발급 완료</span>' : '<span class="cp-badge loc">임시 발급</span>';
     box.innerHTML =
       '<div class="cp-row">' + src +
-        '<span class="cp-badge ' + (paid ? "ok" : "pend") + '">' + (paid ? "활성" : "결제 연동 예정(베타)") + '</span>' +
-        '<span class="cp-meta">' + rec.name + ' · ' + rec.uses + '회 · 유효 ' + fmtLeft(rec.expires - Date.now()) + '</span></div>' +
+        '<span class="cp-badge ' + (paid ? "ok" : "pend") + '">' + (paid ? "바로 사용" : "결제 후 사용(베타)") + '</span>' +
+        '<span class="cp-meta">' + rec.name + ' · ' + rec.uses + '회 · ' + fmtLeft(rec.expires - Date.now()) + ' 남음</span></div>' +
       '<div class="cp-code" id="cpCode">' + rec.code + '</div>' +
-      '<div class="cp-act"><button type="button" class="btn p sm" id="cpCopy">코드 복사</button>' +
-      '<a class="btn s sm" href="#connect">연결 방법 →</a></div>' +
-      '<p class="cp-note">이 쿠폰을 폰 연결 때 입력하세요. 1회용 토큰 — 세션 종료 시 폐기. 개인정보는 폰에만 저장됩니다.</p>';
+      '<div class="cp-act"><button type="button" class="btn p sm" id="cpCopy">이용권 복사</button>' +
+      '<a class="btn s sm" href="#connect">이용 안내 →</a></div>' +
+      '<p class="cp-note">아래에서 바로 열람을 실행하거나, 폰 앱에 이 이용권을 넣어 쓰세요. 한 번 쓰면 사라지는 1회용입니다.</p>';
     $("cpCopy").addEventListener("click", function () {
       var b = $("cpCopy"); if (navigator.clipboard) navigator.clipboard.writeText(rec.code).then(ok, ok); else ok();
       function ok() { b.textContent = "복사됨 ✓"; setTimeout(function () { b.textContent = "코드 복사"; }, 1600); }
@@ -86,7 +85,7 @@
     if (!addr) { addr = "서울특별시 중구 세종대로 110"; $("runAddr").value = addr; }
     btn.disabled = true; btn.textContent = "실행 중…";
     out.hidden = false;
-    var steps = [["폰 연결(ADB)", 0], ["인터넷등기소 진입", 1], ["주소 검색", 2], ["결과 판정", 3]];
+    var steps = [["폰 연결", 0], ["등기소 접속", 1], ["주소 검색", 2], ["결과 확인", 3]];
     out.innerHTML = steps.map(function (s) {
       return '<div class="run-step" data-k="' + s[1] + '"><i></i><span>' + s[0] + '</span></div>';
     }).join("") + '<div class="run-verdict" id="runV" style="display:none"></div>';
@@ -107,24 +106,24 @@
       var stage = d.stage || "", msg = d.msg || "";
       if (d.ok && stage === "app_gate") {
         v.className = "run-verdict gate";
-        v.innerHTML = "<b>검색까지 실제 구동됨</b> — 폰 연결→진입→주소검색 완료. 최종 열람 렌더는 <b>앱(AutoJS6)</b> 경로입니다(IROS 웹 정책). 결제·발급은 본인.";
+        v.innerHTML = "<b>주소 검색까지 완료!</b> 등기 열람·발급은 <b>앱에서 본인 인증</b>으로 마무리됩니다. (결제·서명은 본인이 직접)";
       } else if (d.ok && (stage === "searched" || stage === "payment_gate")) {
         v.className = "run-verdict ok";
-        v.innerHTML = "<b>열람 검색 완료</b> — 결제·발급·서명은 본인이 폰에서(guard 차단).";
+        v.innerHTML = "<b>열람 검색 완료!</b> 결제·발급·서명은 본인이 직접 하시면 됩니다.";
       } else if (stage === "maintenance") {
-        v.className = "run-verdict err"; v.innerHTML = "<b>IROS 서비스 점검중</b> — 점검 종료 후 재시도.";
+        v.className = "run-verdict err"; v.innerHTML = "<b>등기소 점검 중</b> — 잠시 후 다시 시도해 주세요.";
       } else if (stage === "no_device") {
-        v.className = "run-verdict err"; v.innerHTML = "<b>기기 미연결</b> — 실행용 폰이 연결돼야 합니다.";
+        v.className = "run-verdict err"; v.innerHTML = "<b>실행할 폰이 연결되지 않았어요</b> — 폰 연결 후 다시 시도.";
       } else if (d.stage === "coupon") {
-        v.className = "run-verdict err"; v.innerHTML = "<b>쿠폰 사용 불가</b> — " + (d.status || "만료/사용됨") + ". 새로 발급하세요.";
+        v.className = "run-verdict err"; v.innerHTML = "<b>이용권을 쓸 수 없어요</b> — " + (d.status === "used_up" ? "이미 사용됨" : d.status === "expired" ? "기간 만료" : "사용 불가") + ". 새로 발급해 주세요.";
       } else {
-        v.className = "run-verdict err"; v.innerHTML = "<b>" + (stage || "실행 실패") + "</b> — " + msg;
+        v.className = "run-verdict err"; v.innerHTML = "<b>실행하지 못했어요</b> — 잠시 후 다시 시도해 주세요.";
       }
       btn.textContent = "완료"; activeCode = null;  // 1회용 소진
     }).catch(function () {
       clearTimeout(to); clearInterval(anim);
       var v = $("runV"); v.style.display = "block"; v.className = "run-verdict err";
-      v.innerHTML = "<b>실행 서버에 연결 못 함</b> — 베타 백엔드가 꺼져 있을 수 있습니다(서버 상태 표시 확인).";
+      v.innerHTML = "<b>지금은 연결이 어려워요</b> — 잠시 후 다시 시도해 주세요.";
       btn.disabled = false; btn.textContent = "다시 실행";
     });
   }
@@ -144,8 +143,8 @@
   function ping() {
     var s = $("svcStat"); if (!s) return;
     fetch(API + "/health", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
-      if (d && d.ok) { s.className = "svc up"; s.textContent = "● 서버 연결됨"; }
-    }).catch(function () { s.className = "svc down"; s.textContent = "○ 오프라인 — 로컬 발급(베타)"; });
+      if (d && d.ok) { s.className = "svc up"; s.textContent = "● 발급 준비됨"; }
+    }).catch(function () { s.className = "svc down"; s.textContent = "○ 임시 발급 모드"; });
   }
 
   var tier = "TRIAL";

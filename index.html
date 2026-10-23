@@ -10,18 +10,18 @@
 <link rel="manifest" href="lfai.webmanifest?v=3">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LFAI 등기">
 <title>LFAI 등기 — 등기 열람을 폰에서 바로</title>
-<meta name="description" content="부동산·법인 등기 열람을 폰에서 바로. 체험하고 ADB 연결 쿠폰을 발급받아 지금 시작하세요. 개인정보는 폰에만, 결제·서명은 본인 인증.">
+<meta name="description" content="부동산·법인 등기 열람을 폰에서 바로. 이용권 한 장으로 지금 시작하세요. 내 정보는 내 폰에만, 결제·서명은 본인이 직접.">
 <meta name="theme-color" content="#0d2a21">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://dimas-40.github.io/lfai-registry/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="LFAI 등기">
-<meta property="og:title" content="LFAI 등기 — 등기 열람을 폰에서 바로"><meta property="og:description" content="체험하고 ADB 연결 쿠폰 발급받아 바로 시작. 개인정보는 폰에만.">
+<meta property="og:title" content="LFAI 등기 — 등기 열람을 폰에서 바로"><meta property="og:description" content="이용권 한 장으로 바로 시작. 내 정보는 내 폰에만.">
 <meta property="og:url" content="https://dimas-40.github.io/lfai-registry/">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dimas-40.github.io/lfai-as/assets/brand/og-lfai-as.jpg"><meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="LFAI 등기 — 등기 열람을 폰에서 바로">
 <meta name="twitter:image" content="https://dimas-40.github.io/lfai-as/assets/brand/og-lfai-as.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"LFAI 등기","url":"https://dimas-40.github.io/lfai-registry/","applicationCategory":"BusinessApplication","operatingSystem":"Android · MCP","offers":[{"@type":"Offer","name":"체험 쿠폰","price":"0","priceCurrency":"KRW"},{"@type":"Offer","name":"1회권","price":"3000","priceCurrency":"KRW"},{"@type":"Offer","name":"10회권","price":"25000","priceCurrency":"KRW"}],"description":"인터넷등기소 부동산·법인 등기 열람을 폰에서. ADB 연결 쿠폰(일회성 토큰)으로 시작. 개인정보는 폰에만."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"LFAI 등기","url":"https://dimas-40.github.io/lfai-registry/","applicationCategory":"BusinessApplication","operatingSystem":"Android","offers":[{"@type":"Offer","name":"체험 이용권","price":"0","priceCurrency":"KRW"},{"@type":"Offer","name":"1회권","price":"3000","priceCurrency":"KRW"},{"@type":"Offer","name":"10회권","price":"25000","priceCurrency":"KRW"}],"description":"인터넷등기소 부동산·법인 등기 열람을 폰에서. 이용권 한 장으로 시작. 내 정보는 내 폰에만."}</script>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
@@ -89,6 +89,11 @@
 .cp-h-row code{font-family:"JetBrains Mono",monospace;color:#cfe3d9}
 .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
 @media(max-width:720px){.steps3{grid-template-columns:1fr}.cp-tiers{grid-template-columns:1fr}}
+/* 푸터 터미널을 둥근 창 카드로 감싸기(각진 사각형 → 정돈된 블록) */
+.foot.term .tw{border-radius:16px;overflow:hidden;margin:0 auto;border:1px solid #16271f}
+.foot.term .wrap{padding-left:16px;padding-right:16px}
+.steps.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:720px){.steps.three{grid-template-columns:1fr}}
 </style>
 </head>
 <body class="prod-reg">
@@ -109,10 +114,10 @@
 <section class="hero dark phero" id="demo">
   <div class="wrap">
     <div>
-      <p class="cat">등기 열람 서비스 · 부동산·법인</p>
+      <p class="cat">부동산·법인 등기 열람 서비스</p>
       <h1>등기 열람,<br>폰에서 바로.</h1>
-      <p class="lede">체험해 보고, <strong>ADB 연결 쿠폰</strong>을 발급받아 지금 시작하세요.<br>개인정보는 <strong>폰에만</strong>, 결제·서명은 <strong>본인 인증</strong>으로.</p>
-      <div class="btns"><a class="btn p" href="#issue">무료 체험 쿠폰 발급</a><a class="btn s" href="#connect">연결 방법</a></div>
+      <p class="lede">복잡한 절차 없이, <strong>이용권 한 장</strong>으로 바로 시작하세요.<br>내 정보는 <strong>내 폰에만</strong>, 결제와 서명은 <strong>본인이 직접</strong>.</p>
+      <div class="btns"><a class="btn p" href="#issue">무료로 체험하기</a><a class="btn s" href="#connect">이용 안내</a></div>
     </div>
     <figure class="stage" aria-label="폰에서 도는 등기 열람 시연">
       <div class="phone"><span class="glow"></span>
@@ -126,16 +131,16 @@
 <section class="facts" aria-label="서비스 요약">
   <div class="wrap">
     <div><p>대상</p><strong>부동산·법인 등기 열람</strong></div>
-    <div><p>시작</p><strong>ADB 연결 쿠폰 1장</strong></div>
-    <div><p>개인정보</p><strong>폰에만 · 서버는 안 받음</strong></div>
-    <div><p>결제·서명</p><strong>본인 인증</strong></div>
+    <div><p>시작</p><strong>이용권 한 장</strong></div>
+    <div><p>내 정보</p><strong>내 폰에만 저장</strong></div>
+    <div><p>결제·서명</p><strong>본인이 직접</strong></div>
   </div>
 </section>
 
 <!-- ★ 쿠폰 발급 = 서비스 시작 -->
 <section class="sec" id="issue">
   <div class="wrap">
-    <div class="head2"><div><p class="label">Start now</p><h2>쿠폰 발급받고<br>바로 시작.</h2></div><p>쿠폰 = 폰↔서버 1회 세션을 여는 <strong>일회성 토큰</strong>. 발급받아 폰 연결 때 입력하면 열람이 돌아갑니다.</p></div>
+    <div class="head2"><div><p class="label">지금 시작</p><h2>이용권 받고<br>바로 시작.</h2></div><p>이용권 한 장이면 등기 열람이 바로 시작됩니다. 먼저 <strong>무료</strong>로 체험해 보세요.</p></div>
     <div class="issue">
       <div class="cp-tiers" role="group" aria-label="쿠폰 종류">
         <button type="button" class="cp-tier" data-tier="TRIAL" aria-pressed="true"><b>체험</b><span>1회 · 24시간</span><em>무료</em></button>
@@ -146,40 +151,45 @@
       <div><span class="svc" id="svcStat">서버 확인 중…</span></div>
       <div class="cp-out" id="couponOut" hidden></div>
 
-      <!-- ★ 실행 패널 — 발급한 쿠폰으로 실기기 열람 세션 구동 -->
+      <!-- ★ 실행 패널 — 발급한 이용권으로 등기 열람 실행 -->
       <div class="run-panel" id="runPanel" hidden>
-        <p class="run-t">② 열람 실행 <span>쿠폰 <code id="runCode"></code></span></p>
+        <p class="run-t">② 등기 열람 실행 <span>이용권 <code id="runCode"></code></span></p>
         <div class="run-in">
-          <input id="runAddr" value="서울특별시 중구 세종대로 110" placeholder="부동산 주소(지번/도로명)">
+          <input id="runAddr" value="서울특별시 중구 세종대로 110" placeholder="부동산 주소를 입력하세요">
           <button type="button" class="btn p" id="runBtn">열람 실행</button>
         </div>
-        <p class="run-hint">※ 시연 기본값은 공개 공공건물 주소입니다. 실행하면 연결된 실기기에서 실제 구동됩니다(최대 1분).</p>
+        <p class="run-hint">※ 예시 주소가 들어 있어요. 실행하면 실제로 등기 열람을 시작합니다(최대 1분).</p>
         <div class="run-out" id="runOut" hidden></div>
       </div>
 
       <div class="cp-hist" id="couponHist"></div>
-      <p class="cp-note" style="margin-top:14px"><b>넘지 않는 선:</b> 도구는 진입·검색·열람선택까지. 결제·발급 확정·서명은 <b>본인만</b>(guard 코드 차단). 월 구독 없이 쿠폰으로. 유료권 결제 연동은 순차 오픈(베타). 등기 수수료(정부 납부분)는 본인 별도 부담.</p>
+      <p class="cp-note" style="margin-top:14px">결제·발급·서명은 <b>본인이 직접</b> 합니다 — 대신 눌러 주지 않아요. 월 구독 없이 이용권으로. 등기 수수료는 본인이 별도로 냅니다. <em style="color:#6f877b">(베타 — 유료 결제는 순차 오픈)</em></p>
     </div>
   </div>
 </section>
 
-<!-- 연결 방법 = 쿠폰 사용 -->
+<!-- 이용 안내 — 접어서(아코디언) -->
 <section class="sec alt" id="connect">
   <div class="wrap">
-    <div class="head2"><div><p class="label">Connect</p><h2>폰 연결,<br>세 걸음.</h2></div><p>PC 없이 폰 자체에서. 쿠폰을 입력해 세션을 열고, 열람은 폰에서 로컬 실행됩니다.</p></div>
-    <div class="steps3">
-      <div class="tiers"><div><p class="dk">1</p><h3>앱·에이전트 설치</h3><p>폰에 LFAI 등기 앱(온디바이스 엔진)을 1회 설치. 무선 디버깅을 켭니다.</p></div></div>
-      <div class="tiers"><div><p class="dk">2</p><h3>쿠폰 입력 → 페어링</h3><p>발급받은 쿠폰 코드와 폰의 1회용 페어링 코드를 입력해 세션을 엽니다. 세션 끝나면 토큰 폐기.</p></div></div>
-      <div class="tiers"><div><p class="dk">3</p><h3>열람 실행</h3><p>주소 검색·열람까지 자동. 개인정보는 폰에만. 결제·발급·서명은 본인이 폰에서.</p></div></div>
+    <div class="head2"><div><p class="label">이용 안내</p><h2>어떻게 쓰나요?</h2></div><p>궁금한 것만 펼쳐 보세요.</p></div>
+    <div class="rv">
+      <details open><summary><span class="n">01</span><h3>세 걸음이면 끝</h3><span class="s">앱 → 이용권 → 열람</span></summary><div class="rb"><div class="steps three">
+        <div><b>01</b><h3>앱 준비</h3><p>폰에 LFAI 등기 앱을 한 번 설치합니다. PC는 필요 없어요.</p></div>
+        <div><b>02</b><h3>이용권 입력</h3><p>발급받은 이용권을 앱에 넣으면 연결됩니다. 한 번 쓰면 사라지는 1회용이에요.</p></div>
+        <div><b>03</b><h3>열람 실행</h3><p>주소만 넣으면 등기 열람을 알아서 찾아 줍니다. 결제·발급은 본인이 마무리.</p></div>
+      </div></div></details>
+      <details><summary><span class="n">02</span><h3>내 정보는 안전한가요?</h3><span class="s">내 폰에만</span></summary><div class="rb">
+        <p class="pair">주소·등기 내용·결제 정보는 <b>내 폰에만</b> 저장되고 바깥으로 보내지 않습니다. 결제·발급·서명은 서비스가 대신 하지 않고 <b>본인이 직접</b> 합니다.</p></div></details>
+      <details><summary><span class="n">03</span><h3>요금은요?</h3><span class="s">쓴 만큼</span></summary><div class="rb">
+        <p class="pair">월 구독 없이 이용권으로만. <b>무료 체험</b>으로 먼저 써 보고, 필요할 때 1회권·10회권을 쓰면 됩니다. 등기 수수료는 본인이 별도로 냅니다.</p></div></details>
     </div>
-    <p class="pair"><b>개인정보는 폰에만.</b> 서버는 '어느 화면 어느 버튼'인지 익명 지시만 주고, 주소·등기 내용·결제는 폰을 떠나지 않습니다. <a class="more" href="https://github.com/dimas-40/lfai-registry/blob/main/iros/FINDINGS.md">실기기 검증 →</a></p>
   </div>
 </section>
 
 <section class="close">
   <div class="wrap">
-    <div><h2>지금 무료로 체험하세요.</h2><p>체험 쿠폰 1장이면 폰에서 바로 열람 플로우가 돕니다.</p></div>
-    <div class="btns"><a class="btn p" href="#issue">무료 체험 쿠폰 발급</a><a class="btn s" href="https://dimas-40.github.io/lfai-registry/app/">앱으로 열기</a></div>
+    <div><h2>지금 무료로 체험하세요.</h2><p>체험 이용권 한 장이면 폰에서 바로 등기 열람을 해볼 수 있어요.</p></div>
+    <div class="btns"><a class="btn p" href="#issue">무료로 체험하기</a></div>
   </div>
 </section>
 </main>
