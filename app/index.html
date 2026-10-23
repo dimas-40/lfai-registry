@@ -3,160 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>LFAI 등기 — 시연</title>
-<meta name="description" content="LFAI REGISTRY 등기 모듈 시연 — 인터넷등기소 부동산 열람 플로우를 폰에서.">
+<title>등기 도우미 — 작동 시연</title>
 <meta name="theme-color" content="#eef0f3">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="../lfai-icons/icon-192.png?v=3">
-<link rel="apple-touch-icon" href="../lfai-icons/apple-touch-icon.png?v=3">
-<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-:root{--bg:#eef0f3;--ink:#1b2430;--sub:#6a7482;--line:#dfe3e9;--indigo:#5b5fe0;--indigoD:#3f43b5;--amber:#f3b63a;--green:#1f9d6b;--red:#d2443a;--card:#fff}
+:root{--bg:#eef0f3;--ink:#1b2430;--sub:#6a7482;--line:#dfe3e9;--blue:#2b5fd0;--green:#1f9d6b;--amber:#f3b63a;--red:#d2443a;--card:#fff}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
 body{font-family:"Pretendard Variable",system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;font-size:15px;line-height:1.5}
-/* 상단 앱바 */
-.bar{display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line)}
-.bar .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#01110b,#14402e);display:grid;place-items:center;color:#6fd3a4;font-weight:800;font-size:12px}
-.bar b{font-size:14px;letter-spacing:.3px;white-space:nowrap}
-.bar b span{color:var(--indigo)}
-.bar .st{margin-left:auto;font-size:10.5px;color:var(--sub);display:flex;align-items:center;gap:5px;white-space:nowrap}
-.bar .st i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px #1f9d6b22}
-/* 스크린 영역 */
-.screen{flex:1;overflow-y:auto;position:relative;-webkit-overflow-scrolling:touch}
-.wrap{padding:16px 16px 92px}
-.hd{text-align:center;padding:14px 0 6px}
-.hd h1{font-size:19px;font-weight:800}
-.hd p{font-size:12.5px;color:var(--sub);margin-top:3px}
-/* 부동산/법인 토글 */
-.seg{display:flex;background:#e4e7ee;border-radius:12px;padding:4px;margin:14px auto;max-width:300px}
-.seg button{flex:1;border:0;background:transparent;padding:9px;border-radius:9px;font:inherit;font-weight:700;font-size:13.5px;color:var(--sub)}
-.seg button[aria-pressed=true]{background:var(--indigo);color:#fff;box-shadow:0 2px 8px #5b5fe055}
-/* 검색창 */
-.srch{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:13px;padding:12px 14px;box-shadow:0 2px 10px #0b122105}
-.srch input{flex:1;border:0;outline:0;font:inherit;font-size:14px;color:var(--ink);background:transparent}
-.srch input::placeholder{color:#aab2bd}
-.srch .go{width:30px;height:30px;border-radius:8px;border:0;background:var(--indigo);color:#fff;display:grid;place-items:center;font-size:15px}
-.caret{display:inline-block;width:1.5px;height:16px;background:var(--indigo);vertical-align:-3px;animation:bl 1s step-end infinite}
-@keyframes bl{50%{opacity:0}}
-/* 메뉴 그리드 */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px 2px;margin-top:18px}
-.grid button{border:0;background:transparent;font:inherit;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 2px;color:var(--ink)}
-.grid .ic{width:42px;height:42px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:#8891a0}
-.grid .ic svg{width:22px;height:22px}
-.grid button.hot .ic{color:var(--indigo)}
-.go svg{width:16px;height:16px}
-.grid span{font-size:10.5px;line-height:1.25;color:var(--sub);text-align:center}
-.grid button.hot .ic{border-color:var(--indigo);box-shadow:0 0 0 3px #5b5fe022;background:#f3f4ff}
-.grid button.hot span{color:var(--indigo);font-weight:700}
-/* 결과 카드 */
-.rcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;margin-top:4px;box-shadow:0 3px 14px #0b122108}
-.rcard .rt{font-size:11px;color:var(--indigo);font-weight:800;letter-spacing:.4px}
-.rcard h3{font-size:15.5px;margin:4px 0 10px}
-.kv{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px dashed var(--line);font-size:13px}
-.kv:first-of-type{border-top:0}
-.kv b{color:var(--sub);font-weight:600}
-.kv span{font-weight:700;text-align:right}
-.mask{letter-spacing:1px;color:#9aa3ae}
-/* 단계 안내 토스트 */
-.flow{margin-top:14px;display:flex;flex-direction:column;gap:8px}
-.step{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:12.5px;opacity:.38;transform:translateY(2px);transition:.35s}
-.step.on{opacity:1;transform:none;border-color:#c7ccf7}
-.step .n{width:20px;height:20px;border-radius:50%;background:#eef0f3;color:var(--sub);display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
-.step.on .n{background:var(--indigo);color:#fff}
-.step.stop .n{background:var(--amber);color:#3a2b00}
-.step.stop{border-color:#f3d79a}
-.step b{display:block;font-size:12.5px}
-.step em{color:var(--sub);font-style:normal;font-size:11.5px}
-/* 하단 액션바 */
-.act{position:absolute;left:0;right:0;bottom:0;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(#ffffff00,#fff 22%);display:flex;gap:9px}
-.act button{flex:1;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:800;font-size:14.5px}
-.act .pri{background:var(--indigo);color:#fff;box-shadow:0 6px 16px #5b5fe044}
-.act .pri:disabled{background:#c3c6e8;box-shadow:none}
-.act .gho{background:#eef0f3;color:var(--sub);flex:0 0 auto;padding:14px 16px}
-/* 모달(앱 전용 게이트 — 실측 재현) */
-.mdim{position:absolute;inset:0;background:#0b1221aa;display:none;align-items:center;justify-content:center;padding:24px;z-index:9}
-.mdim.on{display:flex;animation:fin .2s}
-@keyframes fin{from{opacity:0}}
-.modal{background:#fff;border-radius:18px;padding:24px 20px 18px;max-width:300px;width:100%;text-align:center;box-shadow:0 20px 50px #0008}
-.modal .mi{width:46px;height:46px;border-radius:13px;background:#fff4e0;display:grid;place-items:center;margin:0 auto 12px;font-size:22px}
-.modal p{font-size:14px;color:var(--ink);line-height:1.6}
-.modal small{display:block;color:var(--sub);font-size:11.5px;margin-top:8px}
-.modal .mb{display:flex;gap:8px;margin-top:18px}
-.modal .mb button{flex:1;border:0;border-radius:11px;padding:12px;font:inherit;font-weight:800;font-size:13.5px}
-.modal .mb .c{background:#eef0f3;color:var(--sub)}
-.modal .mb .o{background:#2b2f8a;color:#fff}
-/* 온디바이스 배너 */
-.odb{display:none;align-items:center;gap:9px;background:#071a12;color:#cfe3d9;border-radius:12px;padding:11px 13px;margin:12px 0 2px;font-size:12px}
-.odb.on{display:flex;animation:fin .3s}
-.odb .d{width:8px;height:8px;border-radius:50%;background:#2fbf7f;box-shadow:0 0 0 0 #2fbf7f;animation:pl 1.4s infinite}
+.bar{display:flex;align-items:center;gap:9px;padding:13px 15px;background:#0b1e17;color:#dcebe3;border-bottom:1px solid #16271f}
+.bar .mk{width:24px;height:24px;border-radius:7px;background:#14402e;display:grid;place-items:center;color:#6fd3a4;font-weight:800;font-size:11px}
+.bar b{font-size:13.5px}
+.bar .st{margin-left:auto;font-size:10.5px;color:#8fb3a3;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.bar .st i{width:7px;height:7px;border-radius:50%;background:#2fbf7f;animation:pl 1.4s infinite}
 @keyframes pl{0%{box-shadow:0 0 0 0 #2fbf7f88}70%{box-shadow:0 0 0 7px #2fbf7f00}100%{box-shadow:0 0 0 0 #2fbf7f00}}
-.odb b{color:#6fd3a4}
-/* 가드 핀틀 */
-.pill{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:#fdeceb;color:var(--red)}
+.screen{flex:1;overflow-y:auto;position:relative}
+.wrap{padding:14px 15px 96px}
+/* 정부 전산 폼 느낌 */
+.ghead{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--sub);margin:4px 0 12px}
+.ghead b{color:var(--ink);font-size:14px}
+.ghead .tag{margin-left:auto;font-size:10.5px;font-weight:800;background:#e6edfb;color:var(--blue);padding:3px 8px;border-radius:999px}
+.fld{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:9px;transition:.25s}
+.fld.active{border-color:var(--blue);box-shadow:0 0 0 3px #2b5fd022}
+.fld.done{border-color:#bfe3d2;background:#f5fbf8}
+.fld .lb{font-size:11px;color:var(--sub);font-weight:700;display:flex;align-items:center;gap:6px}
+.fld .lb .ck{margin-left:auto;color:var(--green);opacity:0;transition:.2s}
+.fld.done .lb .ck{opacity:1}
+.fld .vl{font-size:14.5px;font-weight:600;color:var(--ink);min-height:21px;margin-top:4px}
+.fld .vl .cur{display:inline-block;width:2px;height:16px;background:var(--blue);vertical-align:-3px;animation:bk .9s step-end infinite}
+@keyframes bk{50%{opacity:0}}
+.fld .vl.ph{color:#b7bfc9;font-weight:400}
+.prog{display:flex;align-items:center;gap:9px;margin:4px 0 12px;font-size:11.5px;color:var(--sub)}
+.prog .track{flex:1;height:6px;border-radius:6px;background:#dfe3e9;overflow:hidden}
+.prog .bar2{height:100%;width:0;background:linear-gradient(90deg,#2b5fd0,#2fbf7f);transition:.4s}
+/* 하단 단계 레일(삼박자) */
+.rail{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(#ffffff00,#fff 24%);padding:14px 15px calc(14px + env(safe-area-inset-bottom))}
+.steps{display:flex;gap:6px;margin-bottom:11px}
+.steps .s{flex:1;text-align:center;font-size:10px;color:var(--sub);position:relative}
+.steps .s .dot{width:22px;height:22px;border-radius:50%;background:#e4e7ee;color:#9aa3ae;display:grid;place-items:center;margin:0 auto 5px;font-weight:800;font-size:11px}
+.steps .s.on .dot{background:var(--blue);color:#fff}
+.steps .s.on{color:var(--ink);font-weight:700}
+.steps .s.hz .dot{background:var(--amber);color:#3a2b00}
+.cta{width:100%;border:0;border-radius:13px;padding:15px;font:inherit;font-weight:800;font-size:14.5px;background:#c3c6d4;color:#fff}
+.cta.go{background:var(--blue);box-shadow:0 6px 16px #2b5fd044}
+.cta.hz{background:#2b2f8a}
+.replay{position:absolute;right:14px;bottom:92px;z-index:8;display:inline-flex;align-items:center;gap:5px}
+/* 확정 모달 */
+.mdim{position:absolute;inset:0;background:#0b1221aa;display:none;align-items:flex-end;z-index:9}
+.mdim.on{display:flex;animation:fin .25s}
+@keyframes fin{from{opacity:0}}
+.sheet{background:#fff;width:100%;border-radius:20px 20px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px #0005;animation:up .3s}
+@keyframes up{from{transform:translateY(40px)}}
+.sheet .si{width:44px;height:44px;border-radius:12px;background:#fff4e0;display:grid;place-items:center;margin-bottom:12px}
+.sheet h3{font-size:16px}
+.sheet p{font-size:13px;color:var(--sub);margin-top:6px;line-height:1.6}
+.sheet .gl{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.sheet .gl span{font-size:11px;font-weight:700;background:#fdeceb;color:var(--red);padding:4px 9px;border-radius:999px}
+.sheet .fin{width:100%;border:0;border-radius:13px;padding:15px;font:inherit;font-weight:800;font-size:14.5px;background:var(--blue);color:#fff;margin-top:6px}
 .hidden{display:none!important}
 </style>
 </head>
 <body>
-<div class="bar"><span class="mk">등</span><b>LFAI&nbsp;<span>등기</span></b><span class="st"><i></i>개인정보 폰에만</span></div>
+<div class="bar"><span class="mk">등</span><b>등기 도우미</b><span class="st" id="barst"><i></i>자동입력 중</span></div>
 
 <div class="screen" id="screen">
+  <button class="cta replay hidden" id="replay" style="width:auto;padding:8px 13px;font-size:12px;background:#0b1e17;color:#cfe3d9;box-shadow:0 4px 14px #0004" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v4h4"/></svg>다시 보기</button>
   <div class="wrap">
-    <div class="hd"><h1>인터넷등기소</h1><p>부동산·법인 등기 열람을 폰에서</p></div>
+    <div class="ghead"><b>법인 설립 등기 신청</b><span class="tag">startbiz · 전산</span></div>
+    <div class="prog"><span id="pct">0/5</span><div class="track"><div class="bar2" id="bar2"></div></div></div>
 
-    <div class="seg" role="group" aria-label="구분">
-      <button id="segR" aria-pressed="true">부동산</button>
-      <button id="segC" aria-pressed="false">법인</button>
-    </div>
+    <div class="fld" data-k="0"><div class="lb">상호<svg class="ck" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="vl ph">자동 입력 대기…</div></div>
+    <div class="fld" data-k="1"><div class="lb">본점 소재지<svg class="ck" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="vl ph">—</div></div>
+    <div class="fld" data-k="2"><div class="lb">자본금<svg class="ck" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="vl ph">—</div></div>
+    <div class="fld" data-k="3"><div class="lb">대표이사<svg class="ck" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="vl ph">—</div></div>
+    <div class="fld" data-k="4"><div class="lb">발행주식총수<svg class="ck" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div class="vl ph">—</div></div>
 
-    <div class="srch">
-      <input id="addr" readonly placeholder="지번 또는 도로명 주소 입력 예) 서울…">
-      <button class="go" id="goBtn" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg></button>
-    </div>
-
-    <div class="grid" aria-label="등기 메뉴">
-      <button class="hot" id="mReal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></span><span>부동산<br>열람/전송</span></button>
-      <button><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg></span><span>법인<br>열람/전송</span></button>
-      <button><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M14 3H7v18h10V7z"/><path d="M14 3v4h4"/><path d="m9.5 14 1.8 1.8 3.2-3.6"/></svg></span><span>발급여부<br>확인</span></button>
-      <button><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 20h16"/><path d="M15 4.5 19.5 9 9 19.5 4 20l.5-5z"/></svg></span><span>부동산등기<br>신청</span></button>
-    </div>
-
-    <!-- 온디바이스 엔진 배너 -->
-    <div class="odb" id="odb"><span class="d"></span><span><b>AutoJS6 온디바이스</b> 실행 중 · 앱을 접근성으로 조작 · 개인정보 폰에만</span></div>
-
-    <!-- 열람 결과 카드 -->
-    <div class="rcard hidden" id="rcard">
-      <p class="rt">부동산 열람 · 조회결과</p>
-      <h3>서울특별시 중구 세종대로 110</h3>
-      <div class="kv"><b>부동산 고유번호</b><span class="mask">1145-****-******</span></div>
-      <div class="kv"><b>구분</b><span>일반건물</span></div>
-      <div class="kv"><b>열람 수수료</b><span>700원</span></div>
-      <div class="kv"><b>개인정보</b><span style="color:var(--green)">폰에만 저장</span></div>
-    </div>
-
-    <!-- 단계 플로우 -->
-    <div class="flow" id="flow">
-      <div class="step" data-s="0"><span class="n">1</span><div><b>인터넷등기소 진입</b><em>부동산 열람/전송 · 길찾기만</em></div></div>
-      <div class="step" data-s="1"><span class="n">2</span><div><b>주소 검색</b><em>주소는 폰 로컬 입력 · 서버는 안 받음</em></div></div>
-      <div class="step" data-s="2"><span class="n">3</span><div><b>앱 전용 게이트</b><em>모바일 웹은 열람을 앱에서만 허용 (실기기 확인)</em></div></div>
-      <div class="step" data-s="3"><span class="n">4</span><div><b>온디바이스 엔진으로 열람</b><em>AutoJS6 접근성 — PC·ADB 없이 폰 자체</em></div></div>
-      <div class="step stop" data-s="4"><span class="n">!</span><div><b>결제·발급은 본인 <span class="pill">guard 정지</span></b><em>결제·발급 확정·서명 버튼은 코드로 차단 — 사람만</em></div></div>
-    </div>
+    <p style="font-size:11px;color:#9aa3ae;margin-top:12px">※ 값은 내 AI가 만든 서식(프로필)에서 자동으로 들어갑니다. 내 폰에만 저장됩니다.</p>
   </div>
 
-  <!-- 하단 액션 -->
-  <div class="act">
-    <button class="pri" id="cta">주소 검색</button>
-    <button class="gho" id="replay" aria-label="다시 시연"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v4h4"/></svg></button>
+  <div class="rail">
+    <div class="steps">
+      <div class="s" data-s="0"><div class="dot">1</div>서식<br>내 AI</div>
+      <div class="s" data-s="1"><div class="dot">2</div>자동입력<br>도구</div>
+      <div class="s" data-s="2"><div class="dot">3</div>제출<br>본인</div>
+    </div>
+    <button class="cta" id="cta" disabled>자동입력 중…</button>
   </div>
 
-  <!-- 앱 전용 게이트 모달 (m.iros 실측 재현) -->
-  <div class="mdim" id="mdim"><div class="modal">
-    <div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="#f3b63a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></div>
-    <p>해당 메뉴는 앱에서만<br>사용가능 합니다.</p>
-    <small>모바일 웹 열람은 앱으로 유도됩니다 — 2026-10-22 Tab S9 실측</small>
-    <div class="mb"><button class="c" id="mCancel">취소</button><button class="o" id="mOk">앱으로 열람</button></div>
+  <!-- 확정 단계 — 본인 차례 -->
+  <div class="mdim" id="mdim"><div class="sheet">
+    <div class="si"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#f3b63a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+    <h3>여기부터는 본인이 직접</h3>
+    <p>입력은 끝났습니다. <b>결제·전자서명·제출</b>은 도구가 대신 누르지 않습니다 — 본인 손가락으로 마무리하세요.</p>
+    <div class="gl"><span>결제 · 본인</span><span>전자서명 · 본인</span><span>제출 · 본인</span></div>
+    <button class="fin" id="fin" type="button">본인 인증하고 제출하기</button>
   </div></div>
 </div>
 
@@ -164,77 +106,55 @@ body{font-family:"Pretendard Variable",system-ui,sans-serif;background:var(--bg)
 (function(){
   var $=function(s){return document.getElementById(s)},
       reduce=matchMedia("(prefers-reduced-motion:reduce)").matches,
-      ADDR="서울특별시 중구 세종대로 110",
-      steps=[].slice.call(document.querySelectorAll(".step")),
-      tm=[], state=0;
+      VALS=["세움테크 주식회사","서울특별시 중구 세종대로 110","50,000,000원","김세움","10,000주"],
+      flds=[].slice.call(document.querySelectorAll(".fld")),
+      steps=[].slice.call(document.querySelectorAll(".steps .s")),
+      tm=[];
   function clr(){tm.forEach(clearTimeout);tm=[]}
-  function lit(n){steps.forEach(function(s,i){s.classList.toggle("on",i<=n)})}
-  function type(str,done){
-    var el=$("addr"),i=0; el.readOnly=true; el.value="";
-    (function tick(){
-      if(i<=str.length){el.value=str.slice(0,i)+(i<str.length?"":"");i++;tm.push(setTimeout(tick,reduce?0:38))}
-      else done&&done();
+  function stepOn(n){steps.forEach(function(s,i){s.classList.remove("hz");s.classList.toggle("on",i<=n)})}
+  function setBar(n){$("bar2").style.width=(n/VALS.length*100)+"%";$("pct").textContent=n+"/"+VALS.length}
+
+  function type(el,str,done){
+    var i=0;el.classList.remove("ph");el.innerHTML='<span class="cur"></span>';
+    (function t(){
+      if(i<=str.length){el.innerHTML=str.slice(0,i)+'<span class="cur"></span>';i++;tm.push(setTimeout(t,reduce?0:34))}
+      else{el.textContent=str;done&&done()}
     })();
   }
-  // 상태 머신
+  function fillField(k){
+    if(k>=VALS.length){finishFill();return}
+    var f=flds[k],el=f.querySelector(".vl");
+    f.classList.add("active");
+    type(el,VALS[k],function(){
+      f.classList.remove("active");f.classList.add("done");setBar(k+1);
+      tm.push(setTimeout(function(){fillField(k+1)},reduce?0:300));
+    });
+  }
+  function finishFill(){
+    $("barst").innerHTML='입력 완료';
+    $("cta").textContent="확정 단계로";$("cta").disabled=false;$("cta").className="cta go";
+    stepOn(1);
+    if(!reduce)tm.push(setTimeout(gate,700));
+  }
+  function gate(){
+    stepOn(2);steps[2].classList.add("hz");
+    $("cta").textContent="본인 차례 — 결제·서명·제출";$("cta").className="cta hz";$("cta").disabled=true;
+    $("mdim").classList.add("on");
+  }
   function reset(){
-    clr();state=0;lit(-1);
-    $("addr").value="";$("rcard").classList.add("hidden");$("odb").classList.remove("on");
-    $("mdim").classList.remove("on");$("mReal").classList.add("hot");
-    $("cta").disabled=false;$("cta").textContent="주소 검색";$("cta").className="pri";
-    $("screen").scrollTop=0;
+    clr();setBar(0);$("barst").innerHTML='<i></i>자동입력 중';$("mdim").classList.remove("on");
+    flds.forEach(function(f,i){f.classList.remove("active","done");var el=f.querySelector(".vl");el.className="vl ph";el.textContent=i?"—":"자동 입력 대기…"});
+    stepOn(0);$("cta").className="cta";$("cta").disabled=true;$("cta").textContent="자동입력 중…";
+    $("screen").scrollTop=0;$("replay").classList.remove("hidden");
   }
-  var auto=false;               // 자동재생 중이면 각 단계가 다음 단계를 예약
-  function toSearch(){           // 1→2 진입+주소입력
-    clr();lit(0);$("cta").disabled=true;$("cta").textContent="진입 중…";
-    tm.push(setTimeout(function(){
-      type(ADDR,function(){
-        lit(1);$("cta").disabled=false;$("cta").textContent="검색";state=1;
-        if(auto&&!reduce)tm.push(setTimeout(doSearch,1000));
-      });
-    },reduce?0:450));
-  }
-  function doSearch(){           // 2→3 검색→앱게이트 모달
-    clr();$("cta").disabled=true;$("cta").textContent="검색 중…";
-    tm.push(setTimeout(function(){
-      lit(2);$("mdim").classList.add("on");state=2;
-      if(auto&&!reduce)tm.push(setTimeout(toApp,1900));
-    },reduce?0:650));
-  }
-  function toApp(){              // 3→4 온디바이스 엔진
-    $("mdim").classList.remove("on");$("odb").classList.add("on");lit(3);
-    $("cta").disabled=true;$("cta").textContent="온디바이스 열람 중…";
-    $("screen").scrollTop=$("screen").scrollHeight;
-    tm.push(setTimeout(function(){
-      $("rcard").classList.remove("hidden");lit(4);
-      $("cta").disabled=false;$("cta").textContent="결제·발급 (본인 인증)";$("cta").className="pri";state=4;
-      auto=false;$("screen").scrollTop=$("screen").scrollHeight;  // 결제 게이트에서 자동재생 종료(사람 차례)
-    },reduce?0:1100));
-  }
-  function guardStop(){          // 결제 시도 → 차단 안내
-    var b=$("cta");b.disabled=true;b.textContent="본인 인증 필요 · guard 차단";
-    tm.push(setTimeout(function(){b.disabled=false;b.textContent="결제·발급 (본인 인증)";},1600));
-  }
-  function staticDone(){         // reduced-motion: 전체 스토리를 즉시 정적 표시(빈 화면 방지)
-    clr();$("addr").value=ADDR;$("mReal").classList.add("hot");
-    $("odb").classList.add("on");$("rcard").classList.remove("hidden");$("mdim").classList.remove("on");
-    lit(4);$("cta").disabled=false;$("cta").textContent="결제·발급 (본인 인증)";$("cta").className="pri";
-    state=4;auto=false;
-  }
-  // CTA 디스패치
-  $("cta").addEventListener("click",function(){
-    if(state===0)toSearch();else if(state===1)doSearch();else if(state===4)guardStop();
+  $("cta").addEventListener("click",function(){if(!$("cta").disabled&&$("cta").classList.contains("go"))gate()});
+  $("fin").addEventListener("click",function(){
+    $("mdim").classList.remove("on");$("barst").innerHTML='제출 준비 완료';
+    $("cta").className="cta go";$("cta").disabled=false;$("cta").textContent="본인 인증으로 진행";
   });
-  $("goBtn").addEventListener("click",function(){if(state===1)doSearch();else if(state===0)toSearch();});
-  $("mOk").addEventListener("click",toApp);
-  $("mCancel").addEventListener("click",function(){$("mdim").classList.remove("on");});
-  $("replay").addEventListener("click",function(){reset();auto=true;if(reduce)staticDone();else tm.push(setTimeout(toSearch,500));});
-  $("segC").addEventListener("click",function(){$("segC").setAttribute("aria-pressed","true");$("segR").setAttribute("aria-pressed","false")});
-  $("segR").addEventListener("click",function(){$("segR").setAttribute("aria-pressed","true");$("segC").setAttribute("aria-pressed","false")});
-  // 자동 시연 (reduced-motion이면 정적 완성본 즉시 표시)
-  reset();auto=true;
-  if(reduce)staticDone();else tm.push(setTimeout(toSearch,900));
-  // PWA: 서비스워커(오프라인 시연)
+  $("replay").addEventListener("click",function(){reset();start()});
+  function start(){clr();reset();if(reduce){VALS.forEach(function(v,i){var el=flds[i].querySelector(".vl");el.className="vl";el.textContent=v;flds[i].classList.add("done")});setBar(VALS.length);finishFill();}else tm.push(setTimeout(function(){fillField(0)},800))}
+  start();
   if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
 })();
 </script>
