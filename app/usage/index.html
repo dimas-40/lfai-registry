@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>사용법 — 터미널</title>
+<meta name="theme-color" content="#0c1512">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{--grn:#6fd3a4;--sub:#8fb3a3;--w:#f3b63a;--ink:#dcebe3}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:"JetBrains Mono",monospace;background:#0c1512;color:var(--ink);display:flex;flex-direction:column;overflow:hidden;font-size:12px}
+.bar{display:flex;align-items:center;gap:7px;padding:10px 13px;background:#08100d;border-bottom:1px solid #1b3128;font-family:"Pretendard Variable",system-ui}
+.bar i{width:10px;height:10px;border-radius:50%}.bar i:nth-child(1){background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.bar span{margin-left:auto;font-size:10px;color:var(--sub)}
+.car{flex:1;position:relative;overflow:hidden}
+.track{display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100%;height:100%;padding:15px 14px;display:flex;flex-direction:column;line-height:1.75}
+.tag{font-family:"Pretendard Variable",system-ui;font-size:11px;font-weight:800;color:var(--w);margin-bottom:10px}
+.p{color:var(--grn)}.c{color:var(--sub)}.ok{color:#7fd6a8}.wn{color:var(--w)}.hl{color:#9fd0ff}
+.cmd{font-weight:700}
+.cur{display:inline-block;width:7px;height:14px;background:var(--grn);vertical-align:-2px;animation:bk .9s step-end infinite}@keyframes bk{50%{opacity:0}}
+.chat{font-family:"Pretendard Variable",system-ui;background:#0f201a;border:1px solid #1b3128;border-radius:9px;padding:9px 10px;margin:6px 0;font-size:11.5px;line-height:1.5}
+.chat.me{border-left:2px solid var(--grn)}.chat .nm{font-size:9px;color:var(--sub);font-weight:800;margin-bottom:2px}
+.foot{font-family:"Pretendard Variable",system-ui;margin-top:auto;font-size:10.5px;color:var(--sub);line-height:1.5}
+.dots{display:flex;justify-content:center;gap:5px;padding:9px;background:#08100d}
+.dots b{width:6px;height:6px;border-radius:50%;background:#2a4237;transition:.3s}.dots b.on{background:var(--grn);width:15px;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="bar"><i></i><i></i><i></i><span id="stp">사용법 1/7 · zsh</span></div>
+<div class="car"><div class="track" id="track">
+
+  <div class="slide"><div class="tag">1 · 에이전트 설치</div>
+    <div><span class="p">~ $</span> <span class="cmd">curl -O dtslib1979.github.io/termux-bridge/g && bash g</span><span class="cur"></span></div>
+    <div class="c" style="margin-top:6px"># 내 폰에 에이전트 베이스 한 줄로</div>
+    <div class="foot">termux-bridge = claude·DeepSeek·Aider 에이전트.</div></div>
+
+  <div class="slide"><div class="tag">2 · 설치 완료</div>
+    <div class="ok">✓ 에이전트(claude-code·DeepSeek) 설치</div>
+    <div class="ok">✓ adb · 로컬 작업 폴더 생성</div>
+    <div class="wn" style="margin-top:5px"># 설치 스크립트 자동 삭제</div>
+    <div class="foot">설치본은 사라지고 에이전트만 남습니다.</div></div>
+
+  <div class="slide"><div class="tag">3 · 등기 모듈 추가</div>
+    <div><span class="p">~ $</span> <span class="cmd">mod add deunggi</span></div>
+    <div class="ok" style="margin-top:5px">✓ navigator(AutoJS6) · 프롬프트 · 프로필</div>
+    <div class="c">· 등기 = 스토어 1호 모듈</div>
+    <div class="foot">세무·민원도 같은 식으로 <span class="hl">mod add</span>.</div></div>
+
+  <div class="slide"><div class="tag">4 · 서식 작성(내 AI)</div>
+    <div><span class="p">~ $</span> <span class="cmd">등기</span></div>
+    <div class="chat"><div class="nm">에이전트</div>어떤 등기? 상호·자본금·임원 알려주세요</div>
+    <div class="chat me"><div class="nm">나</div>법인설립 · 세움테크 · 5천만원 · 김세움</div>
+    <div class="foot">★'작성'은 <span class="hl">내가 내 AI로</span> — 법무사법 안전선.</div></div>
+
+  <div class="slide"><div class="tag">5 · 이용권 → MCP</div>
+    <div><span class="p">등기 $</span> <span class="cmd">use LFAI-TRIAL-6DEX-QS43</span></div>
+    <div class="ok" style="margin-top:5px">✓ MCP 연결(1회용 토큰)</div>
+    <div class="c">· 작성 요령 · 전산 내비 · explain_next 로드</div>
+    <div class="foot">우리 MCP = 안내만. 생성·개인정보 안 받음.</div></div>
+
+  <div class="slide"><div class="tag">6 · 방해금지 + 실행</div>
+    <div><span class="p">등기 $</span> <span class="cmd">run</span></div>
+    <div class="ok" style="margin-top:5px">✓ 방해금지(DND) ON · 30분 집중</div>
+    <div class="hl">▸ 전산 자동입력 시작 — 상호·자본금·임원…</div>
+    <div class="foot">전화·알림에 안 끊깁니다(비행기모드 아님).</div></div>
+
+  <div class="slide"><div class="tag">7 · 춤 → 본인 제출</div>
+    <div class="chat"><div class="nm">에이전트</div>기본정보 입력했어요. 확인하고 다음? <span class="hl">[다음]</span></div>
+    <div class="chat"><div class="nm">에이전트</div>입력 끝 — 여기부터 본인. <span class="wn">[서명·제출]</span></div>
+    <div class="foot">에이전트가 끌고 <span class="hl">본인이 턴마다 반응</span> · 제출은 내 손가락.</div></div>
+
+</div></div>
+<div class="dots" id="dots"></div>
+<script>
+(function(){
+  var $=function(s){return document.getElementById(s)},reduce=matchMedia("(prefers-reduced-motion:reduce)").matches,
+      track=$("track"),N=document.querySelectorAll(".slide").length,i=0,dots=$("dots"),timer=null;
+  for(var k=0;k<N;k++)dots.appendChild(document.createElement("b"));
+  var dn=[].slice.call(dots.children);
+  function show(n){i=((n%N)+N)%N;track.style.transform="translateX("+(-i*100)+"%)";dn.forEach(function(d,j){d.classList.toggle("on",j===i);});$("stp").textContent="사용법 "+(i+1)+"/"+N+" · zsh";}
+  dn.forEach(function(d,j){d.addEventListener("click",function(){show(j);restart();});});
+  function restart(){if(timer)clearInterval(timer);if(!reduce)timer=setInterval(function(){show(i+1);},2600);}
+  show(0);restart();
+})();
+</script>
+</body>
+</html>
