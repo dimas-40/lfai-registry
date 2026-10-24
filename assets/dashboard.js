@@ -95,7 +95,7 @@
     if(!state.code) return;
     var btn=$("runBtn"),out=$("runOut"),addr=($("runAddr").value||"").trim()||"서울특별시 중구 세종대로 110";
     btn.disabled=true; btn.textContent="실행 중…"; out.classList.remove("hidden");
-    var steps=[["폰 연결",0],["등기소 접속",1],["전산 자동입력",2],["결과 확인",3]];
+    var steps=[["폰 연결",0],["등기소 접속",1],["값 옮기기 [y/n]",2],["결과 확인",3]];
     out.innerHTML='<div class="steps">'+steps.map(function(s){return '<div class="rst" data-k="'+s[1]+'"><i></i>'+s[0]+'</div>';}).join("")+'<div class="verdict" id="runV" style="display:none"></div></div>';
     var k=0,anim=setInterval(function(){var e=out.querySelector('.rst[data-k="'+k+'"]');if(e)e.classList.add("on");k++;if(k>=steps.length)clearInterval(anim);},1100);
     var ctl=new AbortController(),to=setTimeout(function(){ctl.abort();},125000);

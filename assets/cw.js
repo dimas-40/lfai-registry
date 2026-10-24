@@ -481,13 +481,13 @@ var FORM_ENDPOINT = "";
   }
   function start(el){
     var c = C[el.dataset.case], wk = 0, pts = [], lg = el.querySelector(".lg"), ln = el.querySelector(".ln"), kv = el.querySelector(".kv"), wkE = el.querySelector(".wk"), gate = el.querySelector(".gate"), res = el.querySelector(".res"), btn = el.querySelector(".runb"), tm;
-    lg.innerHTML = ""; res.hidden = true; gate.hidden = true; btn.disabled = true; btn.textContent = "운영 중…"; el.classList.add("running");
+    lg.innerHTML = ""; res.hidden = true; gate.hidden = true; btn.disabled = true; btn.textContent = "실행 중…"; el.classList.add("running");
     var val = function(w){ return w <= 3 ? c.base - (w === 3 ? 4 : w) : w <= 4 ? c.base - 4 : c.base + (c.after - c.base) * Math.min(1, (w-4)/4); };
     var draw = function(){ ln.setAttribute("points", pts.map(function(v, i){ return (i*40).toFixed(0)+","+(90-(v-50)*1.6).toFixed(1); }).join(" ")); };
     var step = function(){
       wk++; var v = val(wk); pts.push(v); draw(); kv.textContent = Math.round(v)+"%"; wkE.textContent = wk+"주차";
       var li = document.createElement("li"); li.textContent = wk+"주 · "+c.ev[wk-1]; if(c.ev[wk-1].charAt(0) === "⚠") li.className = "warn"; lg.insertBefore(li, lg.firstChild);
-      if(wk === 4){ gate.hidden = false; el.classList.add("wait"); btn.textContent = "승인 요청 중"; gate.querySelector(".ok").onclick = function(){ gate.hidden = true; el.classList.remove("wait"); btn.textContent = "운영 중…"; var l2 = document.createElement("li"); l2.className = "okk"; l2.textContent = "✓ 승인 · 이력 기록"; lg.insertBefore(l2, lg.firstChild); tm = setTimeout(step, reduce ? 0 : 650); }; return; }
+      if(wk === 4){ gate.hidden = false; el.classList.add("wait"); btn.textContent = "승인 요청 중"; gate.querySelector(".ok").onclick = function(){ gate.hidden = true; el.classList.remove("wait"); btn.textContent = "실행 중…"; var l2 = document.createElement("li"); l2.className = "okk"; l2.textContent = "✓ 승인 · 이력 기록"; lg.insertBefore(l2, lg.firstChild); tm = setTimeout(step, reduce ? 0 : 650); }; return; }
       if(wk < 8){ tm = setTimeout(step, reduce ? 0 : 650); return; }
       var saved = c.loss*c.cut;
       res.hidden = false; res.innerHTML = '<div><span>'+c.kpi+'</span><b>'+c.base+'% → '+c.after+'%</b></div><div><span>월 손실</span><b>'+won(c.loss)+' → '+won(c.loss-saved)+'</b></div><div><span>투자 회수</span><b>'+(c.cost/saved).toFixed(1)+'개월</b></div>';
